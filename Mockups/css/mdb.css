@@ -1143,7 +1143,7 @@
 
 .rgba-white-slight,
 .rgba-white-slight:after {
-  background-color: rgba(255, 255, 255, 0.1); }
+  background-color:#ffffff}
 
 .rgba-white-light,
 .rgba-white-light:after {
@@ -1163,7 +1163,7 @@
   background-color: rgba(62, 69, 81, 0.7); }
 
 .primary-color, ul.stepper li.active a .circle, ul.stepper li.completed a .circle {
-  background-color: #4285f4 !important; }
+  background-color:#3c96df !important; }
 
 .primary-color-dark {
   background-color: #0d47a1 !important; }
@@ -6530,15 +6530,17 @@ a.btn:not([href]):not([tabindex]):hover {
   .card .card-body h1, .card .card-body h2, .card .card-body h3, .card .card-body h4, .card .card-body h5, .card .card-body h6 {
     font-weight: 400; }
   .card .card-body .card-title a {
+    
     -webkit-transition: 0.2s ease-in-out;
     -o-transition: 0.2s ease-in-out;
     transition: 0.2s ease-in-out; }
     .card .card-body .card-title a:hover {
+      
       -webkit-transition: 0.2s ease-in-out;
       -o-transition: 0.2s ease-in-out;
       transition: 0.2s ease-in-out; }
   .card .card-body .card-text {
-    color: #747373;
+    color: #747373;    
     font-size: 0.9rem;
     font-weight: 400; }
   .card .md-form label {
@@ -7194,14 +7196,14 @@ body.scrollable {
 
 .carousel .carousel-control-prev-icon,
 .carousel .carousel-control-next-icon {
-  width: 20px;
-  height: 20px; }
+  width: 45px;
+  height: 45px; }
 
-.carousel .carousel-control-prev-icon {
-  background-image: url(../img/svg/arrow_left.svg); }
+.carousel .carousel-control-prev-icon {  
+  background-image: url(../iconos/previus.png); }
 
 .carousel .carousel-control-next-icon {
-  background-image: url(../img/svg/arrow_right.svg); }
+  background-image: url(../Iconos/next.png); }
 
 .carousel .carousel-indicators li {
   width: 0.625rem;

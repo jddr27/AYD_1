@@ -8,108 +8,112 @@
 
     <title>Principal</title>
 
-   <!-- Font Awesome -->
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
-<!-- Bootstrap core CSS -->
-<link href="css/bootstrap.css" rel="stylesheet">
-<!-- Material Design Bootstrap -->
-<link href="css/mdb.css" rel="stylesheet">
-<link type="text/css" rel="stylesheet" href="css/Principal.css" media="screen,projection" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="css/mdb.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/Principal.css" media="screen,projection" />
 
     <style type="text/css">
         .multiple-select-dropdown li [type=checkbox]+label {
-          height: 1rem;
+            height: 1rem;
         }
     </style>
 
-<script type="text/javascript">
-    /* WOW.js init */
-    new WOW().init();
+    <script type="text/javascript">
+        /* WOW.js init */
+        new WOW().init();
 
-    // Tooltips Initialization
-    $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
-    })
-</script>
+        // Tooltips Initialization
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
 
-<script>
-    // Material Select Initialization
-    $(document).ready(function () {
-        $('.mdb-select').material_select();
-    });
-</script>
-<script>$('.botonF1').hover(function(){
-        $('.btn').addClass('animacionVer');
-      })
-      $('.contenedor').mouseleave(function(){
-        $('.btn').removeClass('animacionVer');
-      })</script>
+    <script>
+        // Material Select Initialization
+        $(document).ready(function () {
+            $('.mdb-select').material_select();
+        });
+    </script>
+    <script>$('.botonF1').hover(function () {
+            $('.btn').addClass('animacionVer');
+        })
+        $('.contenedor').mouseleave(function () {
+            $('.btn').removeClass('animacionVer');
+        })</script>
 
 
 </head>
 
 <body class="category-v3 hidden-sn white-skin animated">
 
-    
-    
+
+
     <header>
 
 
-         
+
         <!--/. Sidebar navigation -->
         <!-- Navbar -->
-        <nav class="navbar fixed-top navbar-expand-lg  navbar-light scrolling-navbar blue">
+        <nav class="navbar fixed-top navbar-expand-lg  navbar-light scrolling-navbar"
+            style="background-color: rgb(60, 150, 223);">
             <div class="container">
                 <!-- SideNav slide-out button -->
                 <div class="float-left mr-2">
-                        <img class="center" width="60px" height="60px" src="iconos/logo_empresa.png" >  
+                    <img class="center" width="60px" height="60px" src="iconos/logo_empresa.png">
                 </div>
 
                 <a class="navbar-brand font-weight-bold" style="color: rgb(255, 255, 255)" href="#">
-                        <strong></strong>
-                    </a>
+                    <strong></strong>
+                </a>
 
-                <div class="float-left mr-1" >
-                        
-                        <div id="buscar">
-                                <form action="ejemplo.html">
-                                        <input  name="s" type="text" onclick="this.value='';" class="srch-txt brradius" placeholder="Buscar" >
-                             
-                                </form>
-                                </div>
-                                
-                     
+                <div class="float-left mr-1">
+
+                    <div id="buscar">
+                        <form action="ejemplo.html">
+                            <input name="s" type="text" onclick="this.value='';" class="srch-txt brradius"
+                                placeholder="Buscar">
+
+                        </form>
+                    </div>
+
+
                 </div>
 
-                
-                
-                
+
+
+
                 <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
                     <ul class="navbar-nav ml-auto">
 
-                      
-                        
-                        <li class="nav-item ml-3" >
-                            
-                            <a class="nav-link waves-effect waves-light white-text font-weight-bold"  href="#">                                    
-                                </i>Mis compras 
-                                <img class="center" width="40px" height="40px" src="iconos/carrito.png" >  
+
+
+                        <li class="nav-item ml-3">
+
+                            <a class="nav-link waves-effect waves-light white-text font-weight-bold" href="#">
+                                </i>Mis compras
+                                <img class="center" width="40px" height="40px" src="iconos/carrito.png">
                             </a>
                         </li>
-                        
-                        
-                            
-                            <li class="nav-item dropdown ml-3">
-                                    <a class="nav-link dropdown-toggle waves-effect waves-light white-text font-weight-bold" id="navbarDropdownMenuLink-4" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false">
-                                        <i class="fas fa-user blue-text"></i> Perfil 
-                                        <img class="center" width="40px" height="40px" src="iconos/user.png" >  
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right dropdown-cyan" aria-labelledby="navbarDropdownMenuLink-4">
-                                        <a class="dropdown-item waves-effect waves-light" href="#">Mi cuenta</a>
-                                        <a class="dropdown-item waves-effect waves-light" href="#">Salir</a>
-                                    </div>
-                                </li>
+
+
+
+                        <li class="nav-item dropdown ml-3">
+                            <a class="nav-link dropdown-toggle waves-effect waves-light white-text font-weight-bold"
+                                id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                <i class="fas fa-user blue-text"></i> Perfil
+                                <img class="center" width="40px" height="40px" src="iconos/user.png">
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-cyan"
+                                aria-labelledby="navbarDropdownMenuLink-4">
+                                <a class="dropdown-item waves-effect waves-light" href="#">Mi cuenta</a>
+                                <a class="dropdown-item waves-effect waves-light" href="#">Salir</a>
+                            </div>
+                        </li>
 
                     </ul>
                 </div>
@@ -134,7 +138,8 @@
             <!--First slide-->
             <div class="carousel-item active">
                 <div class="view h-100">
-                    <img class="d-block h-100 w-lg-100" src="https://mdbootstrap.com/img/Photos/Others/ecommerce4.jpg" alt="First slide">
+                    <img class="d-block h-100 w-lg-100" src="https://mdbootstrap.com/img/Photos/Others/ecommerce4.jpg"
+                        alt="First slide">
                     <div class="mask">
                         <!-- Caption -->
                         <div class="full-bg-img flex-center white-text">
@@ -160,7 +165,8 @@
             <!--Second slide-->
             <div class="carousel-item h-100">
                 <div class="view h-100">
-                    <img class="d-block h-100 w-lg-100" src="https://mdbootstrap.com/img/Photos/Others/ecommerce2.jpg" alt="Second slide">
+                    <img class="d-block h-100 w-lg-100" src="https://mdbootstrap.com/img/Photos/Others/ecommerce2.jpg"
+                        alt="Second slide">
                     <div class="mask">
                         <!-- Caption -->
                         <div class="full-bg-img flex-center white-text">
@@ -170,7 +176,7 @@
                                         <strong>No te pierdas ninguna de nuestras ofertas</strong>
                                     </p>
                                 </li>
-                              <!--  <li>
+                                <!--  <li>
                                     <h5 class="h5-responsive dark-grey-text font-weight-bold mb-5">Tempora incidunt ut labore et dolore veritatis et quasi architecto beatae</h5>
                                 </li>
                                 <li>
@@ -186,7 +192,8 @@
             <!--Third slide-->
             <div class="carousel-item">
                 <div class="view h-100">
-                    <img class="d-block h-100 w-lg-100" src="https://mdbootstrap.com/img/Photos/Others/ecommerce3.jpg" alt="Third slide">
+                    <img class="d-block h-100 w-lg-100" src="https://mdbootstrap.com/img/Photos/Others/ecommerce3.jpg"
+                        alt="Third slide">
                     <div class="mask">
                         <!-- Caption -->
                         <div class="full-bg-img flex-center white-text">
@@ -197,7 +204,8 @@
                                     </p>
                                 </li>
                                 <li>
-                                    <h5 class="h5-responsive dark-grey-text font-weight-bold mb-5 pr-lg-5">Aprovechá! Oferta por tiempo limitado</h5>
+                                    <h5 class="h5-responsive dark-grey-text font-weight-bold mb-5 pr-lg-5">Aprovechá!
+                                        Oferta por tiempo limitado</h5>
                                 </li>
                             </ul>
                         </div>
@@ -220,7 +228,7 @@
         <!--/.Controls-->
     </div>
     <!--/.Carousel Wrapper-->
-    
+
     <!-- Mega menu -->
     <div class="container-fluid mx-0 px-0">
 
@@ -231,9 +239,9 @@
                 <a class="font-weight-bold white-text mr-4" href="#">Categorias</a>
                 <a class="font-weight-bold white-text mr-4" href="#">Ofertas</a>
                 <a class="font-weight-bold white-text mr-4" href="#">Categorias</a>
-                
 
-               
+
+
             </div>
         </nav>
         <!--/.Navbar-->
@@ -248,7 +256,7 @@
             <!-- Content -->
             <div class="col-lg-12">
 
-               
+
                 <!-- /.Filter Area -->
 
                 <!-- Products Grid -->
@@ -265,34 +273,49 @@
 
                                 <!--Card image-->
                                 <div class="view overlay">
-                                    <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/1.jpg" class="img-fluid" alt="">
+                                    <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/1.jpg"
+                                        class="img-fluid" alt="">
                                     <a>
-                                        <div class="mask rgba-white-slight"></div>
+                                        <div class="mask rgba-white-slight">
+                                            <ul>
+                                                <li>Pantalla Retina de 9.7 pulgadas, resolución de pantalla 2048 x 1536
+                                                    (264 ppi).</li>
+                                                <li>Pantalla Retina de 9.7 pulgadas, resolución de pantalla 2048 x 1536
+                                                    (264 ppi).</li>
+                                                <li>Apple A10 Fusion SoC & M10 Coprocesador 4G LTE, 802.11ac Wi-Fi,
+                                                    Bluetooth 4.2</li>
+                                                <li>Cámara frontal de 1.2 MP FaceTime HD con cámara trasera de 8 MP.
+                                                </li>
+                                            </ul>
+
+
+                                        </div>
                                     </a>
                                 </div>
                                 <!--Card image-->
 
                                 <!--Card content-->
-                                <div class="card-body">
+                                <div class="card-body des">
                                     <!--Category & Title-->
 
                                     <h5 class="card-title mb-1">
                                         <strong>
-                                            <a href="" class="dark-grey-text">iPad</a>
+                                            <a href="" class="white-text">iPad</a>
                                         </strong>
                                     </h5>
                                     <span class="badge badge-info mb-2">nuevo</span>
-                                    
-                                   
+
+
                                     <!--Card footer-->
                                     <div class="card-footer pb-0">
                                         <div class="row mb-0">
                                             <span class="float-left">
-                                                <strong>1439$</strong>
+                                                <strong>Q9500.00</strong>
                                             </span>
                                             <span class="float-right">
 
-                                                <a class="" data-toggle="tooltip" data-placement="top" title="Add to Cart">
+                                                <a class="" data-toggle="tooltip" data-placement="top"
+                                                    title="Add to Cart">
                                                     <i class="fas fa-shopping-cart ml-3"></i>
                                                 </a>
                                             </span>
@@ -316,34 +339,45 @@
 
                                 <!--Card image-->
                                 <div class="view overlay">
-                                    <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/3.jpg" class="img-fluid" alt="">
+                                    <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/3.jpg"
+                                        class="img-fluid" alt="">
                                     <a>
-                                        <div class="mask rgba-white-slight"></div>
+                                        <div class="mask rgba-white-slight">
+                                            <ul>
+                                                <li>Procesador Intel Core i5 de 3,4 GHz, Turbo Boost hasta 3,8 GHz</li>
+                                                <li>Memoria de 32 GB DDR4 a 2400 MHz, 2TB Fusion Drive</li>
+                                                <li>AMD Radeon Pro 570 con 4 GB de memoria de vídeo</li>
+                                                <li>27" 5120 x 2880 IPS visualización Retina 5 K</li>
+                                            </ul>
+
+
+                                        </div>
                                     </a>
                                 </div>
                                 <!--Card image-->
 
                                 <!--Card content-->
-                                <div class="card-body">
+                                <div class="card-body des">
                                     <!--Category & Title-->
 
                                     <h5 class="card-title mb-1">
                                         <strong>
-                                            <a href="" class="dark-grey-text">iMac</a>
+                                            <a href="" class="white-text">iMac</a>
                                         </strong>
                                     </h5>
                                     <span class="badge badge-info mb-2">nuevo</span>
-                                   
+
 
                                     <!--Card footer-->
                                     <div class="card-footer pb-0">
                                         <div class="row mb-0">
                                             <span class="float-left">
-                                                <strong>1439$</strong>
+                                                <strong>Q9500.00</strong>
                                             </span>
                                             <span class="float-right">
 
-                                                <a class="" data-toggle="tooltip" data-placement="top" title="Add to Cart">
+                                                <a class="" data-toggle="tooltip" data-placement="top"
+                                                    title="Add to Cart">
                                                     <i class="fas fa-shopping-cart ml-3"></i>
                                                 </a>
                                             </span>
@@ -367,20 +401,35 @@
 
                                 <!--Card image-->
                                 <div class="view overlay">
-                                    <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/6.jpg" class="img-fluid" alt="">
+                                    <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/6.jpg"
+                                        class="img-fluid" alt="">
                                     <a>
-                                        <div class="mask rgba-white-slight"></div>
+                                        <div class="mask rgba-white-slight">
+
+                                            <ul>
+                                                <li>
+                                                    Construido para estar cómodo:
+                                                    El cojinete para orejas con proteína
+                                                    de memoria simula la textura de la piel humana,
+                                                    garantizando una comodidad duradera.
+                                                    El deslizador de acero inoxidable y la banda suavemente
+                                                    acolchada te permite encontrar el ajuste perfecto sin
+                                                    restricciones y proporciona una excelente durabilidad.
+                                                </li>
+
+                                            </ul>
+                                        </div>
                                     </a>
                                 </div>
                                 <!--Card image-->
 
                                 <!--Card content-->
-                                <div class="card-body">
+                                <div class="card-body des">
                                     <!--Category & Title-->
 
                                     <h5 class="card-title mb-1">
                                         <strong>
-                                            <a href="" class="dark-grey-text">Headphones</a>
+                                            <a href="" class="white-text">Headphones</a>
                                         </strong>
                                     </h5>
                                     <span class="badge badge-info mb-2">nuevo</span>
@@ -389,18 +438,19 @@
                                         <div class="row mb-0">
                                             <h5 class="mb-0 pb-0 mt-1 font-weight-bold">
                                                 <span class="red-text">
-                                                    <strong>$99</strong>
+                                                    <strong>Q500.00</strong>
                                                 </span>
                                                 <span class="grey-text">
                                                     <small>
-                                                        <s>$120</s>
+                                                        <s>Q700.00</s>
                                                     </small>
                                                 </span>
                                             </h5>
 
                                             <span class="float-right">
 
-                                                <a class="" data-toggle="tooltip" data-placement="top" title="Add to Cart">
+                                                <a class="" data-toggle="tooltip" data-placement="top"
+                                                    title="Add to Cart">
                                                     <i class="fas fa-shopping-cart ml-3"></i>
                                                 </a>
                                             </span>
@@ -430,33 +480,37 @@
 
                                 <!--Card image-->
                                 <div class="view overlay">
-                                    <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/13.jpg" class="img-fluid" alt="">
+                                    <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/13.jpg"
+                                        class="img-fluid" alt="">
                                     <a>
-                                        <div class="mask rgba-white-slight"></div>
+                                        <div class="mask rgba-white-slight">
+                                            <h1>DESCRIPCION</h1>
+                                        </div>
                                     </a>
                                 </div>
                                 <!--Card image-->
 
                                 <!--Card content-->
-                                <div class="card-body">
+                                <div class="card-body des">
                                     <!--Category & Title-->
 
                                     <h5 class="card-title mb-1">
                                         <strong>
-                                            <a href="" class="dark-grey-text">Asus CT-567</a>
+                                            <a href="" class="white-text">Asus CT-567</a>
                                         </strong>
                                     </h5>
                                     <span class="badge badge-info mb-2">nuevo</span>
-                                    
+
 
                                     <!--Card footer-->
                                     <div class="card-footer pb-0">
                                         <div class="row mb-0">
                                             <span class="float-left">
-                                                <strong>1439$</strong>
+                                                <strong>Q9500.00</strong>
                                             </span>
                                             <span class="float-right">
-                                                <a class="" data-toggle="tooltip" data-placement="top" title="Add to Cart">
+                                                <a class="" data-toggle="tooltip" data-placement="top"
+                                                    title="Add to Cart">
                                                     <i class="fas fa-shopping-cart ml-3"></i>
                                                 </a>
                                             </span>
@@ -479,42 +533,46 @@
 
                                 <!--Card image-->
                                 <div class="view overlay">
-                                    <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/2.jpg" class="img-fluid" alt="">
+                                    <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/2.jpg"
+                                        class="img-fluid" alt="">
                                     <a>
-                                        <div class="mask rgba-white-slight"></div>
+                                        <div class="mask rgba-white-slight">
+                                            <h1>DESCRIPCION</H1>
+                                        </div>
                                     </a>
                                 </div>
                                 <!--Card image-->
 
                                 <!--Card content-->
-                                <div class="card-body">
+                                <div class="card-body des">
                                     <!--Category & Title-->
 
                                     <h5 class="card-title mb-1">
                                         <strong>
-                                            <a href="" class="dark-grey-text">iPad PRO</a>
+                                            <a href="" class="white-text">iPad PRO</a>
                                         </strong>
                                     </h5>
                                     <span class="badge badge-info mb-2">nuevo</span>
-                                    
+
 
                                     <!--Card footer-->
                                     <div class="card-footer pb-0">
                                         <div class="row mb-0">
                                             <h5 class="mb-0 pb-0 mt-1 font-weight-bold">
                                                 <span class="red-text">
-                                                    <strong>$699</strong>
+                                                    <strong>Q5000.00</strong>
                                                 </span>
                                                 <span class="grey-text">
                                                     <small>
-                                                        <s>$920</s>
+                                                        <s>Q7000.00</s>
                                                     </small>
                                                 </span>
                                             </h5>
 
                                             <span class="float-right">
 
-                                                <a class="" data-toggle="tooltip" data-placement="top" title="Add to Cart">
+                                                <a class="" data-toggle="tooltip" data-placement="top"
+                                                    title="Add to Cart">
                                                     <i class="fas fa-shopping-cart ml-3"></i>
                                                 </a>
                                             </span>
@@ -538,33 +596,37 @@
 
                                 <!--Card image-->
                                 <div class="view overlay">
-                                    <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/4.jpg" class="img-fluid" alt="">
+                                    <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/4.jpg"
+                                        class="img-fluid" alt="">
                                     <a>
-                                        <div class="mask rgba-white-slight"></div>
+                                        <div class="mask rgba-white-slight">
+                                            <h1>DESCRIPCION</H1>
+                                        </div>
                                     </a>
                                 </div>
                                 <!--Card image-->
 
                                 <!--Card content-->
-                                <div class="card-body">
+                                <div class="card-body des">
                                     <!--Category & Title-->
 
                                     <h5 class="card-title mb-1">
                                         <strong>
-                                            <a href="" class="dark-grey-text">Dell V-964i</a>
+                                            <a href="" class="white-text">Dell V-964i</a>
                                         </strong>
                                     </h5>
                                     <span class="badge badge-info mb-2">neuvo</span>
-                                  
+
                                     <!--Card footer-->
                                     <div class="card-footer pb-0">
                                         <div class="row mb-0">
                                             <span class="float-left">
-                                                <strong>1439$</strong>
+                                                <strong>Q9500.00</strong>
                                             </span>
                                             <span class="float-right">
 
-                                                <a class="" data-toggle="tooltip" data-placement="top" title="Add to Cart">
+                                                <a class="" data-toggle="tooltip" data-placement="top"
+                                                    title="Add to Cart">
                                                     <i class="fas fa-shopping-cart ml-3"></i>
                                                 </a>
                                             </span>
@@ -594,33 +656,37 @@
 
                                 <!--Card image-->
                                 <div class="view overlay">
-                                    <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/8.jpg" class="img-fluid" alt="">
+                                    <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/8.jpg"
+                                        class="img-fluid" alt="">
                                     <a>
-                                        <div class="mask rgba-white-slight"></div>
+                                        <div class="mask rgba-white-slight">
+                                            <h1>DESCRIPCION</H1>
+                                        </div>
                                     </a>
                                 </div>
                                 <!--Card image-->
 
                                 <!--Card content-->
-                                <div class="card-body">
+                                <div class="card-body des">
                                     <!--Category & Title-->
 
                                     <h5 class="card-title mb-1">
                                         <strong>
-                                            <a href="" class="dark-grey-text">Samsung V54</a>
+                                            <a href="" class="white-text">Samsung V54</a>
                                         </strong>
                                     </h5>
                                     <span class="badge badge-info mb-2">nuevo</span>
-                                   
+
 
                                     <!--Card footer-->
                                     <div class="card-footer pb-0">
                                         <div class="row mb-0">
                                             <span class="float-left">
-                                                <strong>1439$</strong>
+                                                <strong>Q9500.00</strong>
                                             </span>
                                             <span class="float-right">
-                                                <a class="" data-toggle="tooltip" data-placement="top" title="Add to Cart">
+                                                <a class="" data-toggle="tooltip" data-placement="top"
+                                                    title="Add to Cart">
                                                     <i class="fas fa-shopping-cart ml-3"></i>
                                                 </a>
                                             </span>
@@ -643,33 +709,37 @@
 
                                 <!--Card image-->
                                 <div class="view overlay">
-                                    <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/7.jpg" class="img-fluid" alt="">
+                                    <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/7.jpg"
+                                        class="img-fluid" alt="">
                                     <a>
-                                        <div class="mask rgba-white-slight"></div>
+                                        <div class="mask rgba-white-slight">
+                                            <h1>DESCRIPCION</H1>
+                                        </div>
                                     </a>
                                 </div>
                                 <!--Card image-->
 
                                 <!--Card content-->
-                                <div class="card-body">
+                                <div class="card-body des">
                                     <!--Category & Title-->
 
                                     <h5 class="card-title mb-1">
                                         <strong>
-                                            <a href="" class="dark-grey-text">Dell 786i</a>
+                                            <a href="" class="white-text">Dell 786i</a>
                                         </strong>
                                     </h5>
                                     <span class="badge badge-info mb-2">nuevo</span>
-                                   
+
 
                                     <!--Card footer-->
                                     <div class="card-footer pb-0">
                                         <div class="row mb-0">
                                             <span class="float-left">
-                                                <strong>1439$</strong>
+                                                <strong>Q9500.00</strong>
                                             </span>
                                             <span class="float-right">
-                                                <a class="" data-toggle="tooltip" data-placement="top" title="Add to Cart">
+                                                <a class="" data-toggle="tooltip" data-placement="top"
+                                                    title="Add to Cart">
                                                     <i class="fas fa-shopping-cart ml-3"></i>
                                                 </a>
                                             </span>
@@ -693,42 +763,46 @@
 
                                 <!--Card image-->
                                 <div class="view overlay">
-                                    <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/9.jpg" class="img-fluid" alt="">
+                                    <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/9.jpg"
+                                        class="img-fluid" alt="">
                                     <a>
-                                        <div class="mask rgba-white-slight"></div>
+                                        <div class="mask rgba-white-slight">
+                                            <h1>DESCRIPCION</H1>
+                                        </div>
                                     </a>
                                 </div>
                                 <!--Card image-->
 
                                 <!--Card content-->
-                                <div class="card-body">
+                                <div class="card-body des">
                                     <!--Category & Title-->
 
                                     <h5 class="card-title mb-1">
                                         <strong>
-                                            <a href="" class="dark-grey-text">Canon 675-D</a>
+                                            <a href="" class="white-text">Canon 675-D</a>
                                         </strong>
                                     </h5>
                                     <span class="badge badge-info mb-2">nuevo</span>
-                                    
-                                
+
+
                                     <!--Card footer-->
                                     <div class="card-footer pb-0">
                                         <div class="row mb-0">
                                             <h5 class="mb-0 pb-0 mt-1 font-weight-bold">
                                                 <span class="red-text">
-                                                    <strong>$1199</strong>
+                                                    <strong>Q3500.00</strong>
                                                 </span>
                                                 <span class="grey-text">
                                                     <small>
-                                                        <s>$1520</s>
+                                                        <s>Q5000.00</s>
                                                     </small>
                                                 </span>
                                             </h5>
 
                                             <span class="float-right">
 
-                                                <a class="" data-toggle="tooltip" data-placement="top" title="Add to Cart">
+                                                <a class="" data-toggle="tooltip" data-placement="top"
+                                                    title="Add to Cart">
                                                     <i class="fas fa-shopping-cart ml-3"></i>
                                                 </a>
                                             </span>
@@ -758,20 +832,23 @@
 
                                 <!--Card image-->
                                 <div class="view overlay">
-                                    <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/10.jpg" class="img-fluid" alt="">
+                                    <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/10.jpg"
+                                        class="img-fluid" alt="">
                                     <a>
-                                        <div class="mask rgba-white-slight"></div>
+                                        <div class="mask rgba-white-slight">
+                                            <h1>DESCRIPCION</H1>
+                                        </div>
                                     </a>
                                 </div>
                                 <!--Card image-->
 
                                 <!--Card content-->
-                                <div class="card-body">
+                                <div class="card-body des">
                                     <!--Category & Title-->
 
                                     <h5 class="card-title mb-1">
                                         <strong>
-                                            <a href="" class="dark-grey-text">Headphones</a>
+                                            <a href="" class="white-text">Headphones</a>
                                         </strong>
                                     </h5>
                                     <span class="badge badge-info mb-2">nuevo</span>
@@ -798,11 +875,12 @@
                                     <div class="card-footer pb-0">
                                         <div class="row mb-0">
                                             <span class="float-left">
-                                                <strong>1439$</strong>
+                                                <strong>Q9500.00</strong>
                                             </span>
                                             <span class="float-right">
 
-                                                <a class="" data-toggle="tooltip" data-placement="top" title="Add to Cart">
+                                                <a class="" data-toggle="tooltip" data-placement="top"
+                                                    title="Add to Cart">
                                                     <i class="fas fa-shopping-cart ml-3"></i>
                                                 </a>
                                             </span>
@@ -825,34 +903,38 @@
 
                                 <!--Card image-->
                                 <div class="view overlay">
-                                    <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/11.jpg" class="img-fluid" alt="">
+                                    <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/11.jpg"
+                                        class="img-fluid" alt="">
                                     <a>
-                                        <div class="mask rgba-white-slight"></div>
+                                        <div class="mask rgba-white-slight">
+                                            <h1>DESCRIPCION</H1>
+                                        </div>
                                     </a>
                                 </div>
                                 <!--Card image-->
 
                                 <!--Card content-->
-                                <div class="card-body">
+                                <div class="card-body des">
                                     <!--Category & Title-->
 
                                     <h5 class="card-title mb-1">
                                         <strong>
-                                            <a href="" class="dark-grey-text">iPhone</a>
+                                            <a href="" class="white-text">iPhone</a>
                                         </strong>
                                     </h5>
                                     <span class="badge badge-info mb-2">nuevo</span>
-                                 
+
 
                                     <!--Card footer-->
                                     <div class="card-footer pb-0">
                                         <div class="row mb-0">
                                             <span class="float-left">
-                                                <strong>1439$</strong>
+                                                <strong>Q9500.00</strong>
                                             </span>
                                             <span class="float-right">
 
-                                                <a class="" data-toggle="tooltip" data-placement="top" title="Add to Cart">
+                                                <a class="" data-toggle="tooltip" data-placement="top"
+                                                    title="Add to Cart">
                                                     <i class="fas fa-shopping-cart ml-3"></i>
                                                 </a>
                                             </span>
@@ -876,36 +958,40 @@
 
                                 <!--Card image-->
                                 <div class="view overlay">
-                                    <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/3.jpg" class="img-fluid" alt="">
+                                    <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/3.jpg"
+                                        class="img-fluid" alt="">
                                     <a>
-                                        <div class="mask rgba-white-slight"></div>
+                                        <div class="mask rgba-white-slight">
+                                            <h1>DESCRIPCION</H1>
+                                        </div>
                                     </a>
                                 </div>
                                 <!--Card image-->
 
                                 <!--Card content-->
-                                <div class="card-body">
+                                <div class="card-body des">
                                     <!--Category & Title-->
 
                                     <h5 class="card-title mb-1">
                                         <strong>
-                                            <a href="" class="dark-grey-text">iMac</a>
+                                            <a href="" class="white-text">iMac</a>
                                         </strong>
                                     </h5>
                                     <span class="badge badge-info mb-2">nuevo</span>
                                     <!--<span class="badge badge-danger mb-2">bestseller</span>-->
-                                    
-                                    
+
+
 
                                     <!--Card footer-->
                                     <div class="card-footer pb-0">
                                         <div class="row mb-0">
                                             <span class="float-left">
-                                                <strong>1439$</strong>
+                                                <strong>Q9500.00</strong>
                                             </span>
                                             <span class="float-right">
 
-                                                <a class="" data-toggle="tooltip" data-placement="top" title="Add to Cart">
+                                                <a class="" data-toggle="tooltip" data-placement="top"
+                                                    title="Add to Cart">
                                                     <i class="fas fa-shopping-cart ml-3"></i>
                                                 </a>
                                             </span>
@@ -989,42 +1075,43 @@
         </div>
     </div>
     <!-- /.Main Container -->
-    
-          
-    
+
+
+
     <!--Footer-->
     <footer class="page-footer text-center text-md-left stylish-color-dark pt-0">
 
-     
-     
+
+
         <!--/.Footer Links-->
 
         <!-- Copyright-->
         <div class="footer-copyright py-3 text-center">
             <div class="container-fluid">
-                    <a class='flotante' href='carrito.html' ><img src='iconos/carritofloat.png' width="50px" height="50px" border="0"/></a>
+                <a class='flotante' href='carrito.html'><img src='iconos/carritofloat.png' width="50px" height="50px"
+                        border="0" /></a>
 
-                © 2018 Copyright: <a href="https://mdbootstrap.com/education/bootstrap/" target="_blank"> MDBootstrap.com </a>
+                © 2019 Proyecto AYD1 <a href="#" target="_blank">Softech.com </a>
             </div>
         </div>
         <!--/.Copyright -->
 
     </footer>
-    
 
 
-  <!-- JQuery -->
-  <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
-  <!-- Bootstrap tooltips -->
-  <script type="text/javascript" src="js/popper.min.js"></script>
-  <!-- Bootstrap core JavaScript -->
-  <script type="text/javascript" src="js/bootstrap.js"></script>
-  <!-- MDB core JavaScript -->
-  <script type="text/javascript" src="js/mdb.js"></script>
 
-  
-     
-    
+    <!-- JQuery -->
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="js/mdb.js"></script>
+
+
+
+
 </body>
 
 </html>
