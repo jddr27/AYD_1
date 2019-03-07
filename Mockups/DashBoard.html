@@ -61,14 +61,43 @@
         <nav class="navbar fixed-top navbar-expand-lg  navbar-light scrolling-navbar"
             style="background-color: rgb(60, 150, 223);">
             <div class="container">
+                
+                <!--MENU LATERAL-->
+                    <div class="float-left mr-1">
+
+                            <div id="mySidenav" class="sidenav">
+                                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>                                
+                                    <a href="#">Mas Estadisticas</a>
+                                    <a href="#">Clientes/Usuarios</a>
+                                    <a href="#">Inventario</a>
+                                  </div>
+                                  
+                                  <div id="main" style="color:white;">
+                                    <span style="font-size:30px;cursor:pointer " onclick="openNav()">&#9776;MENU</span>
+                                  </div>
+                                  
+                                  <script>
+                                  function openNav() {
+                                    document.getElementById("mySidenav").style.width = "250px";
+                                    document.getElementById("main").style.marginLeft = "250px";
+                                    document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+                                  }
+                                  
+                                  function closeNav() {
+                                    document.getElementById("mySidenav").style.width = "0";
+                                    document.getElementById("main").style.marginLeft= "0";
+                                    document.body.style.backgroundColor = "white";
+                                  }
+                                  </script>
+            
+                        </div>
+                
                 <!-- SideNav slide-out button -->
                 <div class="float-left mr-2">
                     <img class="center" width="60px" height="60px" src="iconos/logo_empresa.png">
                 </div>
 
-                <a class="navbar-brand font-weight-bold" style="color: rgb(255, 255, 255)" href="#">
-                    <strong></strong>
-                </a>
+                
 
                 <div class="float-left mr-1">
 
@@ -94,7 +123,7 @@
                             <a class="nav-link dropdown-toggle waves-effect waves-light white-text font-weight-bold"
                                 id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false">
-                                <i class="fas fa-user blue-text"></i> Perfil
+                                Perfil
                                 <img class="center" width="40px" height="40px" src="iconos/user.png">
                             </a>
                             <div class="dropdown-menu dropdown-menu-right dropdown-cyan"
