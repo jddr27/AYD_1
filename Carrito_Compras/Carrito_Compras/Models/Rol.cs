@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
+using System.Configuration;
 using System.Web;
 
 namespace Carrito_Compras.Models
@@ -21,12 +22,12 @@ namespace Carrito_Compras.Models
         {
             Get_Connection();
             id = arg_id;
+
             try
             {
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = connection;
-                cmd.CommandText = string.Format("select nombre_rol from Rol where id_rol = '{0}'", RolID);
-
+                cmd.CommandText = string.Format("select nombre_rol from Rol where id_rol = '{0}'", id);
                 MySqlDataReader reader = cmd.ExecuteReader();
 
                 try
@@ -34,9 +35,9 @@ namespace Carrito_Compras.Models
                     reader.Read();
 
                     if (reader.IsDBNull(0) == false)
-                        Nombre = reader.GetString(0);
+                        nombre = reader.GetString(0);
                     else
-                        Nombre = null;
+                        nombre = null;
 
                     reader.Close();
 
@@ -45,35 +46,25 @@ namespace Carrito_Compras.Models
                 {
                     string MessageString = "Read error occurred  / entry not found loading the Column details: "
                         + e.ErrorCode + " - " + e.Message + "; \n\nPlease Continue";
-                    //MessageBox.Show(MessageString, "SQL Read Error");
                     reader.Close();
-                    Nombre = MessageString;
+                    nombre = MessageString;
                 }
             }
             catch (MySqlException e)
             {
                 string MessageString = "The following error occurred loading the Column details: "
                     + e.ErrorCode + " - " + e.Message;
-                Nombre = MessageString;
+                nombre = MessageString;
             }
-
-
-
-
+            
             connection.Close();
-
-
         }
 
         private void Get_Connection()
         {
             connection_open = false;
-
             connection = new MySqlConnection();
-            //connection = DB_Connect.Make_Connnection(ConfigurationManager.ConnectionStrings["SQLConnection"].ConnectionString);
             connection.ConnectionString = ConfigurationManager.ConnectionStrings["MySQLConnection"].ConnectionString;
-
-            //            if (db_manage_connnection.DB_Connect.OpenTheConnection(connection))
             if (Open_Local_Connection())
             {
                 connection_open = true;

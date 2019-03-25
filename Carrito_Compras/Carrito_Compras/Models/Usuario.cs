@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
+using System.Configuration;
 using System.Web;
 
 namespace Carrito_Compras.Models
@@ -30,19 +31,37 @@ namespace Carrito_Compras.Models
             {
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = connection;
-                cmd.CommandText = string.Format("select nombre_rol from Rol where id_rol = '{0}'", RolID);
-
+                cmd.CommandText = string.Format("select nombre_usuario, apellidos_usuario, password_usuario, correo_usuario," 
+                    + " direccion_usuario, rol_usuario from Usuario where id_usuario = '{0}'", id);
                 MySqlDataReader reader = cmd.ExecuteReader();
 
                 try
                 {
                     reader.Read();
-
                     if (reader.IsDBNull(0) == false)
-                        Nombre = reader.GetString(0);
+                        nombres = reader.GetString(0);
                     else
-                        Nombre = null;
-
+                        nombres = null;
+                    if (reader.IsDBNull(1) == false)
+                        apellidos = reader.GetString(1);
+                    else
+                        apellidos = null;
+                    if (reader.IsDBNull(2) == false)
+                        password = reader.GetString(2);
+                    else
+                        password = null;
+                    if (reader.IsDBNull(3) == false)
+                        correo = reader.GetString(3);
+                    else
+                        correo = null;
+                    if (reader.IsDBNull(4) == false)
+                        direccion = reader.GetString(4);
+                    else
+                        direccion = null;
+                    if (reader.IsDBNull(5) == false)
+                        rol = new Rol(int.Parse(reader.GetString(5)));
+                    else
+                        rol = null;
                     reader.Close();
 
                 }
@@ -52,22 +71,21 @@ namespace Carrito_Compras.Models
                         + e.ErrorCode + " - " + e.Message + "; \n\nPlease Continue";
                     //MessageBox.Show(MessageString, "SQL Read Error");
                     reader.Close();
-                    Nombre = MessageString;
+                    nombres = MessageString;
+                    apellidos = password = correo = direccion = null;
+                    rol = null;
                 }
             }
             catch (MySqlException e)
             {
                 string MessageString = "The following error occurred loading the Column details: "
                     + e.ErrorCode + " - " + e.Message;
-                Nombre = MessageString;
+                nombres = MessageString;
+                apellidos = password = correo = direccion = null;
+                rol = null;
             }
-
-
-
-
+          
             connection.Close();
-
-
         }
 
         private void Get_Connection()
@@ -75,10 +93,7 @@ namespace Carrito_Compras.Models
             connection_open = false;
 
             connection = new MySqlConnection();
-            //connection = DB_Connect.Make_Connnection(ConfigurationManager.ConnectionStrings["SQLConnection"].ConnectionString);
             connection.ConnectionString = ConfigurationManager.ConnectionStrings["MySQLConnection"].ConnectionString;
-
-            //            if (db_manage_connnection.DB_Connect.OpenTheConnection(connection))
             if (Open_Local_Connection())
             {
                 connection_open = true;
