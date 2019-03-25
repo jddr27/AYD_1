@@ -5,25 +5,23 @@ using System.Web;
 
 namespace Carrito_Compras.Models
 {
-    public class Usuario
+    public class Facturacion
     {
         public int id { get; set; }
-        public string nombres { get; set; }
-        public string apellidos { get; set; }
-        public string password { get; set; }
-        public string correo { get; set; }
-        public string direccion { get; set; }
-        public Rol rol { get; set; }
+        public Carrito carrito { get; set; }
+        public double total { get; set; }
+        public DateTime? fecha { get; set; }
+        public Tipo_Pago tipo { get; set; }
 
         private bool connection_open;
         private MySqlConnection connection;
 
-        public Usuario()
+        public Facturacion()
         {
 
         }
 
-        public Usuario(int arg_id)
+        public Facturacion(int arg_id)
         {
             Get_Connection();
             id = arg_id;
@@ -31,37 +29,29 @@ namespace Carrito_Compras.Models
             {
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = connection;
-                cmd.CommandText = string.Format("SELECT nombres_usuario, apellidos_usuario, password_usuario, correo_usuario," 
-                    + " direccion_usuario, rol_usuario FROM Usuario WHERE id_usuario = '{0}'", id);
+                cmd.CommandText = string.Format("SELECT carrito_facturacion, total_facturacion, fecha_facturacion, tipo_pago_facturacion,"
+                    + " FROM Facturacion WHERE id_facturacion = '{0}'", id);
                 MySqlDataReader reader = cmd.ExecuteReader();
 
                 try
                 {
                     reader.Read();
                     if (reader.IsDBNull(0) == false)
-                        nombres = reader.GetString(0);
+                        carrito = new Carrito(int.Parse(reader.GetString(0)));
                     else
-                        nombres = null;
+                        carrito = null;
                     if (reader.IsDBNull(1) == false)
-                        apellidos = reader.GetString(1);
+                        total = double.Parse(reader.GetString(1));
                     else
-                        apellidos = null;
+                        total = -1.0;
                     if (reader.IsDBNull(2) == false)
-                        password = reader.GetString(2);
+                        fecha = DateTime.ParseExact(reader.GetString(2), "yyyy-MM-dd", null);
                     else
-                        password = null;
+                        fecha = null;
                     if (reader.IsDBNull(3) == false)
-                        correo = reader.GetString(3);
+                        tipo = new Tipo_Pago(int.Parse(reader.GetString(3)));
                     else
-                        correo = null;
-                    if (reader.IsDBNull(4) == false)
-                        direccion = reader.GetString(4);
-                    else
-                        direccion = null;
-                    if (reader.IsDBNull(5) == false)
-                        rol = new Rol(int.Parse(reader.GetString(5)));
-                    else
-                        rol = null;
+                        tipo = null;
                     reader.Close();
 
                 }
@@ -71,20 +61,24 @@ namespace Carrito_Compras.Models
                         + e.ErrorCode + " - " + e.Message + "; \n\nPlease Continue";
                     //MessageBox.Show(MessageString, "SQL Read Error");
                     reader.Close();
-                    nombres = MessageString;
-                    apellidos = password = correo = direccion = null;
-                    rol = null;
+                    //nombres = MessageString;
+                    carrito = null;
+                    total = -1.0;
+                    fecha = null;
+                    tipo = null;
                 }
             }
             catch (MySqlException e)
             {
                 string MessageString = "The following error occurred loading the Column details: "
                     + e.ErrorCode + " - " + e.Message;
-                nombres = MessageString;
-                apellidos = password = correo = direccion = null;
-                rol = null;
+                //nombres = MessageString;
+                carrito = null;
+                total = -1.0;
+                fecha = null;
+                tipo = null;
             }
-          
+
             connection.Close();
         }
 
