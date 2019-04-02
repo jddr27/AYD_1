@@ -81,5 +81,18 @@ namespace Carrito_Compras.Controllers
 
             return View();
         }
+        public ActionResult Inventario()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+
+        public ActionResult Registro()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
     }
 }

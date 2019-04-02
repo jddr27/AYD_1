@@ -292,6 +292,8 @@
     <Content Include="Views\Shared\LayoutAdmin.cshtml" />
     <Content Include="Views\Home\Clientes.cshtml" />
     <Content Include="Views\Home\DashBoard.cshtml" />
+    <Content Include="Views\Home\Inventario.cshtml" />
+    <Content Include="Views\Home\Registro.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
