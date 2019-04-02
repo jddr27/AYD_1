@@ -1,0 +1,138 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="css/mdb.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/Principal.css" media="screen,projection" />
+
+    <style type="text/css">
+        .multiple-select-dropdown li [type=checkbox] + label {
+            height: 1rem;
+        }
+    </style>
+
+    <script type="text/javascript">
+        /* WOW.js init */
+        new WOW().init();
+
+        // Tooltips Initialization
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+
+    <script>
+        // Material Select Initialization
+        $(document).ready(function () {
+            $('.mdb-select').material_select();
+        });
+    </script>
+    <script>
+    $('.botonF1').hover(function () {
+            $('.btn').addClass('animacionVer');
+        })
+        $('.contenedor').mouseleave(function () {
+            $('.btn').removeClass('animacionVer');
+        })</script>
+
+</head>
+<body>
+    <header>
+        <!--/. Sidebar navigation -->
+        <!-- Navbar -->
+        <nav class="navbar fixed-top navbar-expand-lg  navbar-light scrolling-navbar"
+             style="background-color: #3c96df;">
+            <div class="container">
+                <!-- SideNav slide-out button -->
+                <div class="float-left mr-2">
+                    <img class="center" width="60px" height="60px" src="iconos/logo_empresa.png">
+                </div>
+
+                <a class="navbar-brand font-weight-bold" style="color: rgb(255, 255, 255)" href="#">
+                    <strong></strong>
+                </a>
+
+                <div class="float-left mr-1">
+
+                    <div id="buscar">
+                        <form action="ejemplo.html">
+                            <input name="s" type="text" onclick="this.value='';" class="srch-txt brradius"
+                                   placeholder="Buscar">
+
+                        </form>
+                    </div>
+
+
+                </div>
+
+
+
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
+                    <ul class="navbar-nav ml-auto">
+
+
+
+                        <li class="nav-item ml-3">
+
+                            <a class="nav-link waves-effect waves-light white-text font-weight-bold" href="Carrito.html">
+                                </i>Mis compras
+                                <img class="center" width="40px" height="40px" src="iconos/carrito.png">
+                            </a>
+                        </li>
+
+
+
+                        <li class="nav-item dropdown ml-3">
+                            <a class="nav-link dropdown-toggle waves-effect waves-light white-text font-weight-bold"
+                               id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true"
+                               aria-expanded="false">
+                                <i class="fas fa-user blue-text"></i> Perfil
+                                <img class="center" width="40px" height="40px" src="iconos/user.png">
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-cyan"
+                                 aria-labelledby="navbarDropdownMenuLink-4">
+                                <a class="dropdown-item waves-effect waves-light" href="#">Mi cuenta</a>
+                                <a class="dropdown-item waves-effect waves-light" href="Login.html">Salir</a>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- /.Navbar -->
+
+    </header>
+    <div>
+        @RenderBody()
+    </div>
+    <footer class="page-footer text-center text-md-left stylish-color-dark pt-0">
+
+
+
+        <!--/.Footer Links-->
+        <!-- Copyright-->
+        <div class="footer-copyright py-3 text-center">
+            <div class="container-fluid">
+                <a class='flotante' href='carrito.html'>
+                    <img src='iconos/carritofloat.png' width="50px" height="50px"
+                         border="0" />
+                </a>
+
+                © 2019 Proyecto AYD1 <a href="#" target="_blank">Softech.com </a>
+            </div>
+        </div>
+        <!--/.Copyright -->
+
+    </footer>
+</body>
+</html>

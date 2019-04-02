@@ -26,5 +26,12 @@ namespace Carrito_Compras.Controllers
 
             return View();
         }
+
+        public ActionResult Principal()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
     }
 }

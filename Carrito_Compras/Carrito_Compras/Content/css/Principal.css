@@ -1,0 +1,164 @@
+.cuadro {
+    width: 600px;
+    height: 50px;
+    -moz-border-radius: 100px;
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+        border: 1px solid #e01919;
+        padding: 0 4px 0 4px;
+}
+.srch-txt {
+    float: left;
+    width: 600px;
+    height: 50px;
+    font-size: 16px;
+    line-height: 28px;
+    background: url(http://i4.cdn-image.com/__media__/pics/7867/srch-bg.gif) 560px 15px no-repeat #fff;
+    
+    padding: 10 5px 0 30px;
+    border: 1px solid #ffffff;
+    outline: none;
+}
+
+
+
+/*
+ESTA CLASE LE DA FORMATO A LA CANTIDAD DE LA DESCRIPCION*/
+
+.cantidad {
+  float: left;
+  width: 200px;
+  height: 50px;
+  font-size: 16px;
+  line-height: 28px;
+  background: url(http://i4.cdn-image.com/__media__/pics/7867/srch-bg.gif) 560px 15px no-repeat #fff;
+  
+  padding: 10 5px 0 30px;
+  border: 1px solid #114461;
+  outline: none;
+}
+
+
+.brradius {
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    -webkit-border-radius: 10px;
+}
+
+.flotante {
+    display:scroll;
+        position:fixed;
+        bottom:320px;
+        right:0px;
+        
+}
+
+.flotanteDescripcion {
+    border-radius: 200px 200px 200px 200px;
+-moz-border-radius: 200px 200px 200px 200px;
+-webkit-border-radius: 200px 200px 200px 200px;
+border: 2px dotted #000000;    
+}
+
+.des{
+background-color: #114461;
+color: aliceblue;
+}
+
+.des2{
+    background-color: #3c96df;
+    color: aliceblue;
+    }
+
+    .button {
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+      }
+      
+      .button1 {border-radius: 2px;}
+      .button2 {border-radius: 4px;}
+      .button3 {border-radius: 8px;}
+      .button4 {border-radius: 12px;}
+      .button5 {border-radius: 50%;}
+      .button6 {border-radius: 1000px;}
+
+/*CLASE QUE SE USA PARA CENTRAR EL BOTON DE "CONTINUAR COMPRA" EN PAGINA DE CARRITO*/
+
+      .centrarBoton {
+        display: block;
+        margin-left: auto;
+        margin-right: 0;        
+        width: 20%;    
+      }
+
+
+      .sidenav {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: #111;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 60px;
+      }
+      
+/*SIDENAV ES UN MENU LATERAL QUE SE MUESTRA EN EL LADO DEL ADMIN*/
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+  }
+
+      .sidenav a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #ffffff;
+        display: block;
+        transition: 0.3s;
+        
+      }
+      
+      .sidenav a:hover {
+        color: #f1f1f1;
+      }
+      
+      .sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+      }
+      
+      #main {
+        transition: margin-left .5s;
+        padding: 16px;
+      }
+      
+      @media screen and (max-height: 450px) {
+        .sidenav {padding-top: 15px;}
+        .sidenav a {font-size: 18px;}
+      }
+
+      /*TERMINA SIDENAV*/
