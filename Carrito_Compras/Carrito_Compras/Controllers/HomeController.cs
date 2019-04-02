@@ -61,5 +61,25 @@ namespace Carrito_Compras.Controllers
 
             return View();
         }
+
+        public ActionResult Tarjeta()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+
+        public ActionResult Clientes()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+        public ActionResult DashBoard()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
     }
 }
