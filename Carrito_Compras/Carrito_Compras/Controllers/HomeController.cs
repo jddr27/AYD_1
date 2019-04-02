@@ -33,5 +33,33 @@ namespace Carrito_Compras.Controllers
 
             return View();
         }
+
+        public ActionResult Carrito()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+        public ActionResult Descripcion()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+
+        public ActionResult Login()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+
+
+        public ActionResult Boleta()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
     }
 }

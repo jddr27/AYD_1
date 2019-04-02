@@ -6,12 +6,15 @@
     <title>@ViewBag.Title</title>
 
     <!-- Font Awesome -->
+
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="~/Content/css/bootstrap.css" rel="stylesheet" />
     <!-- Material Design Bootstrap -->
-    <link href="css/mdb.css" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="css/Principal.css" media="screen,projection" />
+
+    <link href="~/Content/css/mdb.css" rel="stylesheet" />
+    <link href="~/Content/css/Principal.css" rel="stylesheet" />
+    
 
     <style type="text/css">
         .multiple-select-dropdown li [type=checkbox] + label {
@@ -36,7 +39,7 @@
         });
     </script>
     <script>
-    $('.botonF1').hover(function () {
+        $('.botonF1').hover(function () {
             $('.btn').addClass('animacionVer');
         })
         $('.contenedor').mouseleave(function () {
@@ -53,7 +56,8 @@
             <div class="container">
                 <!-- SideNav slide-out button -->
                 <div class="float-left mr-2">
-                    <img class="center" width="60px" height="60px" src="iconos/logo_empresa.png">
+
+                    <img class="center" width="60px" height="60px" src="~/Content/Iconos/logo_empresa.png" />
                 </div>
 
                 <a class="navbar-brand font-weight-bold" style="color: rgb(255, 255, 255)" href="#">
@@ -85,7 +89,8 @@
 
                             <a class="nav-link waves-effect waves-light white-text font-weight-bold" href="Carrito.html">
                                 </i>Mis compras
-                                <img class="center" width="40px" height="40px" src="iconos/carrito.png">
+
+                                <img class="center" width="40px" height="40px" src="~/Content/Iconos/carrito.png" />
                             </a>
                         </li>
 
@@ -96,7 +101,8 @@
                                id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true"
                                aria-expanded="false">
                                 <i class="fas fa-user blue-text"></i> Perfil
-                                <img class="center" width="40px" height="40px" src="iconos/user.png">
+
+                                <img class="center" width="40px" height="40px" src="~/Content/Iconos/user.png" />
                             </a>
                             <div class="dropdown-menu dropdown-menu-right dropdown-cyan"
                                  aria-labelledby="navbarDropdownMenuLink-4">
@@ -112,6 +118,133 @@
         <!-- /.Navbar -->
 
     </header>
+
+
+    <!--Carousel Wrapper-->
+    <div id="carousel-example-1z" class="carousel slide carousel-fade" data-ride="carousel">
+        <!--Indicators-->
+        <ol class="carousel-indicators">
+            <li data-target="#carousel-example-1z" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-example-1z" data-slide-to="1"></li>
+            <li data-target="#carousel-example-1z" data-slide-to="2"></li>
+        </ol>
+        <!--/.Indicators-->
+        <!--Slides-->
+        <div class="carousel-inner" role="listbox">
+            <!--First slide-->
+            <div class="carousel-item active">
+                <div class="view h-100">
+                    <img class="d-block h-100 w-lg-100" src="https://mdbootstrap.com/img/Photos/Others/ecommerce4.jpg"
+                         alt="First slide">
+                    <div class="mask">
+                        <!-- Caption -->
+                        <div class="full-bg-img flex-center white-text">
+                            <ul class="animated fadeIn col-10 list-unstyled">
+                                <li>
+                                    <p class="h1 red-text mb-4 mt-5">
+                                        <strong>Descuento del 30% en celulares!</strong>
+                                    </p>
+                                </li>
+                                <!-- <li>
+                                    <h5 class="h5-responsive dark-grey-text font-weight-bold mb-5">Tempora incidunt ut labore et dolore veritatis et quasi architecto beatae</h5>
+                                 </li>
+                                <li>
+                                     <a target="_blank" href="https://mdbootstrap.com/docs/jquery/getting-started/download/" class="btn btn-danger btn-rounded" rel="nofollow">Ver mas!</a>
+                                 </li>-->
+                            </ul>
+                        </div>
+                        <!-- /.Caption -->
+                    </div>
+                </div>
+            </div>
+            <!--/First slide-->
+            <!--Second slide-->
+            <div class="carousel-item h-100">
+                <div class="view h-100">
+                    <img class="d-block h-100 w-lg-100" src="https://mdbootstrap.com/img/Photos/Others/ecommerce2.jpg"
+                         alt="Second slide">
+                    <div class="mask">
+                        <!-- Caption -->
+                        <div class="full-bg-img flex-center white-text">
+                            <ul class="animated fadeIn col-10 list-unstyled">
+                                <li>
+                                    <p class="h1 dark-grey-text mb-4">
+                                        <strong>No te pierdas ninguna de nuestras ofertas</strong>
+                                    </p>
+                                </li>
+                                <!--  <li>
+                                    <h5 class="h5-responsive dark-grey-text font-weight-bold mb-5">Tempora incidunt ut labore et dolore veritatis et quasi architecto beatae</h5>
+                                </li>
+                                <li>
+                                    <a target="_blank" href="https://mdbootstrap.com/education/bootstrap/" class="btn btn-primary btn-rounded" rel="nofollow">Read more</a>
+                                </li>-->
+                            </ul>
+                        </div>
+                        <!-- /.Caption -->
+                    </div>
+                </div>
+            </div>
+            <!--/Second slide-->
+            <!--Third slide-->
+            <div class="carousel-item">
+                <div class="view h-100">
+                    <img class="d-block h-100 w-lg-100" src="https://mdbootstrap.com/img/Photos/Others/ecommerce3.jpg"
+                         alt="Third slide">
+                    <div class="mask">
+                        <!-- Caption -->
+                        <div class="full-bg-img flex-center white-text">
+                            <ul class="animated fadeIn col-md-10 text-center text-md-right list-unstyled">
+                                <li>
+                                    <p class="h1 blue-text mb-4 mt-5 pr-lg-5">
+                                        <strong>Descuento del 20% En audifonos!</strong>
+                                    </p>
+                                </li>
+                                <li>
+                                    <h5 class="h5-responsive dark-grey-text font-weight-bold mb-5 pr-lg-5">
+                                        Aprovechá!
+                                        Oferta por tiempo limitado
+                                    </h5>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- /.Caption -->
+                    </div>
+                </div>
+            </div>
+            <!--/Third slide-->
+        </div>
+        <!--/.Slides-->
+        <!--Controls-->
+        <a class="carousel-control-prev" href="#carousel-example-1z" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carousel-example-1z" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+        <!--/.Controls-->
+    </div>
+    <!--/.Carousel Wrapper-->
+    <!-- Mega menu -->
+    
+    <div class="container-fluid mx-0 px-0">
+
+        <!--Navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark primary-color mb-5">
+            <div class="container">
+                <!-- Navbar brand -->
+                <a class="font-weight-bold white-text mr-4" href="#">Categorias</a>
+                <a class="font-weight-bold white-text mr-4" href="#">Ofertas</a>
+                <a class="font-weight-bold white-text mr-4" href="#">Categorias</a>
+
+
+
+            </div>
+        </nav>
+        <!--/.Navbar-->
+
+    </div>
     <div>
         @RenderBody()
     </div>
@@ -124,8 +257,8 @@
         <div class="footer-copyright py-3 text-center">
             <div class="container-fluid">
                 <a class='flotante' href='carrito.html'>
-                    <img src='iconos/carritofloat.png' width="50px" height="50px"
-                         border="0" />
+
+                    <img src="~/Content/Iconos/carritofloat.png" width="50px" height="50px" border="0" />
                 </a>
 
                 © 2019 Proyecto AYD1 <a href="#" target="_blank">Softech.com </a>
@@ -134,5 +267,18 @@
         <!--/.Copyright -->
 
     </footer>
+
+
+    <script src="~/Content/js/jquery-3.3.1.min.js"></script>
+
+    <!-- Bootstrap tooltips -->
+    <script src="~/Content/js/popper.min.js"></script>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="~/Content/js/bootstrap.js"></script>
+
+    <!-- MDB core JavaScript -->
+    <script src="~/Content/js/mdb.js"></script>
+
 </body>
 </html>

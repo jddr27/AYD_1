@@ -202,3 +202,4 @@ C:\Users\gmgcomercial\Documents\GitHub\AYD_1\Carrito_Compras\Carrito_Compras\obj
 C:\Users\gmgcomercial\Documents\GitHub\AYD_1\Carrito_Compras\Carrito_Compras\obj\Debug\Carrito_Compras.csproj.CopyComplete
 C:\Users\gmgcomercial\Documents\GitHub\AYD_1\Carrito_Compras\Carrito_Compras\obj\Debug\Carrito_Compras.dll
 C:\Users\gmgcomercial\Documents\GitHub\AYD_1\Carrito_Compras\Carrito_Compras\obj\Debug\Carrito_Compras.pdb
+C:\Users\gmgcomercial\Documents\GitHub\AYD_1\Carrito_Compras\Carrito_Compras\obj\Debug\Carrito_Compras.csprojAssemblyReference.cache

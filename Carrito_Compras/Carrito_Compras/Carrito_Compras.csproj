@@ -283,6 +283,11 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\Layout1.cshtml" />
     <Content Include="Views\Home\Principal.cshtml" />
+    <Content Include="Views\Home\Carrito.cshtml" />
+    <Content Include="Views\Home\Descripcion.cshtml" />
+    <Content Include="Views\Shared\Footer.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Home\Boleta.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
