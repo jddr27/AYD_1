@@ -1,7 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Configuration;
-using System.Web;
 
 namespace Carrito_Compras.Models
 {
@@ -18,6 +17,66 @@ namespace Carrito_Compras.Models
 
         private bool connection_open;
         private MySqlConnection connection;
+
+        public Usuario(int arg_id)
+        {
+            Get_Connection();
+            id = arg_id;
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = connection;
+                cmd.CommandText = string.Format("SELECT nombres_usuario, apellidos_usuario, password_usuario, correo_usuario,"
+                    + " direccion_usuario FROM Usuario WHERE id_usuario = '{0}'", id);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                try
+                {
+                    reader.Read();
+                    if (reader.IsDBNull(0) == false)
+                        nombres = reader.GetString(0);
+                    else
+                        nombres = null;
+                    if (reader.IsDBNull(1) == false)
+                        apellidos = reader.GetString(1);
+                    else
+                        apellidos = null;
+                    if (reader.IsDBNull(2) == false)
+                        password = reader.GetString(2);
+                    else
+                        password = null;
+                    if (reader.IsDBNull(3) == false)
+                        correo = reader.GetString(3);
+                    else
+                        correo = null;
+                    if (reader.IsDBNull(4) == false)
+                        direccion = reader.GetString(4);
+                    else
+                        direccion = null;
+
+                    reader.Close();
+
+                }
+                catch (MySqlException e)
+                {
+                    string MessageString = "Read error occurred  / entry not found loading the Column details: "
+                        + e.ErrorCode + " - " + e.Message + "; \n\nPlease Continue";
+                    //MessageBox.Show(MessageString, "SQL Read Error");
+                    reader.Close();
+                    nombres = MessageString;
+                    apellidos = password = correo = direccion = null;
+                }
+            }
+            catch (MySqlException e)
+            {
+                string MessageString = "The following error occurred loading the Column details: "
+                    + e.ErrorCode + " - " + e.Message;
+                nombres = MessageString;
+                apellidos = password = correo = direccion = null;
+            }
+
+            connection.Close();
+        }
 
         public Usuario(string arg_cor, string arg_pas)
         {
@@ -119,46 +178,6 @@ namespace Carrito_Compras.Models
             {
                 return false;
             }
-        }
-
-        public void Agregar()
-        {
-            Encriptador enc = new Encriptador("admin");
-            string bob = enc.enc;
-            Get_Connection();
-            try
-            {
-                MySqlCommand cmd = new MySqlCommand();
-                cmd.Connection = connection;
-                cmd.CommandText = string.Format("INSERT INTO `Ana1`.`Usuario` (`correo_usuario`,`nombres_usuario`,`apellidos_usuario`," +
-                    "`direccion_usuario`,`rol_usuario`,`password_usuario`,`foto_usuario`) VALUES (\"admin\",\"admin\"," +
-                    "\"admin\",\"----\",1,\"" + bob + "\",\"C://Ana1//foro.jpg\");");
-                MySqlDataReader reader = cmd.ExecuteReader();
-
-                try
-                {
-                    reader.Read();
-                    nombres = "exito";
-                    Console.WriteLine(reader.ToString());
-                    reader.Close();
-
-                }
-                catch (MySqlException e)
-                {
-                    string MessageString = "***************** Read error occurred  / entry not found loading the Column details: "
-                        + e.ErrorCode + " - " + e.Message + "; \n\nPlease Continue";
-                    nombres = MessageString;
-                    reader.Close();
-                }
-            }
-            catch (MySqlException e)
-            {
-                string MessageString = "*********************** The following error occurred loading the Column details: "
-                    + e.ErrorCode + " - " + e.Message;
-                nombres = MessageString;
-            }
-
-            connection.Close();
         }
     }
 }

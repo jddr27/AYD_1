@@ -99,3 +99,4 @@ C:\Ana1\AYD_1\Carrito_Compras\Carrito_Compras\bin\es\Microsoft.Owin.Security.Mic
 C:\Ana1\AYD_1\Carrito_Compras\Carrito_Compras\obj\Debug\Carrito_Compras.csprojResolveAssemblyReference.cache
 C:\Ana1\AYD_1\Carrito_Compras\Carrito_Compras\obj\Debug\Carrito_Compras.dll
 C:\Ana1\AYD_1\Carrito_Compras\Carrito_Compras\obj\Debug\Carrito_Compras.pdb
+C:\Ana1\AYD_1\Carrito_Compras\Carrito_Compras\bin\MySql.Data.dll
