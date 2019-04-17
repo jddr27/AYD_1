@@ -80,18 +80,54 @@ namespace Carrito_Compras.Models
             connection.Close();
         }
 
-        public static void Producto(string correo, string nombres, string apellido, string direccion, int rol, string password, string foto)
+        public static void Producto(string nombre, int cantidad, double precio, string descripcion, int marca, int categoria, int promocion)
         {
-            Encriptador enc = new Encriptador(password);
-            string bob = enc.enc;
             Get_Connection();
             try
             {
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = connection;
-                cmd.CommandText = string.Format("INSERT INTO `Ana1`.`Usuario` (`correo_usuario`,`nombres_usuario`,`apellidos_usuario`," +
-                    "`direccion_usuario`,`rol_usuario`,`password_usuario`,`foto_usuario`) VALUES (\"" + correo + "\",\"" + nombres + "\"," +
-                    "\"" + apellido + "\",\"" + direccion + "\"," + rol + ",\"" + bob + "\",\"" + foto + "\");");
+                cmd.CommandText = string.Format("INSERT INTO `Ana1`.`Producto` (`nombre_producto`,`cantidad_producto`,`precio_producto`," +
+                    "`descripcion_producto`,`marca_producto`,`categoria_producto`,`promocion_producto`) VALUES (\"" + nombre + "\"," + cantidad + "," +
+                    "" + precio + ",\"" + descripcion + "\"," + marca + "," + categoria + "," + promocion + ");");
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                try
+                {
+                    reader.Read();
+                    salida = "exito";
+                    Console.WriteLine(reader.ToString());
+                    reader.Close();
+
+                }
+                catch (MySqlException e)
+                {
+                    string MessageString = "***************** Read error occurred  / entry not found loading the Column details: "
+                        + e.ErrorCode + " - " + e.Message + "; \n\nPlease Continue";
+                    salida = MessageString;
+                    reader.Close();
+                }
+            }
+            catch (MySqlException e)
+            {
+                string MessageString = "*********************** The following error occurred loading the Column details: "
+                    + e.ErrorCode + " - " + e.Message;
+                salida = MessageString;
+            }
+
+            connection.Close();
+        }
+
+        public static void Promocion(string nombre, string descripcion, DateTime inicio, DateTime fin, double descuento)
+        {
+            Get_Connection();
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = connection;
+                cmd.CommandText = string.Format("INSERT INTO `Ana1`.`Promocion` (`nombre_promocion`,`descripcion_promocion`,`inicio_promocion`," +
+                    "`fin_promocion`,`descuento_promocion`) VALUES (\"" + nombre + "\",\"" + descripcion + "\",'" + inicio + "','" + fin + 
+                    "'," + descuento + ");");
                 MySqlDataReader reader = cmd.ExecuteReader();
 
                 try
