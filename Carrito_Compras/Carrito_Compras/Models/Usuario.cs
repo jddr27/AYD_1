@@ -1,7 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Configuration;
-using System.Web;
 
 namespace Carrito_Compras.Models
 {
@@ -10,18 +9,14 @@ namespace Carrito_Compras.Models
         public int id { get; set; }
         public string nombres { get; set; }
         public string apellidos { get; set; }
-        public string password { get; set; }
+        public string encriptada { get; set; }
         public string correo { get; set; }
         public string direccion { get; set; }
-        public Rol rol { get; set; }
+        public int rol { get; set; } //1=admin, 2=empleado, 3=cliente
+        public string resultado { get; set; }
 
         private bool connection_open;
         private MySqlConnection connection;
-
-        public Usuario()
-        {
-
-        }
 
         public Usuario(int arg_id)
         {
@@ -31,7 +26,7 @@ namespace Carrito_Compras.Models
             {
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = connection;
-                cmd.CommandText = string.Format("SELECT nombres_usuario, apellidos_usuario, password_usuario, correo_usuario," 
+                cmd.CommandText = string.Format("SELECT nombres_usuario, apellidos_usuario, password_usuario, correo_usuario,"
                     + " direccion_usuario, rol_usuario FROM Usuario WHERE id_usuario = '{0}'", id);
                 MySqlDataReader reader = cmd.ExecuteReader();
 
@@ -47,9 +42,9 @@ namespace Carrito_Compras.Models
                     else
                         apellidos = null;
                     if (reader.IsDBNull(2) == false)
-                        password = reader.GetString(2);
+                        encriptada = reader.GetString(2);
                     else
-                        password = null;
+                        encriptada = null;
                     if (reader.IsDBNull(3) == false)
                         correo = reader.GetString(3);
                     else
@@ -59,9 +54,9 @@ namespace Carrito_Compras.Models
                     else
                         direccion = null;
                     if (reader.IsDBNull(5) == false)
-                        rol = new Rol(int.Parse(reader.GetString(5)));
+                        rol = int.Parse(reader.GetString(5));
                     else
-                        rol = null;
+                        rol = -1;
                     reader.Close();
 
                 }
@@ -72,8 +67,7 @@ namespace Carrito_Compras.Models
                     //MessageBox.Show(MessageString, "SQL Read Error");
                     reader.Close();
                     nombres = MessageString;
-                    apellidos = password = correo = direccion = null;
-                    rol = null;
+                    apellidos = encriptada = correo = direccion = null;
                 }
             }
             catch (MySqlException e)
@@ -81,17 +75,87 @@ namespace Carrito_Compras.Models
                 string MessageString = "The following error occurred loading the Column details: "
                     + e.ErrorCode + " - " + e.Message;
                 nombres = MessageString;
-                apellidos = password = correo = direccion = null;
-                rol = null;
+                apellidos = encriptada = correo = direccion = null;
             }
-          
+
+            connection.Close();
+        }
+
+        public Usuario(string arg_cor, string arg_pas)
+        {
+            Get_Connection();
+            correo = arg_cor;
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = connection;
+                cmd.CommandText = string.Format("SELECT nombres_usuario, apellidos_usuario, password_usuario, id_usuario,"
+                    + " direccion_usuario, rol_usuario FROM Usuario WHERE correo_usuario = '{0}'", correo);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                try
+                {
+                    reader.Read();
+                    if (reader.IsDBNull(0) == false)
+                        nombres = reader.GetString(0);
+                    else
+                        nombres = null;
+                    if (reader.IsDBNull(1) == false)
+                        apellidos = reader.GetString(1);
+                    else
+                        apellidos = null;
+                    if (reader.IsDBNull(2) == false)
+                        encriptada = reader.GetString(2);
+                    else
+                        encriptada = null;
+                    if (reader.IsDBNull(3) == false)
+                        id = int.Parse(reader.GetString(3));
+                    else
+                        id = -1;
+                    if (reader.IsDBNull(4) == false)
+                        direccion = reader.GetString(4);
+                    else
+                        direccion = null;
+                    if (reader.IsDBNull(5) == false)
+                        rol = int.Parse(reader.GetString(5));
+                    else
+                        rol = -1;
+
+                    string[] aux = encriptada.Split(',');
+                    byte[] arreglo = new byte[aux.Length];
+                    for (int i = 0; i < aux.Length; i++)
+                    {
+                        arreglo[i] = byte.Parse(aux[i]);
+                    }
+                    Encriptador enc = new Encriptador(arreglo);
+                    resultado = !enc.des.Equals(arg_pas) ? "Contraseña inválida" : "exito";
+                    reader.Close();
+
+                }
+                catch (MySqlException e)
+                {
+                    resultado = "No se encontró al usuario específicado";
+                    reader.Close();
+                    nombres = apellidos = encriptada = correo = direccion = null;
+                    rol = -1;
+                    id = -1;
+                }
+            }
+            catch (MySqlException e)
+            {
+                resultado = "The following error occurred loading the Column details: "
+                    + e.ErrorCode + " - " + e.Message;
+                nombres = apellidos = encriptada = correo = direccion = null;
+                rol = -1;
+                id = -1;
+            }
+
             connection.Close();
         }
 
         private void Get_Connection()
         {
             connection_open = false;
-
             connection = new MySqlConnection();
             connection.ConnectionString = ConfigurationManager.ConnectionStrings["MySQLConnection"].ConnectionString;
             if (Open_Local_Connection())
@@ -103,7 +167,6 @@ namespace Carrito_Compras.Models
                 //					MessageBox::Show("No database connection connection made...\n Exiting now", "Database Connection Error");
                 //					 Application::Exit();
             }
-
         }
 
         private bool Open_Local_Connection()

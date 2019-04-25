@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Carrito_Compras.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
@@ -49,9 +51,34 @@ namespace Carrito_Compras.Controllers
 
         public ActionResult Login()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Validar()
+        {
+            string correo = Request["txtcorreo"].ToString();
+            string contra = Request["txtcontra"].ToString();
+            Usuario usu = new Usuario(correo, contra);
+            
+            if (usu.resultado.Equals("exito"))
+            {
+                return usu.rol == 3 ? View("~/Views/Home/Principal.cshtml") : View("~/Views/Home/DashBoard.cshtml");
+            }
+            else
+            {
+                StringBuilder sbInterest = new StringBuilder();
+                sbInterest.Append("<br><b>Error:</b> " + usu.resultado + "<br/>");
+                return Content(sbInterest.ToString());
+            }
+        }
+
+        public ActionResult Todos()
+        {
+            StringBuilder sbInterest = new StringBuilder();
+            sbInterest.Append("<br><b>Resultado:</b>" + Obtener.Producto() + "<br/>");
+            sbInterest.Append("<br><b>exito</b><br/>");
+            return Content(sbInterest.ToString());
         }
 
 

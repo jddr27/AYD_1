@@ -19,58 +19,64 @@
         </div>
 
 
-        <div class="USUARIO">
-            <div class="input-field col s6">
-                <i class="material-icons prefix">account_circle</i>
-                <input id="icon_prefix" type="text" class="validate">
-                <label for="icon_prefix">Usuario</label>
+
+
+        
+        @using (Ajax.BeginForm("Validar", "Home", new AjaxOptions { UpdateTargetId = "info_login" }, new { @class = "USUARIO" }))
+        {
+        <div id="info_login">
+            <div class="USUARIO">
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input id="txtcorreo" name="txtcorreo" type="text" class="validate">
+                    <label for="icon_prefix">Usuario</label>
+                </div>
             </div>
+            <div class="PASSWORD">
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">lock_outline</i>
+                    <input id="txtcontra" name="txtcontra" type="password" class="validate">
+                    <label for="icon_prefix">Contraseña</label>
+                </div>
+            </div>
+            <div class="BOTON">
+                <button  class="waves-effect waves-light btn" style="color:#FFFFFF" ;><i class="material-icons right"></i>Login</button>
+                </div>
+            </div>
+            }
+
+
         </div>
-        <div class="PASSWORD">
-            <div class="input-field col s6">
-                <i class="material-icons prefix">lock_outline</i>
-                <input id="icon_prefix" type="password" class="validate">
-                <label for="icon_prefix">Contraseña</label>
+            <div class="ESPACIO_LOGO">
+                <div class="LOGO">
+
+                    <img class="center" src="~/Content/Iconos/logo_empresa.png" />
+                </div>
             </div>
 
-        </div>
-        <div class="BOTON">
-            <a href="Principal.html" class="waves-effect waves-light btn" style="color:#FFFFFF" ;><i class="material-icons right">arrow_forward</i>Ingresar 1</a>
-            <p></p>
-            <a href="DashBoard.html" class="waves-effect waves-light btn" style="color:#FFFFFF" ;><i class="material-icons right">arrow_forward</i>Ingresar 2</a>
-        </div>
 
-    </div>
-    <div class="ESPACIO_LOGO">
-        <div class="LOGO">
-            
-            <img  class="center" src="~/Content/Iconos/logo_empresa.png" />
-        </div>
-    </div>
+            <div class="PIE">
+                <div class="FOOTER">
 
+                    <footer class="page-footer" style="background-color: rgb(60, 150, 223); margin-top:11%;">
 
-    <div class="PIE">
-        <div class="FOOTER">
+                        <div class="footer-copyright" style="background-color: rgb(17, 68, 97)">
+                            <div class="container">
+                                © 2019 Proyecto AYD1
+                                <a class="grey-text text-lighten-4 right" href="https://www.facebook.com">More Links</a>
+                            </div>
+                        </div>
+                    </footer>
 
-            <footer class="page-footer" style="background-color: rgb(60, 150, 223); margin-top:11%;">
-
-                <div class="footer-copyright" style="background-color: rgb(17, 68, 97)">
-                    <div class="container">
-                        © 2019 Proyecto AYD1
-                        <a class="grey-text text-lighten-4 right" href="https://www.facebook.com">More Links</a>
+                </div>
+                <div class="LINKS">
+                    <div class="padre">
+                        <u><a style="color:#FFFFFF;" href="Registro.html">No tienes una cuenta?</a></u>
+                        <b> /</b>
+                        <u><a style="color:#FFFFFF;" href="#contact">Recuperar Contraseña</a></u>
                     </div>
                 </div>
-            </footer>
 
-        </div>
-        <div class="LINKS">
-            <div class="padre">
-                <u><a style="color:#FFFFFF;" href="Registro.html">No tienes una cuenta?</a></u>
-                <b> /</b>
-                <u><a style="color:#FFFFFF;" href="#contact">Recuperar Contraseña</a></u>
+
             </div>
         </div>
-
-
-    </div>
-</div>
