@@ -54,7 +54,16 @@ namespace Carrito_Compras.Controllers
 
         public ActionResult Login()
         {
+
+
             return View();
+        }
+
+
+        public ActionResult Logout()
+        { //Serramos sesion
+            Session.Abandon();
+            return RedirectToAction("Principal", "Home");
         }
 
         [HttpPost]
@@ -65,8 +74,10 @@ namespace Carrito_Compras.Controllers
             Usuario usu = new Usuario(correo, contra);
             
             if (usu.resultado.Equals("exito"))
-            {
-                return usu.rol == 3 ? View("~/Views/Home/Principal.cshtml") : View("~/Views/Home/DashBoard.cshtml");
+            {   //Se guarda usuario en la session
+                Session["UserName"] = usu.nombres;
+                return RedirectToAction("Principal", "Home");
+               // return usu.rol == 3 ? View("~/Views/Home/Principal.cshtml") : View("~/Views/Home/DashBoard.cshtml");
             }
             else
             {
