@@ -212,3 +212,13 @@ C:\Users\gmgcomercial\Documents\GitHub\AYD_1\Carrito_Compras\Carrito_Compras\bin
 C:\Users\gmgcomercial\Documents\GitHub\AYD_1\Carrito_Compras\Carrito_Compras\bin\es\System.Net.Http.Formatting.resources.dll
 C:\Users\gmgcomercial\Documents\GitHub\AYD_1\Carrito_Compras\Carrito_Compras\bin\es\System.Web.Http.resources.dll
 C:\Users\gmgcomercial\Documents\GitHub\AYD_1\Carrito_Compras\Carrito_Compras\bin\es\System.Web.Http.WebHost.resources.dll
+C:\Ana1\AYD_1\Carrito_Compras\Carrito_Compras\bin\MySql.Data.dll
+C:\Ana1\AYD_1\Carrito_Compras\Carrito_Compras\bin\System.Net.Http.Formatting.dll
+C:\Ana1\AYD_1\Carrito_Compras\Carrito_Compras\bin\System.Web.Http.dll
+C:\Ana1\AYD_1\Carrito_Compras\Carrito_Compras\bin\System.Web.Http.WebHost.dll
+C:\Ana1\AYD_1\Carrito_Compras\Carrito_Compras\bin\System.Net.Http.Formatting.xml
+C:\Ana1\AYD_1\Carrito_Compras\Carrito_Compras\bin\System.Web.Http.xml
+C:\Ana1\AYD_1\Carrito_Compras\Carrito_Compras\bin\System.Web.Http.WebHost.xml
+C:\Ana1\AYD_1\Carrito_Compras\Carrito_Compras\bin\es\System.Net.Http.Formatting.resources.dll
+C:\Ana1\AYD_1\Carrito_Compras\Carrito_Compras\bin\es\System.Web.Http.resources.dll
+C:\Ana1\AYD_1\Carrito_Compras\Carrito_Compras\bin\es\System.Web.Http.WebHost.resources.dll
