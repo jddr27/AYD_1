@@ -43,8 +43,9 @@ namespace Carrito_Compras.Models
             }
         }
 
-        public static string Producto()
+        public static LinkedList<Producto> Productos()
         {
+            int id;
             string nombre;
             int cantidad;
             double precio;
@@ -53,13 +54,14 @@ namespace Carrito_Compras.Models
             int categoria;
             int promocion;
             string salida = "";
+            LinkedList<Producto> lista = new LinkedList<Producto>();
             Get_Connection();
             try
             {
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = connection;
                 cmd.CommandText = string.Format("SELECT `nombre_producto`,`cantidad_producto`,`precio_producto`," +
-                    "`descripcion_producto`,`marca_producto`,`categoria_producto`,`promocion_producto` FROM `Producto`;");
+                    "`descripcion_producto`,`marca_producto`,`categoria_producto`,`promocion_producto`,`id_producto` FROM `Producto`;");
                 MySqlDataReader reader = cmd.ExecuteReader();
 
                 if (reader.HasRows)
@@ -94,14 +96,18 @@ namespace Carrito_Compras.Models
                             promocion = int.Parse(reader.GetString(6));
                         else
                             promocion = -1;
-
+                        if (reader.IsDBNull(7) == false)
+                            id = int.Parse(reader.GetString(7));
+                        else
+                            id = -1;
+                        lista.AddLast(new Producto(id, nombre, cantidad, precio, descripcion, marca, categoria, promocion));
                     }
                 }
                 else
                 {
                     Console.WriteLine("No rows found.");
                 }
-                return salida;
+                return lista;
             }
             catch (MySqlException e)
             {
@@ -111,7 +117,7 @@ namespace Carrito_Compras.Models
             }
 
             connection.Close();
-            return "";
+            return null;
         }
     }
 }

@@ -12,9 +12,9 @@ namespace Carrito_Compras.Models
         public int cantidad { get; set; }
         public double precio { get; set; }
         public string descripcion { get; set; }
-        public Marca marca { get; set; }
-        public Categoria categoria { get; set; }
-        public Promocion promocion { get; set; }
+        public int marca { get; set; }
+        public int categoria { get; set; }
+        public int promocion { get; set; }
 
         private bool connection_open;
         private MySqlConnection connection;
@@ -22,6 +22,18 @@ namespace Carrito_Compras.Models
         public Producto()
         {
 
+        }
+
+        public Producto(int id, string nombre, int cantidad, double precio, string descripcion, int marca, int categoria, int promocion)
+        {
+            this.id = id;
+            this.nombre = nombre;
+            this.cantidad = cantidad;
+            this.precio = precio;
+            this.descripcion = descripcion;
+            this.marca = marca;
+            this.categoria = categoria;
+            this.promocion = promocion;
         }
 
         public Producto(int arg_id)
@@ -56,17 +68,17 @@ namespace Carrito_Compras.Models
                     else
                         descripcion = null;
                     if (reader.IsDBNull(4) == false)
-                        marca = new Marca(int.Parse(reader.GetString(4)));
+                        marca = int.Parse(reader.GetString(4));
                     else
-                        marca = null;
+                        marca = -1;
                     if (reader.IsDBNull(5) == false)
-                        categoria = new Categoria(int.Parse(reader.GetString(5)));
+                        categoria = int.Parse(reader.GetString(5));
                     else
-                        categoria = null;
+                        categoria = -1;
                     if (reader.IsDBNull(6) == false)
-                        promocion = new Promocion(int.Parse(reader.GetString(6)));
+                        promocion = int.Parse(reader.GetString(6));
                     else
-                        promocion = null;
+                        promocion = -1;
                     reader.Close();
 
                 }
@@ -80,9 +92,7 @@ namespace Carrito_Compras.Models
                     cantidad = -1;
                     precio = -1.0;
                     descripcion = null;
-                    marca = null;
-                    categoria = null;
-                    promocion = null;
+                    marca = categoria =  promocion = -1;
                 }
             }
             catch (MySqlException e)
@@ -93,9 +103,7 @@ namespace Carrito_Compras.Models
                 cantidad = -1;
                 precio = -1.0;
                 descripcion = null;
-                marca = null;
-                categoria = null;
-                promocion = null;
+                marca = categoria = promocion = -1;
             }
 
             connection.Close();
