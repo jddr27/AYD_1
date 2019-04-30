@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
-
+using Carrito_Compras.Models;
 namespace Carrito_Compras.Controllers
 {
     public class HomeController : Controller
@@ -31,9 +31,12 @@ namespace Carrito_Compras.Controllers
 
         public ActionResult Principal()
         {
-            ViewBag.Message = "Your contact page.";
+
+
+            ViewBag.Message = Obtener.Productos();  
 
             return View();
+
         }
 
         public ActionResult Carrito()
@@ -76,7 +79,7 @@ namespace Carrito_Compras.Controllers
         public ActionResult Todos()
         {
             StringBuilder sbInterest = new StringBuilder();
-            sbInterest.Append("<br><b>Resultado:</b>" + Obtener.Producto() + "<br/>");
+            sbInterest.Append("<br><b>Resultado:</b>" + ""+ "<br/>");
             sbInterest.Append("<br><b>exito</b><br/>");
             return Content(sbInterest.ToString());
         }
