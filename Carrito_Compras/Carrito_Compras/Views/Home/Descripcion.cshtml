@@ -6,16 +6,18 @@
                 <div>
                     @foreach (var obj in @ViewBag.prods)
                     {
-                        
+                        int contador = 0;
                         if(@obj.id.Equals(@ViewBag.idUser)){
-                        foreach (var img in @obj.imagenes)
-                        {
-                            <li>Ruta: @img</li>
+                            foreach (var img in @obj.imagenes)
+                            {
+                                
+                            <li>Ruta: @img @contador</li>
+                                contador++;
+                            }
+                        }
 
-                        }
-                        }
-                      
-                        <br>
+
+
                     }
 
                 </div>
@@ -32,6 +34,7 @@
         <div class="row pt-4">
 
 
+
             <section id="productDetails" class="pb-5">
 
                 <!--News card-->
@@ -40,19 +43,6 @@
 
 
 
-                                <!--Slides-->
-                                <div class="carousel-inner text-center text-md-left" role="listbox">
-                                    <div class="carousel-item active">
-                                        <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/1.jpg"
-                                             alt="First slide" class="img-fluid" width="708" height="472">
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img src="https://cdn.pixabay.com/photo/2011/04/03/13/31/iron-6046_1280.jpg"
-                                             alt="Second slide" class="img-fluid" width="708" height="472">
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/20.jpg"
-                                             alt="Third slide" class="img-fluid" width="708" height="472">
                         <div class="col-lg-6">
                             <!--Este es el carrousel de imagenes del producto-->
                             <div class="row mx-2">
@@ -63,18 +53,42 @@
 
                                     <!--Slides-->
                                     <div class="carousel-inner text-center text-md-left" role="listbox">
-                                        <div class="carousel-item active">
-                                            <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/1.jpg"
-                                                 alt="First slide" class="img-fluid">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/2.jpg"
-                                                 alt="Second slide" class="img-fluid">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/20.jpg"
-                                                 alt="Third slide" class="img-fluid">
-                                        </div>
+
+                                        @foreach (var obj in @ViewBag.prods)
+                                        {
+                                            int contador = 0;
+                                            if (@obj.id.Equals(@ViewBag.idUser))
+                                            {
+                                                foreach (var img in @obj.imagenes)
+                                                {
+                                                    if (contador == 0)
+                                                    {
+                                                        <div class="carousel-item active">
+
+                                                            <img src="@img"
+                                                                 alt="First slide" class="img-fluid">
+                                                        </div>
+
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="carousel-item">
+                                                            <img src="@img"
+                                                                 alt="Second slide" class="img-fluid">
+                                                        </div>
+
+                                                    }
+
+                                                    
+                                                    contador++;
+                                                }
+                                            }
+
+
+                                        }
+
+
+
                                     </div>
                                     <!--/.Slides-->
                                     <!--Thumbnails-->
@@ -129,8 +143,8 @@
                                 <div class="col">
                                     <a style="position:absolute;top:0px;right:0px;" class="flotanteDescripcion"
                                        href="carrito.html">
-
-                                        <img src="~/Content/Iconos/carritoadd.png" width="60px" height="60px" />
+                                        <img src="iconos/carritoadd.png" width="60px"
+                                             height="60px">
                                     </a>
                                 </div>
 
@@ -199,36 +213,31 @@
 
                                         <div class="row text-center text-md-left">
 
-                                            <figure class="col-md-4">
-                                                <!--Large image-->
-                                                <a href="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/1.jpg"
-                                                   data-size="1600x1067">
-                                                    <!-- Thumbnail-->
-                                                    <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/1.jpg"
-                                                         class="img-fluid">
-                                                </a>
-                                            </figure>
 
-                                            <figure class="col-md-4">
-                                                <!--Large image-->
-                                                <a href="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/2.jpg"
-                                                   data-size="1600x1067">
-                                                    <!-- Thumbnail-->
-                                                    <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/2.jpg"
-                                                         class="img-fluid">
-                                                </a>
-                                            </figure>
-                                            <!--Grid column-->
-                                            <!--Grid column-->
-                                            <figure class="col-md-4">
-                                                <!--Large image-->
-                                                <a href="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/20.jpg"
-                                                   data-size="1600x1067">
-                                                    <!-- Thumbnail-->
-                                                    <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/20.jpg"
-                                                         class="img-fluid">
-                                                </a>
-                                            </figure>
+                                            @foreach (var obj in @ViewBag.prods)
+                                            {
+                                                int contador = 0;
+                                                if (@obj.id.Equals(@ViewBag.idUser))
+                                                {
+                                                    foreach (var img in @obj.imagenes)
+                                                    {
+
+                                                        <figure class="col-md-4">
+                                                            <!--Large image-->
+                                                            <a href="@img"
+                                                               data-size="1600x1067">
+                                                                <!-- Thumbnail-->
+                                                                <img src="@img"
+                                                                     class="img-fluid">
+                                                            </a>
+                                                        </figure>
+
+                                                    }
+                                                }
+
+
+                                            }
+
                                             <!--Grid column-->
                                         </div>
                                     </div>
@@ -274,6 +283,7 @@
                 <!--News card-->
 
             </section>
+
 
         </div>
     </div>
