@@ -45,10 +45,15 @@ namespace Carrito_Compras.Controllers
 
             return View();
         }
-        public ActionResult Descripcion()
+        public ActionResult Descripcion(int id)
         {
-            ViewBag.Message = "Your contact page.";
+             
+            Producto prod = new Producto(id);
 
+            //ViewBag.Message =
+
+            String todas = prod.imagenes.ToString();
+            ViewBag.Message = todas;
             return View();
         }
 
