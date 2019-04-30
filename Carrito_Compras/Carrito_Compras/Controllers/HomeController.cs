@@ -47,13 +47,9 @@ namespace Carrito_Compras.Controllers
         }
         public ActionResult Descripcion(int id)
         {
-             
-            Producto prod = new Producto(id);
 
-            //ViewBag.Message =
-
-            String todas = prod.imagenes.ToString();
-            ViewBag.Message = todas;
+            ViewBag.prods = Obtener.Productos();
+            ViewBag.idUser = id;
             return View();
         }
 
