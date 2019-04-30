@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Web;
 
@@ -15,6 +16,7 @@ namespace Carrito_Compras.Models
         public int marca { get; set; }
         public int categoria { get; set; }
         public int promocion { get; set; }
+        public LinkedList<string> imagenes { get; set; }
 
         private bool connection_open;
         private MySqlConnection connection;

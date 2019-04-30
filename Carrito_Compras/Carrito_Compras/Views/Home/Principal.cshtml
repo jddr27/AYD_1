@@ -6,16 +6,21 @@
 
 
 
-    <div>
-        @foreach (var obj in @ViewBag.Message)
+<div>
+    @foreach (var obj in @ViewBag.Message)
+    {
+        <li>Id:    @obj.id</li>
+        <li>Nombre: @obj.nombre</li>
+        foreach (var img in @obj.imagenes)
         {
-            <li>Id:    @obj.id</li>
-            <li>Nombre: @obj.nombre</li> <br />
-            @Html.ActionLink("Agregar", "Carrito", new { id = @obj.id })
-
+            <li>Ruta: @img</li>
         }
+        <br />
+        @Html.ActionLink("Agregar", "Carrito", new { id = @obj.id })
 
-    </div><!-- /Mega menu -->
+    }
+
+</div><!-- /Mega menu -->
     <!-- /.Main Container -->
     <div class="container">
         <div class="row pt-4">
