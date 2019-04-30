@@ -41,8 +41,13 @@
 
                                     <!--Card image-->
                                     <div class="view overlay">
-                                        <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/1.jpg"
-                                             class="img-fluid" alt="">
+                                        @foreach (var img in @obj.imagenes)
+                                        {
+                                        <img src=@img class="img-fluid" alt="">
+                                            break;
+                                        }
+
+                                        
                                         <a>
                                             <div class="mask rgba-white-slight">
                                                 <ul>
