@@ -3,21 +3,21 @@
         Layout = "~/Views/Shared/Layout1.cshtml";
     }
 
-                <div>
-                    @foreach (var obj in @ViewBag.Message)
-                    {
-                        <li>Id:    @obj.id</li>
-                        <li>Nombre: @obj.nombre</li>
-                        foreach (var img in @obj.imagenes)
-                        {
-                            <li>Ruta: @img</li>
+<div>
+    @foreach (var obj in @ViewBag.Message)
+    {
+        <li>Id:    @obj.id</li>
+        <li>Nombre: @obj.nombre</li>
+        foreach (var img in @obj.imagenes)
+        {
+        <li>Ruta: @img</li>
+            
+        }
+        <br />
+        @Html.ActionLink("Agregar", "Carrito", new { id = @obj.id })
 
-                        }
-                        <br />
-                        @Html.ActionLink("Agregar", "Carrito", new { id = @obj.id })
+    }
 
-                    }
-                </div>
 </div><!-- /Mega menu -->
     <!-- /.Main Container -->
     <div class="container">
