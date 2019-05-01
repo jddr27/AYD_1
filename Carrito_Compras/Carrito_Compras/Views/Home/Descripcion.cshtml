@@ -7,7 +7,7 @@
                     @foreach (var obj in @ViewBag.prods)
                     {
                         int contador = 0;
-                        if(@obj.id.Equals(@ViewBag.idUser)){
+                        if(@obj.id.Equals(@ViewBag.idProducto)){
                             foreach (var img in @obj.imagenes)
                             {
                                 
@@ -57,7 +57,7 @@
                                         @foreach (var obj in @ViewBag.prods)
                                         {
                                             int contador = 0;
-                                            if (@obj.id.Equals(@ViewBag.idUser))
+                                            if (@obj.id.Equals(@ViewBag.idProducto))
                                             {
                                                 foreach (var img in @obj.imagenes)
                                                 {
@@ -217,7 +217,7 @@
                                             @foreach (var obj in @ViewBag.prods)
                                             {
                                                 int contador = 0;
-                                                if (@obj.id.Equals(@ViewBag.idUser))
+                                                if (@obj.id.Equals(@ViewBag.idProducto))
                                                 {
                                                     foreach (var img in @obj.imagenes)
                                                     {

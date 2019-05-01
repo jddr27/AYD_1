@@ -32,8 +32,8 @@ namespace Carrito_Compras.Controllers
         public ActionResult Principal()
         {
 
-
-            ViewBag.Message = Obtener.Productos();  
+            //Envia Listado de Productos
+            ViewBag.Listado = Obtener.Productos();  
 
             return View();
 
@@ -47,9 +47,10 @@ namespace Carrito_Compras.Controllers
         }
         public ActionResult Descripcion(int id)
         {
-
+            //Recibe/envia id de producto 
+            //Envia listado de productos
             ViewBag.prods = Obtener.Productos();
-            ViewBag.idUser = id;
+            ViewBag.idProducto = id;
             return View();
         }
 
