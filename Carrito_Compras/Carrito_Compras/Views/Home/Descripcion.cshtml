@@ -79,7 +79,7 @@
 
                                                     }
 
-                                                    
+
                                                     contador++;
                                                 }
                                             }
@@ -109,6 +109,11 @@
                             </div>
                             <!--Este es el div de color celeste que muestra la informacion de un producto y a su lado esta un boton de agregar al carrito-->
 
+@foreach (var obj in @ViewBag.prods)
+                                        {
+
+                                            if (@obj.id.Equals(@ViewBag.idProducto))
+                                            {
                             <div class="row mx-2 des2" style="width: 100%;  height: 250px;">
 
 
@@ -118,27 +123,11 @@
 
                                         <li>
                                             <span class="a-list-item">
-                                                Apple iOS 10, A10&nbsp;x Fusion chip con arquitectura de 64&nbsp;bits
-                                                Embedded M10&nbsp;coprocesador
-
-
-
+                                                @obj.descripcion
 
                                     </ul>
-                                    <ul class="a-unordered-list a-vertical a-spacing-none">
-
-
-                                        <li>
-                                            <span class="a-list-item">
-                                                10.5&nbsp;inch visualización Retina, 2224&nbsp;x 1668&nbsp;resolución,
-                                                amplia y de color verdadero tono visualización
-
-
-                                            </span>
-                                        </li>
-                                    </ul>
+                                 
                                 </div>
-
 
                                 <div class="col">
                                     <a style="position:absolute;top:0px;right:0px;" class="flotanteDescripcion"
@@ -150,71 +139,54 @@
 
 
                             </div>
+                                             }
+                                            }
 
                         </div>
 
-                        <div class="col-lg-5 mr-3 text-center text-md-left">
-                            <h2 class="h2-responsive text-center text-md-left product-name font-weight-bold dark-grey-text mb-1 ml-xl-0 ml-4">
-                                <strong>iPad PRO </strong>
-                                <span class="red-text font-weight-bold">
-                                    <strong>Q5000.00</strong>
-                                </span>
-                                <span class="grey-text">
-                                    <small>
-                                        <s>Q7500.00</s>
-                                    </small>
-                                </span>
+    @foreach (var obj in @ViewBag.prods)
+{
 
-                            </h2>
+    if (@obj.id.Equals(@ViewBag.idProducto))
+    {
 
-                            <span class="badge badge-info mb-2">nuevo</span>
+        <div class="col-lg-5 mr-3 text-center text-md-left">
+            <h2 class="h2-responsive text-center text-md-left product-name font-weight-bold dark-grey-text mb-1 ml-xl-0 ml-4">
+                <strong>@obj.nombre </strong>
+                <span class="red-text font-weight-bold">
+                    <strong>Q @obj.precio</strong>
+                </span>
+                
+            </h2>
 
-
-                            <p class="ml-xl-0 ml-4">
-                                <ul>
-                                    <li>
-                                        <span class="a-list-item">
-                                            Apple iOS 10, A10&nbsp;x Fusion chip con arquitectura de 64&nbsp;bits
-                                            Embedded M10&nbsp;coprocesador
-
-                                        </span>
-                                    </li>
-
-                                    <li>
-                                        <span class="a-list-item">
-                                            12&nbsp;MP cámara iSight, tono de la verdad, panorámica de flash (hasta
-                                            63&nbsp;MP), four-speaker audio
-
-                                        </span>
-                                    </li>
-
-                                </ul>
-
-                            <p class="ml-xl-0 ml-4">
-                                <strong>Almacenamiento </strong>64GB
-                            </p>
-                            <p class="ml-xl-0 ml-4">
-                                <strong>Tamaño: </strong>9.6-inch
-                            </p>
-                            <p class="ml-xl-0 ml-4">
-                                <strong>Resolucion: </strong>2048 x 1536
-                            </p>
-                            <p class="ml-xl-0 ml-4">
-                                <strong>Disponibilidad: </strong>En stock
-                            </p>
-
-                            <!-- Add to Cart -->
-                            <section class="color">
-                                <div class="mt-5">
+            <span class="badge badge-info mb-2">nuevo</span>
 
 
-                                    <div class="col-md-12">
+            <p class="ml-xl-0 ml-4">
+                <ul>
+                    <li>
+                        <span class="a-list-item">
+                           @obj.descripcion
+
+                        </span>
+                    </li>   
+                </ul>
+        </div>
+    }
+}
+
+                                                <!-- Add to Cart -->
+                                                <section class="color">
+                                                    <div class="mt-5">
 
 
-                                        <div class="row text-center text-md-left">
+                                                        <div class="col-md-12">
 
 
-                                            @foreach (var obj in @ViewBag.prods)
+                                                            <div class="row text-center text-md-left">
+
+
+                                                                @foreach (var obj in @ViewBag.prods)
                                             {
                                                 int contador = 0;
                                                 if (@obj.id.Equals(@ViewBag.idProducto))
@@ -238,46 +210,46 @@
 
                                             }
 
-                                            <!--Grid column-->
-                                        </div>
-                                    </div>
+                                                                <!--Grid column-->
+                                                            </div>
+                                                        </div>
 
 
-                                    <form action="Carrito.html">
+                                                        <form action="Carrito.html">
 
-                                        <div class="row mt-3 mb-4">
-                                            <div class="col">
-                                                <div class="col-md-12 text-center text-md-left text-md-right">
-                                                    <button class="btn btn-primary waves-effect waves-light">
-                                                        <i class="fas fa-cart-plus mr-2" aria-hidden="true"></i>
-                                                        Agregar al
-                                                        carrito
-                                                    </button>
-                                                </div>
+                                                            <div class="row mt-3 mb-4">
+                                                                <div class="col">
+                                                                    <div class="col-md-12 text-center text-md-left text-md-right">
+                                                                        <button class="btn btn-primary waves-effect waves-light">
+                                                                            <i class="fas fa-cart-plus mr-2" aria-hidden="true"></i>
+                                                                            Agregar al
+                                                                            carrito
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <div id="buscar">
+                                                                        <form action="ejemplo.html">
+                                                                            <input name="s" type="text" onclick="this.value='';"
+                                                                                   class="cantidad brradius" placeholder="Cantidad">
+
+                                                                        </form>
+                                                                    </div>
+
+                                                                </div>
+
+                                                            </div>
+
+
+
+
+
+
+                                                        </form>
+                                                    </div>
+                                                </section>
+                                                <!-- /.Add to Cart -->
                                             </div>
-                                            <div class="col">
-                                                <div id="buscar">
-                                                    <form action="ejemplo.html">
-                                                        <input name="s" type="text" onclick="this.value='';"
-                                                               class="cantidad brradius" placeholder="Cantidad">
-
-                                                    </form>
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-
-
-
-
-
-
-                                    </form>
-                                </div>
-                            </section>
-                            <!-- /.Add to Cart -->
-                        </div>
                     </div>
                 </div>
                 <!--News card-->

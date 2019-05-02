@@ -54,7 +54,7 @@ namespace Carrito_Compras.Controllers
 
         public ActionResult Carrito(double precio)
         {
-            ViewBag.subtotal = precio;
+            
             Session["subtotal"] = Convert.ToDouble(Session["subtotal"])+precio;
             ViewBag.actual = Convert.ToDouble(Session["subtotal"]);
             return View();
@@ -93,8 +93,8 @@ namespace Carrito_Compras.Controllers
             if (usu.resultado.Equals("exito"))
             {   //Se guarda usuario en la session
                 Session["UserName"] = usu.nombres;
-                return RedirectToAction("Principal", "Home");
-               // return usu.rol == 3 ? View("~/Views/Home/Principal.cshtml") : View("~/Views/Home/DashBoard.cshtml");
+               // return RedirectToAction("Principal", "Home");
+                 return usu.rol == 3 ? RedirectToAction("Principal", "Home"): RedirectToAction("DashBoard", "Home");
             }
             else
             {
