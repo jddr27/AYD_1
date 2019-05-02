@@ -1,10 +1,20 @@
 ﻿@{
     Layout = "~/Views/Shared/Layout1.cshtml";
+    
 }
+
+<div>
+
+    <li>
+    @ViewBag.actual
+    
+    </li>
+
+</div>
 
 <div class="container">
 
-    <form action="Principal.html">
+    <form action="/Home/Principal">
         <div class="row pt-4">
 
             <button type="submit" style="background-color: #f52388" class="centrarBoton btn  waves-effect waves-light">
@@ -163,7 +173,7 @@
                             </td>
                             <td class="text-right">
                                 <h4 class="mt-2">
-                                    <strong>Q2600</strong>
+                                    <strong>Q @ViewBag.actual</strong>
                                 </h4>
                             </td>
                             <td colspan="3" class="text-right">

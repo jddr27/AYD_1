@@ -29,24 +29,39 @@ namespace Carrito_Compras.Controllers
             return View();
         }
 
-        public ActionResult Principal()
+
+        public ActionResult Principal2()
         {
 
-            //Envia Listado de Productos
-            ViewBag.Listado = Obtener.Productos();  
+            //Envia Listado de Productos buscados
+            ViewBag.buscar = Request.Form["search"].ToString();
+            ViewBag.Listado = Obtener.Productos();
 
+                 
             return View();
 
         }
 
-        public ActionResult Carrito()
+        public ActionResult Principal()
         {
-            ViewBag.Message = "Your contact page.";
+            
+            //Envia Listado de Productos
+            ViewBag.Listado = Obtener.Productos();
+           
+            return View();
 
+        }
+
+        public ActionResult Carrito(double precio)
+        {
+            ViewBag.subtotal = precio;
+            Session["subtotal"] = Convert.ToDouble(Session["subtotal"])+precio;
+            ViewBag.actual = Convert.ToDouble(Session["subtotal"]);
             return View();
         }
         public ActionResult Descripcion(int id)
         {
+            
             //Recibe/envia id de producto 
             //Envia listado de productos
             ViewBag.prods = Obtener.Productos();
