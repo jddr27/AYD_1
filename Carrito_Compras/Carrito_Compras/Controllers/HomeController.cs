@@ -27,19 +27,33 @@ namespace Carrito_Compras.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
-        }
+        }   
 
 
         public ActionResult Principal2()
         {
+            LinkedList<Producto> listado = new LinkedList<Producto>();
+          if (!String.IsNullOrEmpty(Request["search"])){
+              String busqueda = Request["search"].ToString();
+            if(busqueda.Equals("categoria")){
+                //Aqui filtro los datos por categoria
+        foreach (var obj in Obtener.Productos())
+        {
+            if(obj.categoria.Equals(Request["search"]).ToString()){
 
-            //Envia Listado de Productos buscados
-            ViewBag.buscar = Request.Form["search"].ToString();
-            ViewBag.Listado = Obtener.Productos();
-
-                 
+            }
+        }
             return View();
+                   }
 
+            if (busqueda.Equals("productos"))
+            {
+                ViewBag.Listado = Obtener.Productos();
+                return View();
+            }
+           }
+          ViewBag.Listado = Obtener.Productos();
+          return View();
         }
 
         public ActionResult Principal()
