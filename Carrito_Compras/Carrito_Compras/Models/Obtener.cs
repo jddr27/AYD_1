@@ -112,6 +112,18 @@ namespace Carrito_Compras.Models
                 {
                     prod.imagenes = Imagenes(prod.id);
                 }
+                foreach (var prod in lista)
+                {
+                    prod.promocion = new Promocion(prod.promocion_id);
+                }
+                foreach (var prod in lista)
+                {
+                    prod.marca = new Marca(prod.marca_id);
+                }
+                foreach (var prod in lista)
+                {
+                    prod.categoria = new Categoria(prod.categoria_id);
+                }
                 return lista;
             }
             catch (MySqlException e)

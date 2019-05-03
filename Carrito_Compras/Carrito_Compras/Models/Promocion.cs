@@ -12,14 +12,19 @@ namespace Carrito_Compras.Models
         public string descripcion { get; set; }
         public DateTime? inicio { get; set; }
         public DateTime? fin { get; set; }
-        public int descuento { get; set; }
+        public double descuento { get; set; }
 
         private bool connection_open;
         private MySqlConnection connection;
 
-        public Promocion()
+        public Promocion(int id, string nombre, string descripcion, DateTime inicio, DateTime fin, double descuento)
         {
-
+            this.id = id;
+            this.nombre = nombre;
+            this.descripcion = descripcion;
+            this.inicio = inicio;
+            this.fin = fin;
+            this.descuento = descuento;
         }
 
         public Promocion(int arg_id)
@@ -54,7 +59,7 @@ namespace Carrito_Compras.Models
                     else
                         fin = null;
                     if (reader.IsDBNull(4) == false)
-                        descuento = int.Parse(reader.GetString(4));
+                        descuento = double.Parse(reader.GetString(4));
                     else
                         descuento = -1;
                     reader.Close();
