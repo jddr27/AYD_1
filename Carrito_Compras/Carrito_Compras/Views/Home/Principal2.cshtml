@@ -3,20 +3,29 @@
         ViewBag.Title = "Principal2";
         Layout = "~/Views/Shared/Layout1.cshtml";
     }
-
-
-                <div>
-
-                    <li>@ViewBag.buscar</li>
-
-                </div>
-
+  
+   @if(@ViewBag.contador==0) {
+        //Si no hay productos al buscar  Mostramos mensaje en la pantalla
+    <div class="alert alert-info">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>¡Mensaje!</strong>
+        <h1>No Existen Productos</h1>
+    </div>
+                        }
+  
+    
     <div>
+
         @foreach (var obj in @ViewBag.Listado)
         {
+             //Recorremos la lista enviada de la busqueda
+             //Mostramos las propiedades de los productos en la Vista
             <li>Id:    @obj.id</li>
             <li>Nombre: @obj.nombre</li>
-            <li>Marca: @obj.marca</li>
+            <li>Marca: @obj.marca.nombre</li>
+            <li>Categoria: @obj.categoria.nombre</li>
+            <li>Promocion: @obj.promocion.nombre</li>
+            //Mostramos las imagenes de cada producto
             foreach (var img in @obj.imagenes)
             {
                 <li>Ruta: @img</li>
@@ -26,8 +35,8 @@
             @Html.ActionLink("Agregar", "Carrito", new { id = @obj.id })
 
         }
-
-    </div><!-- /Mega menu -->
+    </div>
+    <!-- /Mega menu -->
     <!-- /.Main Container -->
     <div class="container">
         <div class="row pt-4">
@@ -92,7 +101,7 @@
                                                 </span>
                                                 <span class="float-right">
 
-                                                    <a href="@Url.Action("Carrito", "Home", new { id =1 })" class="" data-toggle="tooltip" data-placement="top"
+                                                    <a href="@Url.Action("Carrito", "Home", new { precio=@obj.precio })" class="" data-toggle="tooltip" data-placement="top"
                                                        title="Add to Cart">
                                                         <i class="fas fa-shopping-cart ml-3"></i>
                                                     </a>
@@ -129,3 +138,4 @@
         </div>
     </div>
     <!-- /.Main Container -->
+    

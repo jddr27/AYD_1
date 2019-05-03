@@ -3,11 +3,26 @@
         Layout = "~/Views/Shared/Layout1.cshtml";
     }
 
+
+                @if (@ViewBag.contador == 0)
+                {
+                    //Si no hay productos al buscar  Mostramos mensaje en la pantalla
+                    <div class="alert alert-info">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>¡Mensaje!</strong>
+                        <h1>No Existen Productos</h1>
+                    </div>
+                }
 <div>
     @foreach (var obj in @ViewBag.Listado)
     {
+        //Recorremos la lista enviada de la busqueda
+        //Mostramos las propiedades de los productos en la Vista
         <li>Id:    @obj.id</li>
         <li>Nombre: @obj.nombre</li>
+        <li>Marca: @obj.marca.nombre</li>
+        <li>Categoria: @obj.categoria.nombre</li>
+        <li>Promocion: @obj.promocion.nombre</li>
         foreach (var img in @obj.imagenes)
         {
         <li>Ruta: @img</li>
