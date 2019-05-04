@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Web;
 
@@ -7,15 +8,25 @@ namespace Carrito_Compras.Models
 {
     public class Marca
     {
+        public static string resultado { get; set; }
         public int id { get; set; }
-        public string nombre { get; set; }
+        public  string nombre { get; set; }
 
-        private bool connection_open;
-        private MySqlConnection connection;
+        private static  bool connection_open;
+        private static  MySqlConnection connection;
+
+        
 
         public Marca()
         {
+         
+        }
 
+        public Marca(int id, string marca)
+        {
+            this.id = id;
+            this.nombre= marca;
+            
         }
 
         public Marca(int arg_id)
@@ -58,7 +69,7 @@ namespace Carrito_Compras.Models
             connection.Close();
         }
 
-        private void Get_Connection()
+        private static void Get_Connection()
         {
             connection_open = false;
 
@@ -76,7 +87,7 @@ namespace Carrito_Compras.Models
 
         }
 
-        private bool Open_Local_Connection()
+        private static bool Open_Local_Connection()
         {
             try
             {
@@ -87,6 +98,53 @@ namespace Carrito_Compras.Models
             {
                 return false;
             }
+        }
+
+        public static LinkedList<Marca> ObtenerMarca()
+        {
+            int id;
+            string nombre;
+            LinkedList<Marca> lista = new LinkedList<Marca>();
+            Get_Connection();
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = connection;
+                cmd.CommandText = string.Format("SELECT `id_marca`,`nombre_marca` FROM `Marca`;");
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        if (reader.IsDBNull(1) == false)
+                            nombre = reader.GetString(1);
+                        else
+                            nombre = null;
+                        
+                        if (reader.IsDBNull(0) == false)
+                            id = int.Parse(reader.GetString(0));
+                        else
+                            id = -1;
+                        lista.AddLast(new Marca (id, nombre));
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("No rows found.");
+                }
+                connection.Close();                
+                return lista;
+            }
+            catch (MySqlException e)
+            {
+                string MessageString = "*********************** The following error occurred loading the Column details: "
+                    + e.ErrorCode + " - " + e.Message;
+                resultado = MessageString;
+            }
+
+            connection.Close();
+            return null;
         }
     }
 }

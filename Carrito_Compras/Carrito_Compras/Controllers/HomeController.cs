@@ -278,5 +278,32 @@ namespace Carrito_Compras.Controllers
 
             return View();
         }
+
+
+        public ActionResult Carga()
+        {
+            //ViewBag.Message ="ejemplo aiyda";
+            LinkedList<Marca> marca = new LinkedList<Marca>();
+            LinkedList<Categoria> categoria = new LinkedList<Categoria>();
+            foreach (var obj in Marca.ObtenerMarca())
+            {
+                    //Agregamos a la lista
+                    marca.AddLast(obj);
+                    
+                }
+
+            foreach (var obj in Categoria.ObtenerCategoria())
+            {
+                //Agregamos a la lista
+                categoria.AddLast(obj);
+
+            }
+
+            ViewBag.Marca =marca;
+            ViewBag.Categoria = categoria;
+
+
+            return View();
+        }
     }
 }
