@@ -265,6 +265,14 @@ namespace Carrito_Compras.Controllers
 
             return View();
         }
+
+        public ActionResult RegistroExitoso()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+
         public ActionResult Inventario()
         {
             ViewBag.Message = "Your contact page.";
@@ -285,25 +293,58 @@ namespace Carrito_Compras.Controllers
             //ViewBag.Message ="ejemplo aiyda";
             LinkedList<Marca> marca = new LinkedList<Marca>();
             LinkedList<Categoria> categoria = new LinkedList<Categoria>();
+            LinkedList<Promocion> promocion = new LinkedList<Promocion>();
             foreach (var obj in Marca.ObtenerMarca())
             {
                     //Agregamos a la lista
-                    marca.AddLast(obj);
-                    
+                    marca.AddLast(obj);                    
                 }
-
             foreach (var obj in Categoria.ObtenerCategoria())
-            {
-                //Agregamos a la lista
+            { //Agregamos a la lista
                 categoria.AddLast(obj);
-
             }
 
+            foreach (var obj in Promocion.ObtenerPromo())
+            { //Agregamos a la lista
+                promocion.AddLast(obj);
+            }
             ViewBag.Marca =marca;
             ViewBag.Categoria = categoria;
+            ViewBag.Promocion = promocion;
 
 
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult InsertProducto()
+        {
+            string nombre = Request["name"].ToString();
+            string cantidad = Request["cantidad"].ToString();
+            string descripcion = Request["des"].ToString();
+            string precio = Request["precio"].ToString();
+            string img1 = Request["img1"].ToString();
+            string img2 = Request["img2"].ToString();
+            string img3 = Request["img3"].ToString();
+
+            string categoria = Request["categoria"].ToString();
+            string marca = Request["marca"].ToString();
+            string promocion = Request["promo"].ToString();
+
+            int resultado=Agregar.ProductoConImagen(nombre, Int32.Parse(cantidad), Convert.ToDouble(precio), descripcion,Int32.Parse(marca), Int32.Parse(categoria), Int32.Parse(promocion), img1, img2, img3);
+
+            if (resultado == 0)
+            {
+                ViewBag.Resultado = 0;
+            }
+
+            else {
+                ViewBag.Resultado = 1;
+            }
+
+            
+
+            return RedirectToAction("RegistroExitoso", "Home");
         }
     }
 }

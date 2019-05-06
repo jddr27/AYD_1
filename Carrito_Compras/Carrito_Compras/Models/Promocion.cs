@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Web;
 
@@ -7,6 +8,7 @@ namespace Carrito_Compras.Models
 {
     public class Promocion
     {
+        public static string resultado { get; set; }
         public int id { get; set; }
         public string nombre { get; set; }
         public string descripcion { get; set; }
@@ -14,8 +16,8 @@ namespace Carrito_Compras.Models
         public DateTime? fin { get; set; }
         public double descuento { get; set; }
 
-        private bool connection_open;
-        private MySqlConnection connection;
+        private static bool connection_open;
+        private static MySqlConnection connection;
 
         public Promocion(int id, string nombre, string descripcion, DateTime inicio, DateTime fin, double descuento)
         {
@@ -25,6 +27,61 @@ namespace Carrito_Compras.Models
             this.inicio = inicio;
             this.fin = fin;
             this.descuento = descuento;
+        }
+
+        public Promocion(int id, string nombre)
+        {
+            this.id = id;
+            this.nombre = nombre;
+            
+        }
+
+        public static LinkedList<Promocion> ObtenerPromo()
+        {
+            int id;
+            string nombre="";            
+
+            LinkedList<Promocion> lista = new LinkedList<Promocion>();
+            Get_Connection();
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = connection;
+                cmd.CommandText = string.Format("SELECT `id_promocion`,`nombre_promocion` FROM `Promocion`;");
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        if (reader.IsDBNull(1) == false)
+                            nombre = reader.GetString(1);
+                        else
+                            nombre = null;
+
+                        if (reader.IsDBNull(0) == false)
+                            id = int.Parse(reader.GetString(0));
+                        else
+                            id = -1;
+                        lista.AddLast(new Promocion(id, nombre));
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("No rows found.");
+                }
+                connection.Close();
+                return lista;
+            }
+            catch (MySqlException e)
+            {
+                string MessageString = "*********************** The following error occurred loading the Column details: "
+                    + e.ErrorCode + " - " + e.Message;
+                resultado = MessageString;
+            }
+
+            connection.Close();
+            return null;
         }
 
         public Promocion(int arg_id)
@@ -90,7 +147,7 @@ namespace Carrito_Compras.Models
             connection.Close();
         }
 
-        private void Get_Connection()
+        private static  void Get_Connection()
         {
             connection_open = false;
 
@@ -108,7 +165,7 @@ namespace Carrito_Compras.Models
 
         }
 
-        private bool Open_Local_Connection()
+        private static bool Open_Local_Connection()
         {
             try
             {

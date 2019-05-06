@@ -118,6 +118,49 @@ namespace Carrito_Compras.Models
             connection.Close();
         }
 
+        public static int ProductoConImagen(string nombre, int cantidad, double precio, string descripcion, int marca, int categoria, int promocion,string img1,string img2, string img3)
+        {
+            Get_Connection();
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = connection;
+                cmd.CommandText = string.Format("Select InsertarProductos('"+nombre+"',"+cantidad+","+precio+",'"+descripcion+"',"+marca+","+categoria+","+promocion+",'"+img1+"','"+img2+"','"+img3+"');");
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                try
+                {
+                    reader.Read();
+                    resultado = "exito";
+                    Console.WriteLine(reader.ToString());
+                    reader.Close();
+                    return 1;
+
+                }
+                catch (MySqlException e)
+                {
+                    string MessageString = "***************** Read error occurred  / entry not found loading the Column details: "
+                        + e.ErrorCode + " - " + e.Message + "; \n\nPlease Continue";
+                    resultado = MessageString;
+
+                   
+                    reader.Close();
+                    return 0;
+                }
+            }
+            catch (MySqlException e)
+            {
+                string MessageString = "*********************** The following error occurred loading the Column details: "
+                    + e.ErrorCode + " - " + e.Message;
+                resultado = MessageString;
+                  
+              
+            }
+
+            connection.Close();
+            return 0;
+        }
+
         public static void Promocion(string nombre, string descripcion, DateTime inicio, DateTime fin, double descuento)
         {
             Get_Connection();
