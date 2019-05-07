@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "EdicionProducto";
+    Layout = "~/Views/Shared/LayoutAdmin.cshtml";
+}
+
+</BR>
+</BR>
+</BR>
+<p></p>
+<p></p>
+
+
+
+@using (Ajax.BeginForm("InsertProducto", "Home", new AjaxOptions { UpdateTargetId = "info_login" }, new { @class = "text-center border border-light p-5" }))
+{
+    foreach (var obj in @ViewBag.Edicion)
+    {
+        <p class="h4 mb-4">Carga de Productos</p>
+
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <!-- Ingreso del nombre del producto -->
+
+                    <input type="text" id="name" name="name" value="@obj.nombre" class="form-control mb-4" placeholder="Nombre del Producto" required>
+                </div>
+                <div class="col">
+                    <!-- Ingreso de la cantidad del producto -->
+                    <input type="number" id="cantidad" value="@obj.cantidad" name="cantidad" class="form-control mb-4" placeholder="Cantidad">
+                </div>
+
+            </div>
+
+
+            <input type="number" id="precio" value="@obj.precio" name="precio" class="form-control mb-4" placeholder="Precio">
+            <textarea id="des" name="des" class="md-textarea form-control" rows="3" placeholder="Descripcion">@obj.descripcion</textarea>
+            <p> </p>
+            <input type="url" id="img1" name="img1" class="form-control mb-4" placeholder="Imagen 1">
+            <input type="url" id="img2" name="img2" class="form-control mb-4" placeholder="Imagen 2">
+            <input type="url" id="img3" name="img3" class="form-control mb-4" placeholder="Imagen 3">
+
+
+            
+
+            
+
+
+          
+
+            <!--Boton para cargar -->
+            <button class="btn btn-info btn-block my-4" type="submit">Cargar</button>
+
+        </div>
+        }
+    }
+    <!-- Default form login -->

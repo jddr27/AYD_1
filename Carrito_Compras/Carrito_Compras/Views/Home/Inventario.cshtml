@@ -59,9 +59,9 @@
                                         <td>Q @obj.precio</td>
                                         <td>
 
-                                            <a  href="@Url.Action("EditarProducto", "Home", new {id=@obj.id })" class="teal-text" data-toggle="tooltip" data-placement="top"
+                                            <a  href="@Url.Action("EdicionProducto", "Home", new {id=@obj.id })" class="teal-text" data-toggle="tooltip" data-placement="top"
                                                title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                                            <a class="red-text" data-toggle="tooltip" data-placement="top"
+                                            <a href="@Url.Action("EliminarProducto", "Home", new {id=@obj.id })" class="red-text" data-toggle="tooltip" data-placement="top"
                                                title="Remove"><i class="fas fa-times"></i></a>
                                         </td>
                                     </tr>

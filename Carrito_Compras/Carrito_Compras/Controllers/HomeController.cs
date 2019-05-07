@@ -30,72 +30,74 @@ namespace Carrito_Compras.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
-        }   
+        }
 
 
         public ActionResult Principal2()
         {    //Variable Contador de producto encontrados
-             int contadorProductos =0;
+            int contadorProductos = 0;
             //Lista para almacenar productos encontrados en la bùsqueda
-             LinkedList<Producto> list= new LinkedList<Producto>();
-      
+            LinkedList<Producto> list = new LinkedList<Producto>();
+
             //Comparmos si el Requeste No es Nulo(Es decir no se ha buscado ningùn producto)
-      if (!String.IsNullOrEmpty(Request["search"])){
-
-          //Recorremos todos los Productos
-     foreach (var obj in Obtener.Productos())
-        {
-            //Filtro por marca de cada producto
-            if (obj.marca.nombre.Equals(Request["search"], StringComparison.OrdinalIgnoreCase))
+            if (!String.IsNullOrEmpty(Request["search"]))
             {
-             //Agregamos a la lista
-              list.AddLast(obj);
-              contadorProductos++;
-              }
 
-          //Filtro por Categoria a la cual pertenece cada producto
-            if (obj.categoria.nombre.Equals(Request["search"], StringComparison.OrdinalIgnoreCase))
-            {
-                list.AddLast(obj);
-                contadorProductos++;
+                //Recorremos todos los Productos
+                foreach (var obj in Obtener.Productos())
+                {
+                    //Filtro por marca de cada producto
+                    if (obj.marca.nombre.Equals(Request["search"], StringComparison.OrdinalIgnoreCase))
+                    {
+                        //Agregamos a la lista
+                        list.AddLast(obj);
+                        contadorProductos++;
+                    }
+
+                    //Filtro por Categoria a la cual pertenece cada producto
+                    if (obj.categoria.nombre.Equals(Request["search"], StringComparison.OrdinalIgnoreCase))
+                    {
+                        list.AddLast(obj);
+                        contadorProductos++;
+                    }
+
+                    //Filtro por Promocion que tienen algunos productos
+                    if (obj.promocion.nombre.Equals(Request["search"], StringComparison.OrdinalIgnoreCase))
+                    {
+                        list.AddLast(obj);
+                        contadorProductos++;
+                    }
+                    //Filtro  por Nombre de productos
+                    if (obj.nombre.Equals(Request["search"], StringComparison.OrdinalIgnoreCase))
+                    {
+                        list.AddLast(obj);
+                        contadorProductos++;
+                    }
+
+                }
+
+                if (contadorProductos == 0)
+                {
+                    //Variables donde guardamos la lista de productos para enviarla a la principal
+                    ViewBag.contador = contadorProductos;
+                    ViewBag.Listado = Obtener.Productos();
+                }
+                else
+                {
+                    //Variables donde guardamos la lista de productos para enviarla a la principal
+
+                    ViewBag.Listado = list;
+                }
+
             }
-
-         //Filtro por Promocion que tienen algunos productos
-            if (obj.promocion.nombre.Equals(Request["search"], StringComparison.OrdinalIgnoreCase))
+            //Sino hemos echo ninguna busqueda mostramos todos los productos
+            else
             {
-                list.AddLast(obj);
-                contadorProductos++;
+                // ViewBag.contador = contadorProductos;
+                ViewBag.Listado = Obtener.Productos();
+
             }
-         //Filtro  por Nombre de productos
-            if (obj.nombre.Equals(Request["search"], StringComparison.OrdinalIgnoreCase))
-            {
-                list.AddLast(obj);
-                contadorProductos++;
-            }
-
-        }
-
-     if (contadorProductos == 0)
-     {
-    //Variables donde guardamos la lista de productos para enviarla a la principal
-     ViewBag.contador = contadorProductos;
-     ViewBag.Listado = Obtener.Productos();
-          }
-     else
-     {
-         //Variables donde guardamos la lista de productos para enviarla a la principal
-         
-         ViewBag.Listado = list;
-     }
-
- }
-          //Sino hemos echo ninguna busqueda mostramos todos los productos
- else  {
-        // ViewBag.contador = contadorProductos;
-          ViewBag.Listado = Obtener.Productos();
-          
- }
- return View();
+            return View();
         }
 
         public ActionResult Principal()
@@ -177,13 +179,13 @@ namespace Carrito_Compras.Controllers
              * Convertimos el objeto Session a Double e incrementamos el valor actual 
              * de los productos que se van agregando
              * */
-            Session["subtotal"] = Convert.ToDouble(Session["subtotal"])+precio;
+            Session["subtotal"] = Convert.ToDouble(Session["subtotal"]) + precio;
             ViewBag.actual = Convert.ToDouble(Session["subtotal"]);
             return View();
         }
         public ActionResult Descripcion(int id)
         {
-            
+
             //Recibe/envia id de producto 
             //Envia listado de productos
             //Recibimos el id del producto para mostrar la descripcion enviamos a la Vista Descripcion
@@ -216,16 +218,16 @@ namespace Carrito_Compras.Controllers
             if (usu.resultado.Equals("exito"))
             {   //Se guarda usuario en la session
                 Session["UserName"] = usu.nombres;
-               // Manejo de Roles 
+                // Manejo de Roles 
                 /*1.Administrador softech (Estadisticas, reportes...)
                 * 2. Empleado (Gestiona  productos, promociones,...) 
                 * 3. Cliente (Cliente registrado que puede comprar, ver promociones, ...)
                 * */
-                return usu.rol == 3 ? RedirectToAction("Principal", "Home"): RedirectToAction("DashBoard", "Home");
+                return usu.rol == 3 ? RedirectToAction("Principal", "Home") : RedirectToAction("DashBoard", "Home");
             }
             else
             {
-                 //Sino Existe el  Usuario Se Muestra un  Mensaje
+                //Sino Existe el  Usuario Se Muestra un  Mensaje
                 StringBuilder sbInterest = new StringBuilder();
                 sbInterest.Append("<br><b>Error:</b> " + usu.resultado + "<br/>");
                 return Content(sbInterest.ToString());
@@ -235,7 +237,7 @@ namespace Carrito_Compras.Controllers
         public ActionResult Todos()
         {
             StringBuilder sbInterest = new StringBuilder();
-            sbInterest.Append("<br><b>Resultado:</b>" + ""+ "<br/>");
+            sbInterest.Append("<br><b>Resultado:</b>" + "" + "<br/>");
             sbInterest.Append("<br><b>exito</b><br/>");
             return Content(sbInterest.ToString());
         }
@@ -268,9 +270,10 @@ namespace Carrito_Compras.Controllers
             return View();
         }
 
-        public ActionResult RegistroExitoso()
+        public ActionResult Operacion()
         {
-             ViewBag.Message = TempData["resultado"].ToString();
+            ViewBag.Message = TempData["resultado"].ToString();
+            ViewBag.Ambito = TempData["ambito"].ToString();
 
             return View();
         }
@@ -281,10 +284,10 @@ namespace Carrito_Compras.Controllers
 
             foreach (var obj in Obtener.Productos())
             {
-                   //Agregamos a la lista
-                    productos.AddLast(obj);
-                    
-                }
+                //Agregamos a la lista
+                productos.AddLast(obj);
+
+            }
 
             ViewBag.Producto = productos;
             return View();
@@ -299,9 +302,12 @@ namespace Carrito_Compras.Controllers
         }
         public ActionResult EliminarProducto(int id)
         {
-            StringBuilder sbInterest = new StringBuilder();
-            sbInterest.Append("<br><b>Error:</b> " + id + "<br/>");
-            return Content(sbInterest.ToString());
+
+            int Eliminar = Producto.EliminarProducto(id);
+            TempData["resultado"] = Eliminar.ToString();
+            TempData["ambito"] = "deleteP";
+
+            return RedirectToAction("Operacion", "Home");
 
         }
 
@@ -321,9 +327,9 @@ namespace Carrito_Compras.Controllers
             LinkedList<Promocion> promocion = new LinkedList<Promocion>();
             foreach (var obj in Marca.ObtenerMarca())
             {
-                    //Agregamos a la lista
-                    marca.AddLast(obj);                    
-                }
+                //Agregamos a la lista
+                marca.AddLast(obj);
+            }
             foreach (var obj in Categoria.ObtenerCategoria())
             { //Agregamos a la lista
                 categoria.AddLast(obj);
@@ -333,7 +339,7 @@ namespace Carrito_Compras.Controllers
             { //Agregamos a la lista
                 promocion.AddLast(obj);
             }
-            ViewBag.Marca =marca;
+            ViewBag.Marca = marca;
             ViewBag.Categoria = categoria;
             ViewBag.Promocion = promocion;
 
@@ -355,9 +361,31 @@ namespace Carrito_Compras.Controllers
             string marca = Request["marca"].ToString();
             string promocion = Request["promo"].ToString();
 
-            int resultado=Agregar.ProductoConImagen(nombre, Int32.Parse(cantidad), Convert.ToDouble(precio), descripcion,Int32.Parse(marca), Int32.Parse(categoria), Int32.Parse(promocion), img1, img2, img3);
-            TempData["resultado"] = resultado.ToString();            
-            return RedirectToAction("RegistroExitoso", "Home");
+            int resultado = Agregar.ProductoConImagen(nombre, Int32.Parse(cantidad), Convert.ToDouble(precio), descripcion, Int32.Parse(marca), Int32.Parse(categoria), Int32.Parse(promocion), img1, img2, img3);
+            TempData["resultado"] = resultado.ToString();
+            TempData["ambito"] = "InsertP";
+            return RedirectToAction("Operacion", "Home");
+        }
+        public ActionResult EdicionProducto(int id)
+        {
+            LinkedList<Producto> productos = new LinkedList<Producto>();
+
+            foreach (var obj in Obtener.Productos())
+            {
+                if (obj.id == id) {
+                    productos.AddLast(obj);
+                }
+                
+            }
+            ViewBag.Edicion = productos;
+
+            return View();
+
+
+            
+
         }
     }
+
+
 }

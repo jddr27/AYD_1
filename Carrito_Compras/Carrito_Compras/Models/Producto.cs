@@ -21,8 +21,8 @@ namespace Carrito_Compras.Models
         public Categoria categoria { get; set; }
         public Promocion promocion { get; set; }
 
-        private bool connection_open;
-        private MySqlConnection connection;
+        private static bool connection_open;
+        private static MySqlConnection connection;
 
         public Producto()
         {
@@ -117,7 +117,45 @@ namespace Carrito_Compras.Models
             categoria = new Categoria(categoria_id);
         }
 
-        private void Get_Connection()
+
+        public static int EliminarProducto(int id)
+        {
+            Get_Connection();
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = connection;
+                cmd.CommandText = string.Format("call EliminarP("+id+");");
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                try
+                {
+                    reader.Read();                    
+                    Console.WriteLine(reader.ToString());
+                    reader.Close();
+                    return 1;
+
+                }
+                catch (MySqlException e)
+                {
+                    string MessageString = "***************** Read error occurred  / entry not found loading the Column details: "
+                        + e.ErrorCode + " - " + e.Message + "; \n\nPlease Continue";
+                    reader.Close();
+                    return 0;
+                }
+            }
+            catch (MySqlException e)
+            {
+                string MessageString = "*********************** The following error occurred loading the Column details: "
+                    + e.ErrorCode + " - " + e.Message;
+                
+            }
+
+            connection.Close();
+            return 0;
+        }
+
+        private static void Get_Connection()
         {
             connection_open = false;
 
@@ -135,7 +173,7 @@ namespace Carrito_Compras.Models
 
         }
 
-        private bool Open_Local_Connection()
+        private static bool Open_Local_Connection()
         {
             try
             {
