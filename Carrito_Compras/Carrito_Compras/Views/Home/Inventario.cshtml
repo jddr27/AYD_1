@@ -17,10 +17,9 @@
                 <div class="tabs-wrapper">
                     <ul class="nav tabs-primary primary-color" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link waves-light active waves-effect waves-light" data-toggle="tab"
+                            <a class="nav-link waves-light active waves-effect waves-light " data-toggle="tab"
                                href="#panel83" role="tab">
-                                Personal
-                                Clients
+                               Productos
                             </a>
                         </li>
                         <li class="nav-item">
@@ -39,125 +38,38 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Producto</th>
-                                        <th>Descripcion</th>
+                                        <th>Categoria</th>
+                                        <th>Marca</th>
                                         <th>Precio</th>
                                         <th>Edicion</th>
                                     </tr>
                                 </thead>
                                 <tbody>
 
+                                    @foreach (var obj in @ViewBag.Producto)
+                                    {
 
+                                        
+                                        
                                     <tr>
-                                        <th scope="row">1</th>
-                                        <td>Producto A</td>
-                                        <td>Producto de uso domestico</td>
-                                        <td>Q500.00</td>
+                                        <th scope="row">@obj.id</th>
+                                        <td>@obj.nombre</td>
+                                        <td>@obj.categoria.nombre</td>
+                                        <td>@obj.marca.nombre</td>
+                                        <td>Q @obj.precio</td>
                                         <td>
 
-                                            <a class="teal-text" data-toggle="tooltip" data-placement="top"
+                                            <a  href="@Url.Action("EditarProducto", "Home", new {id=@obj.id })" class="teal-text" data-toggle="tooltip" data-placement="top"
                                                title="Edit"><i class="fas fa-pencil-alt"></i></a>
                                             <a class="red-text" data-toggle="tooltip" data-placement="top"
                                                title="Remove"><i class="fas fa-times"></i></a>
                                         </td>
                                     </tr>
 
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Producto A</td>
-                                        <td>Producto de uso domestico</td>
-                                        <td>Q500.00</td>
-                                        <td>
 
-                                            <a class="teal-text" data-toggle="tooltip" data-placement="top"
-                                               title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                                            <a class="red-text" data-toggle="tooltip" data-placement="top"
-                                               title="Remove"><i class="fas fa-times"></i></a>
-                                        </td>
-                                    </tr>
+                                    }
 
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Producto A</td>
-                                        <td>Producto de uso domestico</td>
-                                        <td>Q500.00</td>
-                                        <td>
 
-                                            <a class="teal-text" data-toggle="tooltip" data-placement="top"
-                                               title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                                            <a class="red-text" data-toggle="tooltip" data-placement="top"
-                                               title="Remove"><i class="fas fa-times"></i></a>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Producto A</td>
-                                        <td>Producto de uso domestico</td>
-                                        <td>Q500.00</td>
-                                        <td>
-
-                                            <a class="teal-text" data-toggle="tooltip" data-placement="top"
-                                               title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                                            <a class="red-text" data-toggle="tooltip" data-placement="top"
-                                               title="Remove"><i class="fas fa-times"></i></a>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Producto A</td>
-                                        <td>Producto de uso domestico</td>
-                                        <td>Q500.00</td>
-                                        <td>
-
-                                            <a class="teal-text" data-toggle="tooltip" data-placement="top"
-                                               title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                                            <a class="red-text" data-toggle="tooltip" data-placement="top"
-                                               title="Remove"><i class="fas fa-times"></i></a>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Producto A</td>
-                                        <td>Producto de uso domestico</td>
-                                        <td>Q500.00</td>
-                                        <td>
-
-                                            <a class="teal-text" data-toggle="tooltip" data-placement="top"
-                                               title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                                            <a class="red-text" data-toggle="tooltip" data-placement="top"
-                                               title="Remove"><i class="fas fa-times"></i></a>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Producto A</td>
-                                        <td>Producto de uso domestico</td>
-                                        <td>Q500.00</td>
-                                        <td>
-
-                                            <a class="teal-text" data-toggle="tooltip" data-placement="top"
-                                               title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                                            <a class="red-text" data-toggle="tooltip" data-placement="top"
-                                               title="Remove"><i class="fas fa-times"></i></a>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Producto A</td>
-                                        <td>Producto de uso domestico</td>
-                                        <td>Q500.00</td>
-                                        <td>
-
-                                            <a class="teal-text" data-toggle="tooltip" data-placement="top"
-                                               title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                                            <a class="red-text" data-toggle="tooltip" data-placement="top"
-                                               title="Remove"><i class="fas fa-times"></i></a>
-                                        </td>
-                                    </tr>
 
 
                                 </tbody>

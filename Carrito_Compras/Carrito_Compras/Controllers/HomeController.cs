@@ -10,7 +10,9 @@ namespace Carrito_Compras.Controllers
 {
     public class HomeController : Controller
     {
-        
+
+        int Resultado = 1;
+
         public ActionResult Index()
         {
             return View();
@@ -268,16 +270,39 @@ namespace Carrito_Compras.Controllers
 
         public ActionResult RegistroExitoso()
         {
-            ViewBag.Message = "Your contact page.";
+             ViewBag.Message = TempData["resultado"].ToString();
 
             return View();
         }
 
         public ActionResult Inventario()
         {
-            ViewBag.Message = "Your contact page.";
+            LinkedList<Producto> productos = new LinkedList<Producto>();
 
+            foreach (var obj in Obtener.Productos())
+            {
+                   //Agregamos a la lista
+                    productos.AddLast(obj);
+                    
+                }
+
+            ViewBag.Producto = productos;
             return View();
+        }
+
+        public ActionResult EditarProducto(int id)
+        {
+            StringBuilder sbInterest = new StringBuilder();
+            sbInterest.Append("<br><b>Error:</b> " + id + "<br/>");
+            return Content(sbInterest.ToString());
+
+        }
+        public ActionResult EliminarProducto(int id)
+        {
+            StringBuilder sbInterest = new StringBuilder();
+            sbInterest.Append("<br><b>Error:</b> " + id + "<br/>");
+            return Content(sbInterest.ToString());
+
         }
 
         public ActionResult Registro()
@@ -326,24 +351,12 @@ namespace Carrito_Compras.Controllers
             string img1 = Request["img1"].ToString();
             string img2 = Request["img2"].ToString();
             string img3 = Request["img3"].ToString();
-
             string categoria = Request["categoria"].ToString();
             string marca = Request["marca"].ToString();
             string promocion = Request["promo"].ToString();
 
             int resultado=Agregar.ProductoConImagen(nombre, Int32.Parse(cantidad), Convert.ToDouble(precio), descripcion,Int32.Parse(marca), Int32.Parse(categoria), Int32.Parse(promocion), img1, img2, img3);
-
-            if (resultado == 0)
-            {
-                ViewBag.Resultado = 0;
-            }
-
-            else {
-                ViewBag.Resultado = 1;
-            }
-
-            
-
+            TempData["resultado"] = resultado.ToString();            
             return RedirectToAction("RegistroExitoso", "Home");
         }
     }
