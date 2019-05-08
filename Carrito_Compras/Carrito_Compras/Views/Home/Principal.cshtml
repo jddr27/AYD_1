@@ -105,7 +105,7 @@
                                                 </span>
                                                 <span class="float-right">
 
-                                                    <a href="@Url.Action("Carrito", "Home", new { precio=@obj.precio })" class="" data-toggle="tooltip" data-placement="top"
+                                                    <a href="@Url.Action("Carrito", "Home", new { idproducto= @obj.id, precio=@obj.precio })" class="" data-toggle="tooltip" data-placement="top"
                                                        title="Add to Cart">
                                                         <i class="fas fa-shopping-cart ml-3"></i>
                                                     </a>

@@ -33,73 +33,6 @@ namespace Carrito_Compras.Controllers
         }
 
 
-        public ActionResult Principal2()
-        {    //Variable Contador de producto encontrados
-            int contadorProductos = 0;
-            //Lista para almacenar productos encontrados en la bùsqueda
-            LinkedList<Producto> list = new LinkedList<Producto>();
-
-            //Comparmos si el Requeste No es Nulo(Es decir no se ha buscado ningùn producto)
-            if (!String.IsNullOrEmpty(Request["search"]))
-            {
-
-                //Recorremos todos los Productos
-                foreach (var obj in Obtener.Productos())
-                {
-                    //Filtro por marca de cada producto
-                    if (obj.marca.nombre.Equals(Request["search"], StringComparison.OrdinalIgnoreCase))
-                    {
-                        //Agregamos a la lista
-                        list.AddLast(obj);
-                        contadorProductos++;
-                    }
-
-                    //Filtro por Categoria a la cual pertenece cada producto
-                    if (obj.categoria.nombre.Equals(Request["search"], StringComparison.OrdinalIgnoreCase))
-                    {
-                        list.AddLast(obj);
-                        contadorProductos++;
-                    }
-
-                    //Filtro por Promocion que tienen algunos productos
-                    if (obj.promocion.nombre.Equals(Request["search"], StringComparison.OrdinalIgnoreCase))
-                    {
-                        list.AddLast(obj);
-                        contadorProductos++;
-                    }
-                    //Filtro  por Nombre de productos
-                    if (obj.nombre.Equals(Request["search"], StringComparison.OrdinalIgnoreCase))
-                    {
-                        list.AddLast(obj);
-                        contadorProductos++;
-                    }
-
-                }
-
-                if (contadorProductos == 0)
-                {
-                    //Variables donde guardamos la lista de productos para enviarla a la principal
-                    ViewBag.contador = contadorProductos;
-                    ViewBag.Listado = Obtener.Productos();
-                }
-                else
-                {
-                    //Variables donde guardamos la lista de productos para enviarla a la principal
-
-                    ViewBag.Listado = list;
-                }
-
-            }
-            //Sino hemos echo ninguna busqueda mostramos todos los productos
-            else
-            {
-                // ViewBag.contador = contadorProductos;
-                ViewBag.Listado = Obtener.Productos();
-
-            }
-            return View();
-        }
-
         public ActionResult Principal()
         {
 
@@ -170,7 +103,7 @@ namespace Carrito_Compras.Controllers
 
         }
 
-        public ActionResult Carrito(double precio)
+        public ActionResult Carrito(double precio,int idProducto)
         {
             /*Recibimos el valor(precio del prudcto que se esta comprando)
              * Cremos una variable de Session para el manejo del subtotal conforme se compran 
@@ -181,6 +114,7 @@ namespace Carrito_Compras.Controllers
              * */
             Session["subtotal"] = Convert.ToDouble(Session["subtotal"]) + precio;
             ViewBag.actual = Convert.ToDouble(Session["subtotal"]);
+            ViewBag.idprod = idProducto;
             return View();
         }
 
