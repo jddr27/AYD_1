@@ -186,13 +186,14 @@ namespace Carrito_Compras.Controllers
             string direccion = Request["txtdireccion"].ToString();
             string contra = Request["txtcontra"].ToString();
             string contra2 = Request["txtcontra2"].ToString();
+            string foto = Request["txtfoto"].ToString();
             if (!contra.Equals(contra2))
             {
                 StringBuilder sbInterest = new StringBuilder();
                 sbInterest.Append("<br><b>Error:</b> Las contraseñas no coinciden <br/>");
                 return Content(sbInterest.ToString());
             }
-            Agregar.Usuario(correo, nombres, apellidos, direccion, 3, contra, "");
+            Agregar.Usuario(correo, nombres, apellidos, direccion, 3, contra, foto);
             if (Agregar.resultado.Equals("exito"))
             {
                 return View("Login");
