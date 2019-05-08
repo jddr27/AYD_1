@@ -26,8 +26,15 @@
         foreach (var img in @obj.imagenes)
         {
         <li>Ruta: @img</li>
-            
+
         }
+
+        foreach (var idI in @obj.Idimagenes)
+        {
+        <li>Ruta: @idI</li>
+
+        }
+       
         <br />
         @Html.ActionLink("Agregar", "Carrito", new { id = @obj.id })
 

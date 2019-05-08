@@ -12,11 +12,18 @@
 
 
 
-@using (Ajax.BeginForm("InsertProducto", "Home", new AjaxOptions { UpdateTargetId = "info_login" }, new { @class = "text-center border border-light p-5" }))
+@using (Ajax.BeginForm("EditarProducto", "Home", new AjaxOptions { UpdateTargetId = "info_login" }, new { @class = "text-center border border-light p-5" }))
 {
+    int contador = 0;
+    int contadorId = 0;
+
+
+
     foreach (var obj in @ViewBag.Edicion)
     {
-        <p class="h4 mb-4">Carga de Productos</p>
+
+        <input type="hidden" id="id" value="@obj.id" name="id" class="form-control mb-4">
+        <p class="h4 mb-4">Edición de Productos</p>
 
         <div class="container">
             <div class="row">
@@ -36,22 +43,123 @@
             <input type="number" id="precio" value="@obj.precio" name="precio" class="form-control mb-4" placeholder="Precio">
             <textarea id="des" name="des" class="md-textarea form-control" rows="3" placeholder="Descripcion">@obj.descripcion</textarea>
             <p> </p>
-            <input type="url" id="img1" name="img1" class="form-control mb-4" placeholder="Imagen 1">
-            <input type="url" id="img2" name="img2" class="form-control mb-4" placeholder="Imagen 2">
-            <input type="url" id="img3" name="img3" class="form-control mb-4" placeholder="Imagen 3">
+
+            @foreach (var img in @obj.imagenes)
+            {
+                contador++;
+                string concatenar = String.Concat("img", contador.ToString());
+
+              
+                <div class="md-form md-bg ">
+                    <input type="url" id="@concatenar" value="@img" name="@concatenar" class="form-control mb-4">
+                    <label for="formBg1">Url de imagen</label>
+                </div>
 
 
-            
+            }
 
-            
+            @foreach (var idI in @obj.Idimagenes)
+            {
+                contadorId++;
+
+                string concaId = String.Concat("id", contadorId.ToString());
+                <input type="hidden" id="@concaId" value="@idI" name="@concaId" class="form-control mb-4">
 
 
-          
+            }
+
+
+
+            <div class="row">
+                <div class="col">
+                    <!-- Seleccionar la categoria -->
+                    <h4>Categoria Actual</h4>
+                    <input type="text" id="categoriaA" value="@obj.categoria.nombre" name="categoriaA" class="form-control mb-4" disabled>
+                </div>
+                <div class="col">
+                    <h4>Marca Actual</h4>
+                    <!-- Seleccionar la marca -->
+                    <input type="text" id="marcaA" value="@obj.marca.nombre" name="marcaA" class="form-control mb-4" disabled>
+                </div>
+
+                <div class="col">
+                    <!-- Seleccionar la promocion -->
+                    <h4>Promocion Actual</h4>
+
+                    @foreach (var obj1 in @ViewBag.Promocion)
+                    {
+                        if (@obj.promocion_id == @obj1.id)
+                        {
+
+                            <input type="text" id="promoA" value="@obj1.nombre" name="promoA" class="form-control mb-4" disabled>
+                            break;
+                        }
+                        else
+                        {
+                            <input type="text" id="promoA" value="Ninguna" name="promoA" class="form-control mb-4" disabled>
+
+                            break;
+                        }
+
+
+                    }
+
+
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col">
+                    <!-- Seleccionar la categoria -->
+                    <h4>Nueva Categoria</h4>
+                    <select name="categoria" id="categoria" class="browser-default custom-select">
+                        @foreach (var obj1 in @ViewBag.Categoria)
+                        {
+                            <option value="@obj1.id">@obj1.nombre</option>
+
+                        }
+                    </select>
+                </div>
+                <div class="col">
+                    <h4>Nueva Marca</h4>
+                    <!-- Seleccionar la marca -->
+                    <select name="marca" id="marca" class="browser-default custom-select">
+                        @foreach (var obj2 in @ViewBag.Marca)
+                        {
+                            <option value="@obj2.id">@obj2.nombre</option>
+
+                        }
+                    </select>
+                </div>
+
+                <div class="col">
+                    <!-- Seleccionar la promocion -->
+                    <h4>Nueva Promocion</h4>
+                    <select name="promo" id="promo" class="browser-default custom-select">
+
+                        <option value="0">Ninguna</option>
+
+                        @foreach (var obj1 in @ViewBag.Promocion)
+                        {
+                            <option value="@obj1.id">@obj1.nombre</option>
+
+                        }
+
+
+
+                    </select>
+                </div>
+
+            </div>
+
+
+
+
 
             <!--Boton para cargar -->
-            <button class="btn btn-info btn-block my-4" type="submit">Cargar</button>
+            <button class="btn btn-info btn-block my-4" type="submit">Editar</button>
 
         </div>
-        }
-    }
-    <!-- Default form login -->
+            }
+            }
+            <!-- Default form login -->

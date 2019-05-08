@@ -293,10 +293,47 @@ namespace Carrito_Compras.Controllers
             return View();
         }
 
-        public ActionResult EditarProducto(int id)
+        public ActionResult EditarProducto()
         {
+
+            string id = Request["id"].ToString();
+            string nombre = Request["name"].ToString();
+            string cantidad = Request["cantidad"].ToString();
+            string descripcion = Request["des"].ToString();
+            string precio = Request["precio"].ToString();
+            string img1 = Request["img1"].ToString();
+            string img2 = Request["img2"].ToString();
+            string img3 = Request["img3"].ToString();
+            string idI1 = Request["id1"].ToString();
+            string idI2 = Request["id2"].ToString();
+            string idI3 = Request["id3"].ToString();
+            string categoria = Request["categoria"].ToString();
+            string marca = Request["marca"].ToString();
+            string promocion = Request["promo"].ToString();
+
+
+            int resultado = Producto.EditarProducto(Int32.Parse(id), nombre, Int32.Parse(cantidad), Convert.ToDouble(precio), descripcion, Int32.Parse(marca), Int32.Parse(categoria), Int32.Parse(promocion), img1, img2, img3, Int32.Parse(idI1), Int32.Parse(idI2), Int32.Parse(idI3));
+
+            TempData["resultado"] = resultado.ToString();
+            TempData["ambito"] = "EditP";
+            
+
+
             StringBuilder sbInterest = new StringBuilder();
-            sbInterest.Append("<br><b>Error:</b> " + id + "<br/>");
+            sbInterest.Append("<br><b>Error:</b> " +id + "<br/>");
+            sbInterest.Append("<br><b>Error:</b> " + nombre + "<br/>");
+            sbInterest.Append("<br><b>Error:</b> " + cantidad + "<br/>");
+            sbInterest.Append("<br><b>Error:</b> " + descripcion + "<br/>");
+            sbInterest.Append("<br><b>Error:</b> " + precio + "<br/>");
+            sbInterest.Append("<br><b>Error:</b> " + img1 + "<br/>");
+            sbInterest.Append("<br><b>Error:</b> " + idI1 + "<br/>");
+            sbInterest.Append("<br><b>Error:</b> " + img2 + "<br/>");
+            sbInterest.Append("<br><b>Error:</b> " + idI2 + "<br/>");
+            sbInterest.Append("<br><b>Error:</b> " + img3 + "<br/>");
+            sbInterest.Append("<br><b>Error:</b> " + idI3 + "<br/>");
+            sbInterest.Append("<br><b>Error:</b> " + categoria+ "<br/>");
+            sbInterest.Append("<br><b>Error:</b> " + marca + "<br/>");
+            sbInterest.Append("<br><b>Error:</b> " + promocion + "<br/>");
             return Content(sbInterest.ToString());
 
         }
@@ -369,6 +406,9 @@ namespace Carrito_Compras.Controllers
         public ActionResult EdicionProducto(int id)
         {
             LinkedList<Producto> productos = new LinkedList<Producto>();
+            LinkedList<Marca> marca = new LinkedList<Marca>();
+            LinkedList<Categoria> categoria = new LinkedList<Categoria>();
+            LinkedList<Promocion> promocion = new LinkedList<Promocion>();
 
             foreach (var obj in Obtener.Productos())
             {
@@ -377,7 +417,27 @@ namespace Carrito_Compras.Controllers
                 }
                 
             }
+
+            
+            foreach (var obj in Marca.ObtenerMarca())
+            {
+                //Agregamos a la lista
+                marca.AddLast(obj);
+            }
+            foreach (var obj in Categoria.ObtenerCategoria())
+            { //Agregamos a la lista
+                categoria.AddLast(obj);
+            }
+
+            foreach (var obj in Promocion.ObtenerPromo())
+            { //Agregamos a la lista
+                promocion.AddLast(obj);
+            }
+            ViewBag.Marca = marca;
+            ViewBag.Categoria = categoria;
+            ViewBag.Promocion = promocion;
             ViewBag.Edicion = productos;
+            ViewBag.Id = id;
 
             return View();
 

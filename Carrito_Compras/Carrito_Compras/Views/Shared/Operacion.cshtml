@@ -59,13 +59,24 @@ else if (@ViewBag.Ambito == "InsertP")
 {
 
 
-using (Ajax.BeginForm("Carga", "Home", new AjaxOptions { UpdateTargetId = "insertP" }, new { @class = "text-center border border-light p-5" }))
+    using (Ajax.BeginForm("Carga", "Home", new AjaxOptions { UpdateTargetId = "insertP" }, new { @class = "text-center border border-light p-5" }))
+    {
+        <button class="btn btn-info btn-block my-4" type="submit">Regresar</button>
+    }
+
+
+
+}
+else if (@ViewBag.Ambito == "EditP")
 {
-    <button class="btn btn-info btn-block my-4" type="submit">Regresar</button>
-}
+
+
+    using (Ajax.BeginForm("Inventario", "Home", new AjaxOptions { UpdateTargetId = "EditP" }, new { @class = "text-center border border-light p-5" }))
+    {
+        <button class="btn btn-info btn-block my-4" type="submit">Regresar</button>
+    }
 
 
 
 }
-
 

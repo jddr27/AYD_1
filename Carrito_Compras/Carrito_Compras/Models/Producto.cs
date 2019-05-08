@@ -17,6 +17,7 @@ namespace Carrito_Compras.Models
         public int categoria_id { get; set; }
         public int promocion_id { get; set; }
         public LinkedList<string> imagenes { get; set; }
+        public LinkedList<string> Idimagenes { get; set; }
         public Marca marca { get; set; }
         public Categoria categoria { get; set; }
         public Promocion promocion { get; set; }
@@ -117,6 +118,45 @@ namespace Carrito_Compras.Models
             categoria = new Categoria(categoria_id);
         }
 
+        public static int EditarProducto(int idP,string nombre, int cantidad, double precio, string descripcion, int marca, int categoria, int promocion, string img1, string img2, string img3,int idI1,int idI2,int idI3)
+        {
+                                                                                                    
+            Get_Connection();
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = connection;
+                cmd.CommandText = string.Format("call EditarP("+idP+",'" + nombre + "'," + cantidad + "," + precio + ",'" + descripcion + "'," + marca + "," + categoria + "," + promocion + ",'" + img1 + "','" + img2 + "','" + img3 + "',"+idI1+","+idI2+","+idI3+");");
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                try
+                {
+                    reader.Read();                    
+                    Console.WriteLine(reader.ToString());
+                    reader.Close();
+                    return 1;
+
+                }
+                catch (MySqlException e)
+                {
+                    string MessageString = "***************** Read error occurred  / entry not found loading the Column details: "
+                        + e.ErrorCode + " - " + e.Message + "; \n\nPlease Continue";
+                    reader.Close();
+                    return 0;
+                }
+            }
+            catch (MySqlException e)
+            {
+                string MessageString = "*********************** The following error occurred loading the Column details: "
+                    + e.ErrorCode + " - " + e.Message;
+                
+
+
+            }
+
+            connection.Close();
+            return 0;
+        }
 
         public static int EliminarProducto(int id)
         {
