@@ -13,41 +13,44 @@
             <ul>
                 <li><b><a style="color:rgb(60, 150, 223)" href="Registro.html">Facturacion</a></b></li>
             </ul>
-
         </div>
 
-        <div class="USUARIO">
-            <div class="input-field col s6">
-                <i class="material-icons prefix">payment</i>
-                <input id="icon_prefix" type="text" class="validate">
-                <label for="icon_prefix">Tarjeta</label>
+        @using (Ajax.BeginForm("TarjetaValidar", "Home", new AjaxOptions { UpdateTargetId = "info_login" }, new { @class = "USUARIO" }))
+        {
+            <div id="info_login">
+                <div class="USUARIO">
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">account_circle</i>
+                        <input id="txtnombre" name="txtnombre" type="text" class="validate">
+                        <label for="icon_prefix">Nombre de Tarjeta</label>
+                    </div>
+                </div>
+                <div class="USUARIO">
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">payment</i>
+                        <input id="txtnumero" name="txtnumero" type="text" class="validate">
+                        <label for="icon_prefix">Numero de Tarjeta</label>
+                    </div>
+                </div>
+                <div class="CORREO">
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">security</i>
+                        <input id="txtcodigo" name="txtcodigo" type="text" class="validate">
+                        <label for="icon_prefix">Codigo de Seguridad</label>
+                    </div>
+                </div>
+                <div class="CORREO">
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">today</i>
+                        <input id="txtfecha" name="txtfecha" type="text" placeholder="MM/AA" class="validate">
+                        <label for="icon_prefix">Fecha de Vencimiento</label>
+                    </div>
+                </div>
+                <div class="BOTON">
+                    <button class="waves-effect waves-light btn" style="color:#FFFFFF" ;><i class="material-icons right"></i>Confirmar el pago</button>
+                </div>
             </div>
-        </div>
-        <div class="CORREO">
-            <div class="input-field col s6">
-                <i class="material-icons prefix">security</i>
-                <input id="icon_prefix" type="email" class="validate">
-                <label for="icon_prefix">Codigo de Seguridad</label>
-            </div>
-        </div>
-        <div class="PASSWORD">
-            <div class="input-field col s6">
-                <i class="material-icons prefix">lock_outline</i>
-                <input id="icon_prefix" type="password" class="validate">
-                <label for="icon_prefix">Contraseña</label>
-            </div>
-        </div>
-        <div class="CONFIRMARPASS">
-            <div class="input-field col s6">
-                <i class="material-icons prefix">lock_outline</i>
-                <input id="icon_prefix" type="password" class="validate">
-                <label for="icon_prefix">Confirmar Contraseña</label>
-            </div>
-        </div>
-        <div class="BOTON">
-            <a href="Principal.html" class="waves-effect waves-light btn" style="color:#FFFFFF" ;><i class="material-icons right">arrow_forward</i>PAGAR</a>
-        </div>
-
+        }
     </div>
     <div class="ESPACIO_LOGO">
         <div class="LOGO">

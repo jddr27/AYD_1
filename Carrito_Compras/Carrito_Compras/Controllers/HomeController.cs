@@ -247,17 +247,17 @@ namespace Carrito_Compras.Controllers
                 sbInterest.Append("<br><b>Error:</b> Las contraseñas no coinciden <br/>");
                 return Content(sbInterest.ToString());
             }
-            //Agregar.Usuario(correo, nombres, apellidos, direccion, 3, contra, "");
-            //if (Agregar.resultado.Equals("exito"))
-            //{
+            Agregar.Usuario(correo, nombres, apellidos, direccion, 3, contra, "");
+            if (Agregar.resultado.Equals("exito"))
+            {
                 return View("Login");
-            /*}
+            }
             else
             {
                 StringBuilder sbInterest = new StringBuilder();
                 sbInterest.Append("<br><b>Error:</b> " + Agregar.resultado + "<br/>");
                 return Content(sbInterest.ToString());
-            }*/
+            }
         }
 
         public ActionResult Todos()
@@ -278,9 +278,85 @@ namespace Carrito_Compras.Controllers
 
         public ActionResult Tarjeta()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult TarjetaValidar()
+        {
+            string nombre = Request["txtnombre"].ToString();
+            string numero = Request["txtnumero"].ToString();
+            string codigo = Request["txtcodigo"].ToString();
+            string fecha = Request["txtfecha"].ToString();
+
+            if(codigo.Length == 4)
+            {
+                foreach(Char c in codigo.ToCharArray())
+                {
+                    if(Char.IsDigit(c) == false)
+                    {
+                        StringBuilder sbInterest = new StringBuilder();
+                        sbInterest.Append("<br><b>Error:</b> El código de seguridad debe tener solamente dígitos<br/>");
+                        return Content(sbInterest.ToString());
+                    }
+                }
+            }
+            else
+            {
+                StringBuilder sbInterest = new StringBuilder();
+                sbInterest.Append("<br><b>Error:</b> El código de seguridad debe tener 4 dígitos<br/>");
+                return Content(sbInterest.ToString());
+            }
+            if (fecha.Length == 5)
+            {
+                if(Char.IsDigit(fecha.ElementAt(0)) == false){
+                    StringBuilder sbInterest = new StringBuilder();
+                    sbInterest.Append("<br><b>Error:</b> La fecha solo debe tener 2 dígitos para el mes y 2 dígitos para el año, separados por una diagonal<br/>");
+                    return Content(sbInterest.ToString());
+                }
+                if (Char.IsDigit(fecha.ElementAt(1)) == false)
+                {
+                    StringBuilder sbInterest = new StringBuilder();
+                    sbInterest.Append("<br><b>Error:</b> La fecha solo debe tener 2 dígitos para el mes y 2 dígitos para el año, separados por una diagonal<br/>");
+                    return Content(sbInterest.ToString());
+                }
+                if (fecha.ElementAt(2).Equals('/') == false)
+                {
+                    StringBuilder sbInterest = new StringBuilder();
+                    sbInterest.Append("<br><b>Error:</b> La fecha solo debe tener 2 dígitos para el mes y 2 dígitos para el año, separados por una diagonal<br/>");
+                    return Content(sbInterest.ToString());
+                }
+                if (Char.IsDigit(fecha.ElementAt(3)) == false)
+                {
+                    StringBuilder sbInterest = new StringBuilder();
+                    sbInterest.Append("<br><b>Error:</b> La fecha solo debe tener 2 dígitos para el mes y 2 dígitos para el año, separados por una diagonal<br/>");
+                    return Content(sbInterest.ToString());
+                }
+                if (Char.IsDigit(fecha.ElementAt(4)) == false)
+                {
+                    StringBuilder sbInterest = new StringBuilder();
+                    sbInterest.Append("<br><b>Error:</b> La fecha solo debe tener 2 dígitos para el mes y 2 dígitos para el año, separados por una diagonal<br/>");
+                    return Content(sbInterest.ToString());
+                }
+            }
+            else
+            {
+                StringBuilder sbInterest = new StringBuilder();
+                sbInterest.Append("<br><b>Error:</b> La fecha solo debe tener 2 dígitos para el mes y 2 dígitos para el año, separados por una diagonal<br/>");
+                return Content(sbInterest.ToString());
+            }
+
+            string limpio = ValidarTarjeta.NormalizeCardNumber(numero);
+            if (ValidarTarjeta.IsCardNumberValid(limpio))
+            {
+                return RedirectToAction("Principal", "Home");
+            }
+            else
+            {
+                StringBuilder sbInterest = new StringBuilder();
+                sbInterest.Append("<br><b>Error:</b> La tarjeta de creditro no es válida<br/>");
+                return Content(sbInterest.ToString());
+            }
         }
 
         public ActionResult Clientes()
