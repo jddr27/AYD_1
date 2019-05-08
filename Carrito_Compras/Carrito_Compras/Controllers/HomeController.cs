@@ -183,6 +183,7 @@ namespace Carrito_Compras.Controllers
             ViewBag.actual = Convert.ToDouble(Session["subtotal"]);
             return View();
         }
+
         public ActionResult Descripcion(int id)
         {
 
@@ -196,14 +197,11 @@ namespace Carrito_Compras.Controllers
 
         public ActionResult Login()
         {
-
-
             return View();
         }
 
-
         public ActionResult Logout()
-        { //Serramos sesion y volvemos a la Vista Principal
+        { //Cerramos sesion y volvemos a la Vista Principal
             Session.Abandon();
             return RedirectToAction("Principal", "Home");
         }
@@ -232,6 +230,34 @@ namespace Carrito_Compras.Controllers
                 sbInterest.Append("<br><b>Error:</b> " + usu.resultado + "<br/>");
                 return Content(sbInterest.ToString());
             }
+        }
+
+        [HttpPost]
+        public ActionResult ValidarRegistrar()
+        {
+            string correo = Request["txtcorreo"].ToString();
+            string nombres = Request["txtnombres"].ToString();
+            string apellidos = Request["txtapellidos"].ToString();
+            string direccion = Request["txtdireccion"].ToString();
+            string contra = Request["txtcontra"].ToString();
+            string contra2 = Request["txtcontra2"].ToString();
+            if (!contra.Equals(contra2))
+            {
+                StringBuilder sbInterest = new StringBuilder();
+                sbInterest.Append("<br><b>Error:</b> Las contraseñas no coinciden <br/>");
+                return Content(sbInterest.ToString());
+            }
+            //Agregar.Usuario(correo, nombres, apellidos, direccion, 3, contra, "");
+            //if (Agregar.resultado.Equals("exito"))
+            //{
+                return View("Login");
+            /*}
+            else
+            {
+                StringBuilder sbInterest = new StringBuilder();
+                sbInterest.Append("<br><b>Error:</b> " + Agregar.resultado + "<br/>");
+                return Content(sbInterest.ToString());
+            }*/
         }
 
         public ActionResult Todos()
@@ -275,7 +301,6 @@ namespace Carrito_Compras.Controllers
             ViewBag.Cliente= usuarios;
             return View();
         }
-
 
         public ActionResult EliminarCliente(int id)
         {
@@ -364,6 +389,7 @@ namespace Carrito_Compras.Controllers
             return RedirectToAction("Operacion", "Home");
 
         }
+
         public ActionResult EliminarProducto(int id)
         {
 
@@ -375,15 +401,12 @@ namespace Carrito_Compras.Controllers
 
         }
 
-
-
         public ActionResult Registro()
         {
             ViewBag.Message = "Your contact page.";
 
             return View();
         }
-
 
         public ActionResult Carga()
         {
@@ -432,6 +455,7 @@ namespace Carrito_Compras.Controllers
             TempData["ambito"] = "InsertP";
             return RedirectToAction("Operacion", "Home");
         }
+
         public ActionResult EdicionProducto(int id)
         {
             LinkedList<Producto> productos = new LinkedList<Producto>();

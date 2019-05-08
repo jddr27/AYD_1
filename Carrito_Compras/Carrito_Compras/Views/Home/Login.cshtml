@@ -24,26 +24,26 @@
         
         @using (Ajax.BeginForm("Validar", "Home", new AjaxOptions { UpdateTargetId = "info_login" }, new { @class = "USUARIO" }))
         {
-        <div id="info_login">
-            <div class="USUARIO">
-                <div class="input-field col s6">
-                    <i class="material-icons prefix">account_circle</i>
-                    <input id="txtcorreo" name="txtcorreo" type="text" class="validate">
-                    <label for="icon_prefix">Usuario</label>
+            <div id="info_login">
+                <div class="USUARIO">
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">account_circle</i>
+                        <input id="txtcorreo" name="txtcorreo" type="text" class="validate">
+                        <label for="icon_prefix">Usuario</label>
+                    </div>
+                </div>
+                <div class="PASSWORD">
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">lock_outline</i>
+                        <input id="txtcontra" name="txtcontra" type="password" class="validate">
+                        <label for="icon_prefix">Contraseña</label>
+                    </div>
+                </div>
+                <div class="BOTON">
+                    <button  class="waves-effect waves-light btn" style="color:#FFFFFF" ;><i class="material-icons right"></i>Login</button>
                 </div>
             </div>
-            <div class="PASSWORD">
-                <div class="input-field col s6">
-                    <i class="material-icons prefix">lock_outline</i>
-                    <input id="txtcontra" name="txtcontra" type="password" class="validate">
-                    <label for="icon_prefix">Contraseña</label>
-                </div>
-            </div>
-            <div class="BOTON">
-                <button  class="waves-effect waves-light btn" style="color:#FFFFFF" ;><i class="material-icons right"></i>Login</button>
-                </div>
-            </div>
-            }
+        }
 
 
         </div>
