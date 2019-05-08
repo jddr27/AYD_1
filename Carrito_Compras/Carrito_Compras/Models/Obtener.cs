@@ -114,6 +114,10 @@ namespace Carrito_Compras.Models
                 }
                 foreach (var prod in lista)
                 {
+                    prod.Idimagenes = IdImagenes(prod.id);
+                }
+                foreach (var prod in lista)
+                {
                     prod.promocion = new Promocion(prod.promocion_id);
                 }
                 foreach (var prod in lista)
@@ -159,6 +163,51 @@ namespace Carrito_Compras.Models
                         else
                             ruta = null;
                         lista.AddLast(ruta);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("No rows found.");
+                }
+                connection.Close();
+                return lista;
+            }
+            catch (MySqlException e)
+            {
+                string MessageString = "*********************** The following error occurred loading the Column details: "
+                    + e.ErrorCode + " - " + e.Message;
+                lista.AddLast(MessageString);
+            }
+
+            connection.Close();
+            return lista;
+        }
+
+
+        public static LinkedList<string> IdImagenes(int produ)
+        {
+            string id;
+            LinkedList<string> lista = new LinkedList<string>();
+            Get_Connection();
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = connection;
+                cmd.CommandText = string.Format("SELECT `id_img_producto` FROM `Img_Producto` WHERE `prod_img_producto` = " + produ + ";");
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        if (reader.IsDBNull(0) == false)
+                            id = reader.GetString(0);
+                        else
+                            id = null;
+                        
+                        lista.AddLast(id);
+                        
+
                     }
                 }
                 else

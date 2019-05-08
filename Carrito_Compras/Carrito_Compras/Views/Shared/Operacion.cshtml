@@ -1,0 +1,94 @@
+﻿
+@{
+    ViewBag.Title = "RegistroExitoso";
+    Layout = "~/Views/Shared/LayoutAdmin.cshtml";
+}
+
+
+</BR>
+</BR>
+</BR>
+<p></p>
+<p></p>
+
+</BR>
+</BR>
+</BR>
+<p></p>
+<p></p>
+
+@if (@ViewBag.Message == "1")
+{
+    //Si se realizo el registro exitosamente mostramos un mensaje de exitoso
+    <div class="alert alert-info">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>¡Mensaje!</strong>
+        <h1>Operación Exitosa!</h1>
+    </div>
+}
+else if (@ViewBag.Message == "0")
+{
+
+    //Si se realizo el registro exitosamente mostramos un mensaje de  no exitoso
+    <div class="alert alert-info">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>¡Advertencia!</strong>
+        <h1>Operación no realizada con exito!</h1>
+    </div>
+
+}
+else
+{
+    <div class="alert alert-info">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>¡Advertencia!</strong>
+        <h1>No hay ninguna informacion para mostrar!</h1>
+    </div>
+
+}
+
+@if (@ViewBag.Ambito == "deleteP")
+{
+    using (Ajax.BeginForm("Inventario", "Home", new AjaxOptions { UpdateTargetId = "deleteP" }, new { @class = "text-center border border-light p-5" }))
+    {
+        <button class="btn btn-info btn-block my-4" type="submit">Regresar</button>
+    }
+
+}
+else if (@ViewBag.Ambito == "InsertP")
+{
+
+
+    using (Ajax.BeginForm("Carga", "Home", new AjaxOptions { UpdateTargetId = "insertP" }, new { @class = "text-center border border-light p-5" }))
+    {
+        <button class="btn btn-info btn-block my-4" type="submit">Regresar</button>
+    }
+
+
+
+}
+else if (@ViewBag.Ambito == "EditP")
+{
+
+
+    using (Ajax.BeginForm("Inventario", "Home", new AjaxOptions { UpdateTargetId = "EditP" }, new { @class = "text-center border border-light p-5" }))
+    {
+        <button class="btn btn-info btn-block my-4" type="submit">Regresar</button>
+    }
+
+
+
+}
+else if (@ViewBag.Ambito == "deleteC")
+{
+
+    using (Ajax.BeginForm("Clientes", "Home", new AjaxOptions { UpdateTargetId = "deleteC" }, new { @class = "text-center border border-light p-5" }))
+    {
+        <button class="btn btn-info btn-block my-4" type="submit">Regresar a Clientes</button>
+    }
+
+
+
+}
+
+
