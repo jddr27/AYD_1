@@ -2,78 +2,20 @@
     Layout = "~/Views/Shared/LayoutAdmin.cshtml";
 }
 
+<br/>
+<br />
+<br />
+<br />
+<br />
+
 
 <div class="container">
 
     <div class="row pt-4">
-        <div class="col-md-4 mb-1">
-            <div class="card profile-card">
 
-                <!--Avatar-->
-                <div class="avatar ">
-                    <center>
-                        <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(25).jpg" width="200px"
-                             height="200px" class="rounded-circle" alt="First sample avatar image">
-                    </center>
-                </div>
-
-                <div class="card-body pt-0 mt-0" style="background-color:#3c96df; color:white">
-                    <!--Name-->
-                    <div class="text-center">
-                        <h3 class="mb-3 font-weight-bold"><strong>Cliente 1</strong></h3>
-                        <h6 class="font-weight-bold blue-text mb-4">Maestro</h6>
-                    </div>
-
-                    <ul class="striped list-unstyled">
-                        <li><strong>E-mail:</strong> a.doe@example.com</li>
-
-                        <li><strong>Celular:</strong> +1 234 5678 90</li>
-
-                        <li><strong>Compania:</strong> The Company, Inc</li>
-
-                        <li><strong>Twitter:</strong> @@anna.doe</li>
-
-                        <li><strong>Instagram:</strong> @@anna.doe</li>
-                    </ul>
-
-                </div>
-
-            </div>
-        </div>
-        <div class="col-md-4 mb-1">
-            <div class="card profile-card">
-
-                <!--Avatar-->
-                <div class="avatar ">
-                    <center>
-                        <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(26).jpg" width="200px"
-                             height="200px" class="rounded-circle" alt="First sample avatar image">
-                    </center>
-                </div>
-
-                <div class="card-body pt-0 mt-0" style="background-color:#3c96df; color:white">
-                    <!--Name-->
-                    <div class="text-center">
-                        <h3 class="mb-3 font-weight-bold"><strong>Cliente 2</strong></h3>
-                        <h6 class="font-weight-bold blue-text mb-4">Maestro</h6>
-                    </div>
-
-                    <ul class="striped list-unstyled">
-                        <li><strong>E-mail:</strong> a.doe@example.com</li>
-
-                        <li><strong>Celular:</strong> +1 234 5678 90</li>
-
-                        <li><strong>Compania:</strong> The Company, Inc</li>
-
-                        <li><strong>Twitter:</strong> @@anna.doe</li>
-
-                        <li><strong>Instagram:</strong> @@anna.doe</li>
-                    </ul>
-
-                </div>
-
-            </div>
-        </div>
+        @foreach (var obj in @ViewBag.Cliente)
+        {
+            
 
         <div class="col-md-4 mb-1">
             <div class="card profile-card">
@@ -81,7 +23,7 @@
                 <!--Avatar-->
                 <div class="avatar ">
                     <center>
-                        <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(27).jpg" width="200px"
+                        <img src="@obj.foto" width="200px"
                              height="200px" class="rounded-circle" alt="First sample avatar image">
                     </center>
                 </div>
@@ -89,133 +31,63 @@
                 <div class="card-body pt-0 mt-0" style="background-color:#3c96df; color:white">
                     <!--Name-->
                     <div class="text-center">
-                        <h3 class="mb-3 font-weight-bold"><strong>Cliente 3</strong></h3>
-                        <h6 class="font-weight-bold blue-text mb-4">Maestro</h6>
+                        <a href="@Url.Action("EdicionCliente", "Home", new {id=@obj.id })" class="white-text" data-toggle="tooltip" data-placement="top"
+                           title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                        <a href="@Url.Action("EliminarCliente", "Home", new {id=@obj.id })" class="white-text" data-toggle="tooltip" data-placement="top"
+                           title="Remove"><i class="fas fa-times"></i></a>
+
+
+
+
+
+                        <h3 class="mb-3 font-weight-bold"><strong>@obj.nombres</strong></h3>
+
+                        @if (@obj.rol == 1)
+                        {
+                            <h5 class="mb-3 font-weight-bold "><strong>Administrador</strong></h5>
+                        }
+                        else if (@obj.rol == 2)
+                        {
+                            <h5 class="mb-3 font-weight-bold"><strong>Empleado</strong></h5>
+                        }
+                        else if (@obj.rol == 3)
+                        {
+
+                            <h5 class="mb-3 font-weight-bold"><strong>Cliente</strong></h5>
+                        }
+
                     </div>
 
                     <ul class="striped list-unstyled">
-                        <li><strong>E-mail:</strong> a.doe@example.com</li>
+                        <li><strong>Nombres:</strong>@obj.nombres</li>
 
-                        <li><strong>Celular:</strong> +1 234 5678 90</li>
+                        <li><strong>Apellidos:</strong>@obj.apellidos</li>
 
-                        <li><strong>Compania:</strong> The Company, Inc</li>
+                        <li><strong>E-mail:</strong>@obj.correo</li>
 
-                        <li><strong>Twitter:</strong> @@anna.doe</li>
+                        <li><strong>Dirección:</strong>@obj.direccion</li>
 
-                        <li><strong>Instagram:</strong> @@anna.doe</li>
+
+
                     </ul>
+                    
 
                 </div>
 
             </div>
+           
         </div>
+
+
+        }
+
+
+
+
+
     </div>
 
-    <div class="row pt-4">
-        <div class="col-md-4 mb-1">
-            <div class="card profile-card">
-
-                <!--Avatar-->
-                <div class="avatar ">
-                    <center>
-                        <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(28).jpg" width="200px"
-                             height="200px" class="rounded-circle" alt="First sample avatar image">
-                    </center>
-                </div>
-
-                <div class="card-body pt-0 mt-0" style="background-color:#3c96df; color:white">
-                    <!--Name-->
-                    <div class="text-center">
-                        <h3 class="mb-3 font-weight-bold"><strong>Cliente 4</strong></h3>
-                        <h6 class="font-weight-bold blue-text mb-4">Maestro</h6>
-                    </div>
-
-                    <ul class="striped list-unstyled">
-                        <li><strong>E-mail:</strong> a.doe@example.com</li>
-
-                        <li><strong>Celular:</strong> +1 234 5678 90</li>
-
-                        <li><strong>Compania:</strong> The Company, Inc</li>
-
-                        <li><strong>Twitter:</strong> @@anna.doe</li>
-
-                        <li><strong>Instagram:</strong> @@anna.doe</li>
-                    </ul>
-
-                </div>
-
-            </div>
-        </div>
-        <div class="col-md-4 mb-1">
-            <div class="card profile-card">
-
-                <!--Avatar-->
-                <div class="avatar ">
-                    <center>
-                        <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(29).jpg" width="200px"
-                             height="200px" class="rounded-circle" alt="First sample avatar image">
-                    </center>
-                </div>
-
-                <div class="card-body pt-0 mt-0" style="background-color:#3c96df; color:white">
-                    <!--Name-->
-                    <div class="text-center">
-                        <h3 class="mb-3 font-weight-bold"><strong>Cliente 5</strong></h3>
-                        <h6 class="font-weight-bold blue-text mb-4">Maestro</h6>
-                    </div>
-
-                    <ul class="striped list-unstyled">
-                        <li><strong>E-mail:</strong> a.doe@example.com</li>
-
-                        <li><strong>Celular:</strong> +1 234 5678 90</li>
-
-                        <li><strong>Compania:</strong> The Company, Inc</li>
-
-                        <li><strong>Twitter:</strong> @@anna.doe</li>
-
-                        <li><strong>Instagram:</strong> @@anna.doe</li>
-                    </ul>
-
-                </div>
-
-            </div>
-        </div>
-
-        <div class="col-md-4 mb-1">
-            <div class="card profile-card">
-
-                <!--Avatar-->
-                <div class="avatar ">
-                    <center>
-                        <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(30).jpg" width="200px"
-                             height="200px" class="rounded-circle" alt="First sample avatar image">
-                    </center>
-                </div>
-
-                <div class="card-body pt-0 mt-0" style="background-color:#3c96df; color:white">
-                    <!--Name-->
-                    <div class="text-center">
-                        <h3 class="mb-3 font-weight-bold"><strong>Cliente 6</strong></h3>
-                        <h6 class="font-weight-bold blue-text mb-4">Maestro</h6>
-                    </div>
-
-                    <ul class="striped list-unstyled">
-                        <li><strong>E-mail:</strong> a.doe@example.com</li>
-
-                        <li><strong>Celular:</strong> +1 234 5678 90</li>
-
-                        <li><strong>Compania:</strong> The Company, Inc</li>
-
-                        <li><strong>Twitter:</strong> @@anna.doe</li>
-
-                        <li><strong>Instagram:</strong> @@anna.doe</li>
-                    </ul>
-
-                </div>
-
-            </div>
-        </div>
-    </div>
+    
 
 
 

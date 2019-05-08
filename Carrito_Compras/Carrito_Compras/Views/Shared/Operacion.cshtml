@@ -79,4 +79,16 @@ else if (@ViewBag.Ambito == "EditP")
 
 
 }
+else if (@ViewBag.Ambito == "deleteC")
+{
+
+    using (Ajax.BeginForm("Clientes", "Home", new AjaxOptions { UpdateTargetId = "deleteC" }, new { @class = "text-center border border-light p-5" }))
+    {
+        <button class="btn btn-info btn-block my-4" type="submit">Regresar a Clientes</button>
+    }
+
+
+
+}
+
 

@@ -126,7 +126,10 @@ namespace Carrito_Compras.Models
             {
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = connection;
-                cmd.CommandText = string.Format("call EditarP("+idP+",'" + nombre + "'," + cantidad + "," + precio + ",'" + descripcion + "'," + marca + "," + categoria + "," + promocion + ",'" + img1 + "','" + img2 + "','" + img3 + "',"+idI1+","+idI2+","+idI3+");");
+                string cadena = "call EditarP(" + idP + ",'" + nombre + "'," + cantidad + "," + precio + ",'" + descripcion + "'," + marca + "," + categoria + "," + promocion + ",'" + img1 + "','" + img2 + "','" + img3 + "'," + idI1 + "," + idI2 + "," + idI3 + ");";
+                
+
+                cmd.CommandText = string.Format(cadena);
                 MySqlDataReader reader = cmd.ExecuteReader();
 
                 try

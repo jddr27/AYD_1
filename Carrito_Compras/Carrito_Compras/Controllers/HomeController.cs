@@ -259,10 +259,35 @@ namespace Carrito_Compras.Controllers
 
         public ActionResult Clientes()
         {
-            ViewBag.Message = "Your contact page.";
 
+
+            LinkedList<Usuario> usuarios = new LinkedList<Usuario>();
+
+            Usuario l = new Usuario();
+
+            foreach (var obj in l.ObtenerUsuario())
+            {
+                //Agregamos a la lista
+                usuarios.AddLast(obj);
+
+            }
+
+            ViewBag.Cliente= usuarios;
             return View();
         }
+
+
+        public ActionResult EliminarCliente(int id)
+        {
+
+            int Eliminar = Usuario.EliminarUsuario(id);
+            TempData["resultado"] = Eliminar.ToString();
+            TempData["ambito"] = "deleteC";
+
+            return RedirectToAction("Operacion", "Home");
+
+        }
+
         public ActionResult DashBoard()
         {
             ViewBag.Message = "Your contact page.";
@@ -316,25 +341,27 @@ namespace Carrito_Compras.Controllers
 
             TempData["resultado"] = resultado.ToString();
             TempData["ambito"] = "EditP";
-            
 
 
-            StringBuilder sbInterest = new StringBuilder();
-            sbInterest.Append("<br><b>Error:</b> " +id + "<br/>");
-            sbInterest.Append("<br><b>Error:</b> " + nombre + "<br/>");
-            sbInterest.Append("<br><b>Error:</b> " + cantidad + "<br/>");
-            sbInterest.Append("<br><b>Error:</b> " + descripcion + "<br/>");
-            sbInterest.Append("<br><b>Error:</b> " + precio + "<br/>");
-            sbInterest.Append("<br><b>Error:</b> " + img1 + "<br/>");
-            sbInterest.Append("<br><b>Error:</b> " + idI1 + "<br/>");
-            sbInterest.Append("<br><b>Error:</b> " + img2 + "<br/>");
-            sbInterest.Append("<br><b>Error:</b> " + idI2 + "<br/>");
-            sbInterest.Append("<br><b>Error:</b> " + img3 + "<br/>");
-            sbInterest.Append("<br><b>Error:</b> " + idI3 + "<br/>");
-            sbInterest.Append("<br><b>Error:</b> " + categoria+ "<br/>");
-            sbInterest.Append("<br><b>Error:</b> " + marca + "<br/>");
-            sbInterest.Append("<br><b>Error:</b> " + promocion + "<br/>");
-            return Content(sbInterest.ToString());
+
+            /*  StringBuilder sbInterest = new StringBuilder();
+              sbInterest.Append("<br><b>Error:</b> " +id + "<br/>");
+              sbInterest.Append("<br><b>Error:</b> " + nombre + "<br/>");
+              sbInterest.Append("<br><b>Error:</b> " + cantidad + "<br/>");
+              sbInterest.Append("<br><b>Error:</b> " + descripcion + "<br/>");
+              sbInterest.Append("<br><b>Error:</b> " + precio + "<br/>");
+              sbInterest.Append("<br><b>Error:</b> " + img1 + "<br/>");
+              sbInterest.Append("<br><b>Error:</b> " + idI1 + "<br/>");
+              sbInterest.Append("<br><b>Error:</b> " + img2 + "<br/>");
+              sbInterest.Append("<br><b>Error:</b> " + idI2 + "<br/>");
+              sbInterest.Append("<br><b>Error:</b> " + img3 + "<br/>");
+              sbInterest.Append("<br><b>Error:</b> " + idI3 + "<br/>");
+              sbInterest.Append("<br><b>Error:</b> " + categoria+ "<br/>");
+              sbInterest.Append("<br><b>Error:</b> " + marca + "<br/>");
+              sbInterest.Append("<br><b>Error:</b> " + promocion + "<br/>");
+              return Content(sbInterest.ToString());*/
+
+            return RedirectToAction("Operacion", "Home");
 
         }
         public ActionResult EliminarProducto(int id)
@@ -347,6 +374,8 @@ namespace Carrito_Compras.Controllers
             return RedirectToAction("Operacion", "Home");
 
         }
+
+
 
         public ActionResult Registro()
         {
