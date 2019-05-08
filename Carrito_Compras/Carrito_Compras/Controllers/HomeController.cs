@@ -32,6 +32,17 @@ namespace Carrito_Compras.Controllers
             return View();
         }
 
+        //seguir comprando
+
+        public ActionResult carrito2(double precio,int idProducto)
+        {
+            Session["subtotal"] = Convert.ToDouble(Session["subtotal"]) + precio;
+            ViewBag.actual = Convert.ToDouble(Session["subtotal"]);
+            ViewBag.idprod = idProducto;
+            ViewBag.prods = Obtener.Productos();
+            return View();
+        }
+
 
         public ActionResult Principal()
         {

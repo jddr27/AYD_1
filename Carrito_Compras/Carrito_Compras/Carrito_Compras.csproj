@@ -307,10 +307,10 @@
     <Content Include="Views\Home\DashBoard.cshtml" />
     <Content Include="Views\Home\Inventario.cshtml" />
     <Content Include="Views\Home\Registro.cshtml" />
-    <Content Include="Views\Home\Principal2.cshtml" />
     <Content Include="Views\Home\Carga.cshtml" />
     <Content Include="Views\Shared\Operacion.cshtml" />
     <Content Include="Views\Home\EdicionProducto.cshtml" />
+    <Content Include="Views\Home\carrito2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
