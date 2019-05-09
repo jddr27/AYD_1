@@ -51,8 +51,14 @@ ESTA CLASE LE DA FORMATO A LA CANTIDAD DE LA DESCRIPCION*/
     display:scroll;
         position:fixed;
         bottom:320px;
-        right:0px;
-        
+        right:0px;        
+}
+
+.resena {
+    display: scroll;
+    position: fixed;
+    bottom: 320px;
+    right: 0px;
 }
 
 .flotanteDescripcion {
