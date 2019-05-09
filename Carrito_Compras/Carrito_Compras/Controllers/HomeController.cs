@@ -162,7 +162,7 @@ namespace Carrito_Compras.Controllers
             ViewBag.idProducto = id;
 
             try {
-                ViewBag.idUser = TempData["id_user"].ToString(); ;
+                ViewBag.idUser = Session["id_user"].ToString();
             }
             catch (System.NullReferenceException e) {
 
@@ -194,6 +194,7 @@ namespace Carrito_Compras.Controllers
             if (usu.resultado.Equals("exito"))
             {   //Se guarda usuario en la session
                 Session["UserName"] = usu.nombres;
+                Session["id_user"] = usu.id.ToString();
                 // Manejo de Roles 
                 /*1.Administrador softech (Estadisticas, reportes...)
                 * 2. Empleado (Gestiona  productos, promociones,...) 
