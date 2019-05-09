@@ -13,6 +13,7 @@ namespace Carrito_Compras.Controllers
 
         int Resultado = 1;
 
+
         public ActionResult Index()
         {
             return View();
@@ -137,6 +138,16 @@ namespace Carrito_Compras.Controllers
             //Recibimos el id del producto para mostrar la descripcion enviamos a la Vista Descripcion
             ViewBag.prods = Obtener.Productos();
             ViewBag.idProducto = id;
+
+            try {
+                ViewBag.idUser = TempData["id_user"].ToString(); ;
+            }
+            catch (System.NullReferenceException e) {
+
+                ViewBag.idUser = null;
+
+            }
+            
             return View();
         }
 
@@ -161,6 +172,7 @@ namespace Carrito_Compras.Controllers
             if (usu.resultado.Equals("exito"))
             {   //Se guarda usuario en la session
                 Session["UserName"] = usu.nombres;
+                TempData["id_user"] = usu.id.ToString();
                 // Manejo de Roles 
                 /*1.Administrador softech (Estadisticas, reportes...)
                 * 2. Empleado (Gestiona  productos, promociones,...) 
