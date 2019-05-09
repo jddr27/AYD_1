@@ -40,7 +40,14 @@
 
     }
 
-</div><!-- /Mega menu -->
+</div>
+    
+                <div class="alert alert-success" id="success-alert">
+                    <button type="button" class="close" data-dismiss="alert">x</button>
+                    <strong>Success! </strong>
+                    message.
+                </div> 
+    <!-- /Mega menu -->
     <!-- /.Main Container -->
     <div class="container">
         <div class="row pt-4">
@@ -91,7 +98,7 @@
 
                                         <h5 class="card-title mb-1">
                                             <strong>
-                                                <a href="@Url.Action("Descripcion", "Home", new { id =@obj.id })" class="white-text">@obj.nombre</a>
+                                                <a href="@Url.Action("Descripcion", "Home", new { id =@obj.id ,precio=@obj.precio})" class="white-text">@obj.nombre</a>
                                             </strong>
                                         </h5>
                                         <span class="badge badge-info mb-2">nuevo</span>
@@ -115,7 +122,11 @@
                                                         <script type="text/javascript">
                                                             window.onload = function () {
                                                                      alert("@ViewBag.idx");
-                                                                                    };
+                                                            };
+
+                                                            $("#success-alert").fadeTo(1000, 500).slideUp(500, function () {
+                                                                $("#success-alert").alert('close');
+                                                            });
                                                         </script>
                                                     }
 

@@ -53,6 +53,7 @@ namespace Carrito_Compras.Controllers
                 ViewBag.idx = "Se agrego el producto al carrito";
                 System.Diagnostics.Debug.WriteLine(Agregar.resultado);
                 ViewBag.Listado = Obtener.Productos();
+                Session["subtotal"] = Convert.ToDouble(Session["subtotal"]) + precio;
                 return View("Principal");
             }
             else{
@@ -60,6 +61,32 @@ namespace Carrito_Compras.Controllers
                 sbInterest.Append("<br><b>Error:</b> " + Agregar.resultado + "<br/>");
                 return Content(sbInterest.ToString());
             }
+        }
+
+        [HttpPost]
+        public ActionResult Detalle2()
+        {
+              int prod=  Convert.ToInt32(Request["idProducto"]);
+              double precio= Convert.ToDouble(Request["PrecioProducto"]);
+              int cantidad = Convert.ToInt32(Request["cantidad"]);
+              //System.Diagnostics.Debug.WriteLine("id:"+prod+"precio:"+precio + "cant:"+ cantidad);
+              precio = precio * cantidad;
+
+              int carrito = Convert.ToInt32(Session["CarritoId"]);
+              Agregar.DetalleCarrito(carrito, prod, cantidad, precio);
+              if (Agregar.resultado.Equals("exito"))
+              {
+                  ViewBag.Listado = Obtener.Productos();
+                  Session["subtotal"] = Convert.ToDouble(Session["subtotal"]) + precio;
+                  return RedirectToAction("Descripcion", new {id = prod, precio = precio});
+              }
+              else
+              {
+                  StringBuilder sbInterest = new StringBuilder();
+                  sbInterest.Append("<br><b>Error:</b> " + Agregar.resultado + "<br/>");
+                  return Content(sbInterest.ToString());
+              }
+              
         }
 
         public ActionResult Principal()
@@ -135,24 +162,37 @@ namespace Carrito_Compras.Controllers
 
         }
 
-     
-
-        public ActionResult Carrito(double precio,int idProducto)
+        public ActionResult Carrito()
         {
-            /*Recibimos el valor(precio del prudcto que se esta comprando)
-             * Cremos una variable de Session para el manejo del subtotal conforme se compran 
-            productos, hasta que el usuario deje de comprar y salga de su cuenta.
-             * 
-             * Convertimos el objeto Session a Double e incrementamos el valor actual 
-             * de los productos que se van agregando
-             * */
-            Session["subtotal"] = Convert.ToDouble(Session["subtotal"]) + precio;
-            ViewBag.actual = Convert.ToDouble(Session["subtotal"]);
-            ViewBag.idprod = idProducto;
+            ViewBag.detalles = Obtener.Detalles(Convert.ToInt32(Session["CarritoId"]));
+            LinkedList<Detalle_Carrito> detalle = Obtener.Detalles(Convert.ToInt32(Session["CarritoId"]));
+            LinkedList<Producto> prods = Obtener.Productos();
+            foreach (var obj in detalle){
+                  foreach (var obj2 in prods){
+
+               
+           if (obj.id_prod.Equals(obj2.id))
+        {
+            foreach (var img in obj2.Idimagenes)
+            {
+                System.Diagnostics.Debug.WriteLine("foto:" +img);
+                break;
+              
+            }
+        }
+
+
+
+
+               
+            }
+                  System.Diagnostics.Debug.WriteLine("idproducto:" + obj.id_prod + "precio:" + obj.precio);
+            }
+            
             return View();
         }
 
-        public ActionResult Descripcion(int id)
+        public ActionResult Descripcion(int id,double precio)
         {
             LinkedList<Comentario> Reseña = new LinkedList<Comentario>();
             
@@ -180,6 +220,8 @@ namespace Carrito_Compras.Controllers
             }
 
             ViewBag.Reseña = Reseña;
+            ViewBag.idProducto = id;
+            ViewBag.precioProducto= precio;
 
             try {
                 ViewBag.idUser = Session["id_user"].ToString();
