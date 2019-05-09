@@ -271,5 +271,47 @@ namespace Carrito_Compras.Models
 
             connection.Close();
         }
+        public static int AgregarReseña(string idUser,string idProducto,string reseña,string valoracion)
+        {
+
+            Get_Connection();
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = connection;
+                string cadena = "call EscribirR("+idUser+","+idProducto+",'"+reseña+"',"+valoracion+");";
+
+
+                cmd.CommandText = string.Format(cadena);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                try
+                {
+                    reader.Read();
+                    Console.WriteLine(reader.ToString());
+                    reader.Close();
+                    return 1;
+
+                }
+                catch (MySqlException e)
+                {
+                    string MessageString = "***************** Read error occurred  / entry not found loading the Column details: "
+                        + e.ErrorCode + " - " + e.Message + "; \n\nPlease Continue";
+                    reader.Close();
+                    return 0;
+                }
+            }
+            catch (MySqlException e)
+            {
+                string MessageString = "*********************** The following error occurred loading the Column details: "
+                    + e.ErrorCode + " - " + e.Message;
+
+
+
+            }
+
+            connection.Close();
+            return 0;
+        }
     }
 }

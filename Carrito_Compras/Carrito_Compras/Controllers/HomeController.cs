@@ -154,23 +154,64 @@ namespace Carrito_Compras.Controllers
 
         public ActionResult Descripcion(int id)
         {
+            LinkedList<Comentario> Reseña = new LinkedList<Comentario>();
+            
 
-            //Recibe/envia id de producto 
-            //Envia listado de productos
-            //Recibimos el id del producto para mostrar la descripcion enviamos a la Vista Descripcion
             ViewBag.prods = Obtener.Productos();
-            ViewBag.idProducto = id;
+            ViewBag.idProducto = id;           
+
+            foreach (var obj in Comentario.ObtenerReseña())
+            {
+                //Agregamos a la lista
+                Reseña.AddLast(obj);
+
+            }
+          
+
+            foreach (Comentario obj in Reseña)
+            {
+                //Agregamos a la lista
+                var usu = new Usuario(obj.usuario_comentario);
+                
+                
+                    obj.usuario = usu;                   
+             
+
+            }
+
+            ViewBag.Reseña = Reseña;
 
             try {
                 ViewBag.idUser = Session["id_user"].ToString();
+                ViewBag.Valor = Comentario.Verificar_Comentario(Int32.Parse(Session["id_user"].ToString()), id);
             }
             catch (System.NullReferenceException e) {
-
                 ViewBag.idUser = null;
-
             }
             
+
             return View();
+        }
+
+        public ActionResult AgregarReseña()
+        {
+
+            string idUser = Request["idUser"].ToString();
+            string idProducto = Request["idProducto"].ToString();
+            string valoracion = Request["valoracion"].ToString();
+            string reseña = Request["reseña"].ToString();
+
+            int resultado = Agregar.AgregarReseña(idUser,idProducto,reseña,valoracion);
+            TempData["resultado"] = resultado.ToString();
+            TempData["id_producto"] = idProducto.ToString();
+            TempData["ambito"] = "AddR";
+
+
+            return RedirectToAction("Operacion", "Home");
+
+           
+
+
         }
 
         public ActionResult Login()
@@ -435,6 +476,11 @@ namespace Carrito_Compras.Controllers
         {
             ViewBag.Message = TempData["resultado"].ToString();
             ViewBag.Ambito = TempData["ambito"].ToString();
+            if (TempData["id_producto"] != null) {
+                ViewBag.Id_Producto = TempData["id_producto"].ToString();
+            }
+
+            
 
             return View();
         }

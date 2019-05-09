@@ -219,6 +219,7 @@
     <Compile Include="Models\Agregar.cs" />
     <Compile Include="Models\Carrito.cs" />
     <Compile Include="Models\Categoria.cs" />
+    <Compile Include="Models\Comentario.cs" />
     <Compile Include="Models\Detalle_Carrito.cs" />
     <Compile Include="Models\Encriptador.cs" />
     <Compile Include="Models\Estado.cs" />

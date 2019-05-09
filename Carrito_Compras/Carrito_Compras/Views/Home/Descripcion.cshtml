@@ -258,68 +258,97 @@
     <div class="comments-list text-center text-md-left">
 
         <!-- First row -->
-        @for (int i = 0; i < 10; i++)
+        @foreach (var obj in @ViewBag.Reseña)
         {
-            <div class="row mb-5">
+            if (@ViewBag.idProducto == @obj.producto_comentario)
+            {
+                <div class="row mb-5">
 
-                <!-- Image column -->
-                <div class="col-sm-2 col-12 mb-3">
-
-                    <img src="https://mdbootstrap.com/img/Photos/Avatars/img(8).jpg" alt="sample image" height="125" width="125" class="avatar rounded-circle z-depth-1-half">
-
-                </div>
-                <!-- Image column -->
-                <!-- Content column -->
-                <div class="col-sm-10 col-12">
-
-                    <a>
-
-                        <h5 class="user-name font-weight-bold">John Doe</h5>
-
-                    </a>
-
-                    <!-- Rating -->
-                    
-                        <i class="fas fa-star blue-text"></i>
-                        <i class="fas fa-star blue-text"></i>
-                        <i class="fas fa-star blue-text"></i>
-                        <i class="fas fa-star blue-text"></i>
-                        <i class="fas fa-star blue-text"></i>
-
-                    
-
-                    <div class="card-data">
-
-                        <ul class="list-unstyled mb-1">
-
-                            <li class="comment-date font-small grey-text">
-
-                                <i class="far fa-clock-o"></i> 05/10/2015
-                            </li>
-
-                        </ul>
+                    <!-- Image column -->
+                    <div class="col-sm-2 col-12 mb-3">
+                        <h1></h1>
+                        <img src="@obj.usuario.foto" alt="sample image" height="125" width="125" class="avatar rounded-circle z-depth-1-half">
 
                     </div>
+                    <!-- Image column -->
+                    <!-- Content column -->
+                    <div class="col-sm-10 col-12">
 
-                    <p class="dark-grey-text article">
-                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                        aliquip ex ea commodo consequat. Duis
+                        <a>
 
-                        aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                        Excepteur
+                            <h5 class="user-name font-weight-bold">@obj.usuario.nombres</h5>
 
-                        sint occaecat cupidatat non proident.
-                    </p>
+                        </a>
+
+                        <!-- Rating -->
+                        @if (@obj.valoracion_comentario == 1)
+                        {
+                            <i class="fas fa-star blue-text"></i>
+                        }
+                        else if (@obj.valoracion_comentario == 2)
+                        {
+                            <i class="fas fa-star blue-text"></i>
+                            <i class="fas fa-star blue-text"></i>
+                        }
+                        else if (@obj.valoracion_comentario == 3)
+                        {
+                            <i class="fas fa-star blue-text"></i>
+                            <i class="fas fa-star blue-text"></i>
+                            <i class="fas fa-star blue-text"></i>
+
+                        }
+                        else if (@obj.valoracion_comentario == 4)
+                        {
+                            <i class="fas fa-star blue-text"></i>
+                            <i class="fas fa-star blue-text"></i>
+                            <i class="fas fa-star blue-text"></i>
+                            <i class="fas fa-star blue-text"></i>
+
+                        }
+                        else if (@obj.valoracion_comentario == 5)
+                        {
+                            <i class="fas fa-star blue-text"></i>
+                            <i class="fas fa-star blue-text"></i>
+                            <i class="fas fa-star blue-text"></i>
+                            <i class="fas fa-star blue-text"></i>
+                            <i class="fas fa-star blue-text"></i>
+
+                        }
+
+
+
+
+
+                        <div class="card-data">
+
+                            <ul class="list-unstyled mb-1">
+
+                                <li class="comment-date font-small grey-text">
+
+                                    <i class="far fa-clock-o"></i> @obj.fecha_comentario
+                                </li>
+
+                            </ul>
+
+                        </div>
+
+                        <p class="dark-grey-text article">
+                            @obj.texto_comentario
+                        </p>
+
+                    </div>
+                    <!-- Content column -->
 
                 </div>
-                <!-- Content column -->
 
-            </div>
+                <div class="divider-new">
+                </div>
+            }
 
-            <div class="divider-new">
-            </div>
 
         }
+
+
 
 
 
@@ -361,39 +390,65 @@
                 <div class="modal-body mx-3">
                     <div class="md-form mb-5">
                         <h1>Para escribir una reseña debe ingresar a su cuenta!</h1>
+
                     </div>
 
                 </div>
             }
             else
             {
-                <div class="modal-body mx-3">
-                    <div class="md-form mb-5">
-                        <i class="fas fa-envelope prefix grey-text"></i>
-                        <input type="text" id="resenia" name="resenia" class="form-control validate" placeholder="Escribir reseña!" required>
-                        <input type="hidden" id="idUser" name="idProducto" class="form-control validate" value="@ViewBag.idUser" required>
-                        <input type="hidden" id="idProducto" name="idProducto" class="form-control validate" value="@ViewBag.idProducto" required>
+                if (@ViewBag.Valor == 1)
+                {
+                    using (Ajax.BeginForm("AgregarReseña", "Home", new AjaxOptions { UpdateTargetId = "EditarCliente" }, new { @class = "" }))
+                    {
+
+
+                        <div class="modal-body mx-3">
+                            <div class="md-form mb-5">
+                                <i class="fas fa-envelope prefix grey-text"></i>
+                                <input type="text" id="reseña" name="reseña" class="form-control validate" placeholder="Escribir reseña!" required>
+                                <input type="hidden" id="idUser" name="idUser" class="form-control validate" value="@ViewBag.idUser" required>
+                                <input type="hidden" id="idProducto" name="idProducto" class="form-control validate" value="@ViewBag.idProducto" required>
+                            </div>
+
+
+
+                            <div class="md-form mb-4">
+                                <h4>Valoracion</h4>
+                                <select name="valoracion" id="valoracion" class="browser-default custom-select" required>
+
+                                    <option value="1">Muy Malo</option>
+                                    <option value="2">Malo</option>
+                                    <option value="3">Bueno</option>
+                                    <option value="4">Excelente</option>
+                                    <option value="5">SuperExcelente</option>
+
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer d-flex justify-content-center">
+                            <button class="btn btn-default">Agregar Reseña</button>
+                        </div>
+                    }
+
+                }
+                else
+                {
+                    <div class="modal-body mx-3">
+                        <div class="md-form mb-5">
+                            <h1>Para escribir una reseña sobre este producto debió haberlo comprado con anterioridad!</h1>
+
+                        </div>
+
                     </div>
-                    
-                    
-                    
-                    <div class="md-form mb-4">
-                        <h4>Valoracion</h4>
-                        <select name="valoracion" id="valoracion" class="browser-default custom-select" required>
 
-                            <option value="1">Muy Malo</option>
-                            <option value="2">Malo</option>
-                            <option value="3">Bueno</option>
-                            <option value="4">Excelente</option>
-                            <option value="5">SuperExcelente</option>
 
-                        </select>
-                    </div>
+                }
 
-                </div>
-                <div class="modal-footer d-flex justify-content-center">
-                    <button class="btn btn-default">Agregar Usuario</button>
-                </div>
+
+
+
             }
 
         </div>

@@ -43,7 +43,7 @@ namespace Carrito_Compras.Models
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = connection;
                 cmd.CommandText = string.Format("SELECT nombres_usuario, apellidos_usuario, password_usuario, correo_usuario,"
-                    + " direccion_usuario, rol_usuario FROM Usuario WHERE id_usuario = '{0}'", id);
+                    + " direccion_usuario, rol_usuario, foto_usuario FROM Usuario WHERE id_usuario = '{0}'", id);
                 MySqlDataReader reader = cmd.ExecuteReader();
 
                 try
@@ -73,6 +73,10 @@ namespace Carrito_Compras.Models
                         rol = int.Parse(reader.GetString(5));
                     else
                         rol = -1;
+                    if (reader.IsDBNull(6) == false)
+                        foto = reader.GetString(6);
+                    else
+                        foto = null;
                     reader.Close();
 
                 }
