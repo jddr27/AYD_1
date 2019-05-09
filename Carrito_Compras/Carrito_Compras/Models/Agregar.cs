@@ -252,7 +252,43 @@ namespace Carrito_Compras.Models
                 {
                     reader.Read();
                     reader.Close();
-                    resultado = "exito: " + cmd.CommandText;
+                    resultado = "exito";
+                }
+                catch (MySqlException e)
+                {
+                    string MessageString = "***************** Read error occurred  / entry not found loading the Column details: "
+                        + e.ErrorCode + " - " + e.Message + "; \n\nPlease Continue";
+                    resultado = MessageString;
+                    reader.Close();
+                }
+            }
+            catch (MySqlException e)
+            {
+                string MessageString = "*********************** The following error occurred loading the Column details: "
+                    + e.ErrorCode + " - " + e.Message;
+                resultado = MessageString;
+            }
+
+            connection.Close();
+        }
+
+        public static void DetalleCarrito(int carrito, int producto, int cantidad, double precio)
+        {
+            resultado = null;
+            Get_Connection();
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = connection;
+                cmd.CommandText = string.Format("INSERT INTO `Detalle_Carrito` (`carrito_detalle_carrito`,`producto_detalle_carrito`,"
+                    + "`cantidad_detalle_carrito`,`precio_detalle_carrito`) VALUES (" + carrito + "," + producto + "," + cantidad + "," + precio + ");");
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                try
+                {
+                    reader.Read();
+                    reader.Close();
+                    resultado = "exito";
                 }
                 catch (MySqlException e)
                 {

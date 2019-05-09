@@ -69,15 +69,26 @@ namespace Carrito_Compras.Controllers
               int prod=  Convert.ToInt32(Request["idProducto"]);
               double precio= Convert.ToDouble(Request["PrecioProducto"]);
               int cantidad = Convert.ToInt32(Request["cantidad"]);
-              ViewBag.prods = Obtener.Productos();
-              System.Diagnostics.Debug.WriteLine("id:"+prod+"precio:"+precio + "cant:"+ cantidad);
-              //return View("Descripcion");
-              return RedirectToAction("Descripcion", new
+              //System.Diagnostics.Debug.WriteLine("id:"+prod+"precio:"+precio + "cant:"+ cantidad);
+              precio = precio * cantidad;
+
+              int carrito = Convert.ToInt32(Session["CarritoId"]);
+              Agregar.DetalleCarrito(carrito, prod, cantidad, precio);
+              if (Agregar.resultado.Equals("exito"))
               {
-                  id =prod ,
-                  precio =precio 
-              });
+                  ViewBag.Listado = Obtener.Productos();
+                  Session["subtotal"] = Convert.ToDouble(Session["subtotal"]) + precio;
+                  return RedirectToAction("Descripcion", new {id = prod, precio = precio});
+              }
+              else
+              {
+                  StringBuilder sbInterest = new StringBuilder();
+                  sbInterest.Append("<br><b>Error:</b> " + Agregar.resultado + "<br/>");
+                  return Content(sbInterest.ToString());
+              }
+              
         }
+
         public ActionResult Principal()
         {
             //Variable Contador de producto encontrados
@@ -150,8 +161,6 @@ namespace Carrito_Compras.Controllers
             return View();
 
         }
-
-     
 
         public ActionResult Carrito(double precio,int idProducto)
         {
