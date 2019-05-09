@@ -8,7 +8,8 @@ namespace Carrito_Compras.Models
     public class Detalle_Carrito
     {
         public int id { get; set; }
-        public Carrito carrito { get; set; }
+        public int carrito { get; set; }
+        public int id_prod { get; set; }
         public Producto producto { get; set; }
         public int cantidad { get; set; }
         public double precio { get; set; }
@@ -16,9 +17,13 @@ namespace Carrito_Compras.Models
         private bool connection_open;
         private MySqlConnection connection;
 
-        public Detalle_Carrito()
+        public Detalle_Carrito(int id, int carrito, int id_prod, int cantidad, double precio)
         {
-
+            this.id = id;
+            this.carrito = carrito;
+            this.id_prod = id_prod;
+            this.cantidad = cantidad;
+            this.precio = precio;
         }
 
         public Detalle_Carrito(int arg_id)
@@ -37,13 +42,13 @@ namespace Carrito_Compras.Models
                 {
                     reader.Read();
                     if (reader.IsDBNull(0) == false)
-                        carrito = new Carrito(int.Parse(reader.GetString(0)));
+                        carrito = int.Parse(reader.GetString(0));
                     else
-                        carrito = null;
+                        carrito = -1;
                     if (reader.IsDBNull(1) == false)
-                        producto = new Producto(int.Parse(reader.GetString(1)));
+                        id_prod = int.Parse(reader.GetString(1));
                     else
-                        producto = null;
+                        id_prod = -1;
                     if (reader.IsDBNull(2) == false)
                         cantidad = int.Parse(reader.GetString(2));
                     else
@@ -64,7 +69,7 @@ namespace Carrito_Compras.Models
                     //nombres = MessageString;
                     precio = -1.0;
                     cantidad = -1;
-                    carrito = null;
+                    carrito = id_prod = -1;
                     producto = null;
                 }
             }
@@ -75,11 +80,12 @@ namespace Carrito_Compras.Models
                 //nombres = MessageString;
                 precio = -1.0;
                 cantidad = -1;
-                carrito = null;
+                carrito = id_prod = -1;
                 producto = null;
             }
 
             connection.Close();
+            producto = new Producto(id_prod);
         }
 
         private void Get_Connection()

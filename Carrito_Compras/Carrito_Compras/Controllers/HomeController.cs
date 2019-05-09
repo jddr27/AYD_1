@@ -162,18 +162,10 @@ namespace Carrito_Compras.Controllers
 
         }
 
-        public ActionResult Carrito(double precio,int idProducto)
+        public ActionResult Carrito()
         {
-            /*Recibimos el valor(precio del prudcto que se esta comprando)
-             * Cremos una variable de Session para el manejo del subtotal conforme se compran 
-            productos, hasta que el usuario deje de comprar y salga de su cuenta.
-             * 
-             * Convertimos el objeto Session a Double e incrementamos el valor actual 
-             * de los productos que se van agregando
-             * */
-            Session["subtotal"] = Convert.ToDouble(Session["subtotal"]) + precio;
-            ViewBag.actual = Convert.ToDouble(Session["subtotal"]);
-            ViewBag.idprod = idProducto;
+            ViewBag.detalles = Obtener.Detalles(Convert.ToInt32(Session["CarritoId"]));
+            
             return View();
         }
 
