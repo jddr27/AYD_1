@@ -4,7 +4,7 @@
     }
 
 
-                @if (@ViewBag.contador == 0)
+                @if (@ViewBag.contador!=null && @ViewBag.contador == 0)
                 {
                     //Si no hay productos al buscar  Mostramos mensaje en la pantalla
                     <div class="alert alert-info">
@@ -105,10 +105,21 @@
                                                 </span>
                                                 <span class="float-right">
 
-                                                    <a href="@Url.Action("carrito2", "Home", new { idproducto= @obj.id, precio=@obj.precio })" class="" data-toggle="tooltip" data-placement="top"
+                                                    <a href="@Url.Action("detalles", "Home", new { prod = @obj.id, precio = @obj.precio })" class="" data-toggle="tooltip" data-placement="top"
                                                        title="Add to Cart">
                                                         <i class="fas fa-shopping-cart ml-3"></i>
                                                     </a>
+
+                                                    @if (ViewBag.idx != null)
+                                                    {
+                                                        <script type="text/javascript">
+                                                            window.onload = function () {
+                                                                     alert("@ViewBag.idx");
+                                                                                    };
+                                                        </script>
+                                                    }
+
+
                                                 </span>
                                             </div>
                                         </div>

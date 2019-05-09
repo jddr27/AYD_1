@@ -198,5 +198,78 @@ namespace Carrito_Compras.Models
 
             connection.Close();
         }
+
+        public static void Carrito(int usuario)
+        {
+            Get_Connection();
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = connection;
+                cmd.CommandText = string.Format("INSERT INTO `Carrito` (`usuario_carrito`,`total_carrito`,`estado_carrito`)" +
+                    " VALUES (" + usuario + ", 0.00, 1);");
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                try
+                {
+                    reader.Read();
+                    resultado = "exito";
+                    Console.WriteLine(reader.ToString());
+                    reader.Close();
+
+                }
+                catch (MySqlException e)
+                {
+                    string MessageString = "***************** Read error occurred  / entry not found loading the Column details: "
+                        + e.ErrorCode + " - " + e.Message + "; \n\nPlease Continue";
+                    resultado = MessageString;
+                    reader.Close();
+                }
+            }
+            catch (MySqlException e)
+            {
+                string MessageString = "*********************** The following error occurred loading the Column details: "
+                    + e.ErrorCode + " - " + e.Message;
+                resultado = MessageString;
+            }
+
+            connection.Close();
+        }
+
+        public static void DetalleCarritoRapido(int carrito, int producto, double precio)
+        {
+            resultado = null;
+            Get_Connection();
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = connection;
+                cmd.CommandText = string.Format("INSERT INTO `Detalle_Carrito` (`carrito_detalle_carrito`,`producto_detalle_carrito`,"
+                    + "`cantidad_detalle_carrito`,`precio_detalle_carrito`) VALUES (" + carrito + "," + producto + ",1," + precio + ");");
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                try
+                {
+                    reader.Read();
+                    reader.Close();
+                    resultado = "exito: " + cmd.CommandText;
+                }
+                catch (MySqlException e)
+                {
+                    string MessageString = "***************** Read error occurred  / entry not found loading the Column details: "
+                        + e.ErrorCode + " - " + e.Message + "; \n\nPlease Continue";
+                    resultado = MessageString;
+                    reader.Close();
+                }
+            }
+            catch (MySqlException e)
+            {
+                string MessageString = "*********************** The following error occurred loading the Column details: "
+                    + e.ErrorCode + " - " + e.Message;
+                resultado = MessageString;
+            }
+
+            connection.Close();
+        }
     }
 }

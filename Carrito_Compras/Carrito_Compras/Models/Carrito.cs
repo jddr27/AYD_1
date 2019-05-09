@@ -8,9 +8,9 @@ namespace Carrito_Compras.Models
     public class Carrito
     {
         public int id { get; set; }
-        public Usuario usuario { get; set; }
+        public int usuario { get; set; }
         public double total { get; set; }
-        public Estado estado { get; set; }
+        public int estado { get; set; }
 
         private bool connection_open;
         private MySqlConnection connection;
@@ -35,17 +35,17 @@ namespace Carrito_Compras.Models
                 {
                     reader.Read();
                     if (reader.IsDBNull(0) == false)
-                        usuario = new Usuario(int.Parse(reader.GetString(0)));
+                        usuario = int.Parse(reader.GetString(0));
                     else
-                        usuario = null;
+                        usuario = -1;
                     if (reader.IsDBNull(1) == false)
                         total = double.Parse(reader.GetString(1));
                     else
                         total = -1.0;
                     if (reader.IsDBNull(2) == false)
-                        estado = new Estado(int.Parse(reader.GetString(2)));
+                        estado = int.Parse(reader.GetString(2));
                     else
-                        estado = null;
+                        estado = -1;
                     reader.Close();
 
                 }
@@ -57,8 +57,8 @@ namespace Carrito_Compras.Models
                     reader.Close();
                     //nombres = MessageString;
                     total = -1;
-                    usuario = null;
-                    estado = null;
+                    usuario = -1;
+                    estado = -1;
                 }
             }
             catch (MySqlException e)
@@ -67,8 +67,8 @@ namespace Carrito_Compras.Models
                     + e.ErrorCode + " - " + e.Message;
                 //nombres = MessageString;
                 total = -1;
-                usuario = null;
-                estado = null;
+                usuario = -1;
+                estado = -1;
             }
 
             connection.Close();

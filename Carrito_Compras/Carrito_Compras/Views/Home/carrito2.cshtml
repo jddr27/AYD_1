@@ -1,8 +1,8 @@
 ﻿@model IList<Carrito_Compras.Models.Producto>
     @{
         Layout = "~/Views/Shared/Layout1.cshtml";
-
-    }
+        int contador=0;
+        }
     <div>
         <li>
             total =@ViewBag.actual
@@ -14,9 +14,13 @@
 
         </li>
     </div>
+                <script type="text/javascript">
 
+                    function AlertName(name,precio) {        
+                        alert("nombre:"+name);
+                    }
 
-               
+                </script>
 
 
     <div class="container">
@@ -88,12 +92,16 @@
                                 <td></td>
                                 <td>Q @obj.precio</td>
                                 <td class="text-center text-md-left">
-                                    <span class="qty">1 </span>
+                                    <span id ="demo" class="qty"></span>
                                     <div class="btn-group radio-group ml-2" data-toggle="buttons">
-                                        <label class="btn btn-sm btn-primary button button4 waves-effect waves-light">
-                                            <input class="custom-control-input" class="custom-control-input" name="options" id="option1">—
+                                        <label class="btn btn-sm btn-primary button button4 waves-effect waves-light" onclick="AlertName('@obj.nombre', '@obj.precio')">
+                                            <input class=" custom-control-input" class="custom-control-input" name="options" id="option1">
+                                            —
+
+
+
                                         </label>
-                                        <label class="btn btn-sm btn-primary button button4 waves-effect waves-light">
+                                        <label class="btn btn-sm btn-primary button button4 waves-effect waves-light" onclick="AlertName('@obj.nombre', '@obj.precio')">
                                             <input class="custom-control-input" name="options" id="option2">+
                                         </label>
                                     </div>

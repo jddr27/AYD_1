@@ -43,12 +43,29 @@ namespace Carrito_Compras.Controllers
             return View();
         }
 
+        public ActionResult detalles(int prod, double precio)
+        {
+            int carrito = Convert.ToInt32(Session["CarritoId"]);
+            Agregar.DetalleCarritoRapido(carrito,prod, precio);
+            if(Agregar.resultado.Equals("exito"))
+            {
+                ViewBag.idx = "Se agrego el producto al carrito";
+                System.Diagnostics.Debug.WriteLine(Agregar.resultado);
+                ViewBag.Listado = Obtener.Productos();
+                return View("Principal");
+            }
+            else{
+                StringBuilder sbInterest = new StringBuilder();
+                sbInterest.Append("<br><b>Error:</b> " + Agregar.resultado + "<br/>");
+                return Content(sbInterest.ToString());
+            }
+        }
 
         public ActionResult Principal()
         {
-
             //Variable Contador de producto encontrados
             int contadorProductos = 0;
+            Session["CarritoId"] = 1;
             //Lista para almacenar productos encontrados en la bùsqueda
             LinkedList<Producto> list = new LinkedList<Producto>();
 
@@ -107,12 +124,17 @@ namespace Carrito_Compras.Controllers
             else
             {
                 // ViewBag.contador = contadorProductos;
+              
+               
+                
                 ViewBag.Listado = Obtener.Productos();
-
+               
             }
             return View();
 
         }
+
+     
 
         public ActionResult Carrito(double precio,int idProducto)
         {
@@ -161,6 +183,7 @@ namespace Carrito_Compras.Controllers
             if (usu.resultado.Equals("exito"))
             {   //Se guarda usuario en la session
                 Session["UserName"] = usu.nombres;
+                //Session["CarritoId"] = usu.id;
                 // Manejo de Roles 
                 /*1.Administrador softech (Estadisticas, reportes...)
                 * 2. Empleado (Gestiona  productos, promociones,...) 
