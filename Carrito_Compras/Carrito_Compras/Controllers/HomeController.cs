@@ -165,6 +165,29 @@ namespace Carrito_Compras.Controllers
         public ActionResult Carrito()
         {
             ViewBag.detalles = Obtener.Detalles(Convert.ToInt32(Session["CarritoId"]));
+            LinkedList<Detalle_Carrito> detalle = Obtener.Detalles(Convert.ToInt32(Session["CarritoId"]));
+            LinkedList<Producto> prods = Obtener.Productos();
+            foreach (var obj in detalle){
+                  foreach (var obj2 in prods){
+
+               
+           if (obj.id_prod.Equals(obj2.id))
+        {
+            foreach (var img in obj2.Idimagenes)
+            {
+                System.Diagnostics.Debug.WriteLine("foto:" +img);
+                break;
+              
+            }
+        }
+
+
+
+
+               
+            }
+                  System.Diagnostics.Debug.WriteLine("idproducto:" + obj.id_prod + "precio:" + obj.precio);
+            }
             
             return View();
         }
