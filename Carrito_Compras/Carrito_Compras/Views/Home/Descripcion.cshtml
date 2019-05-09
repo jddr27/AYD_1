@@ -215,9 +215,10 @@
                             </div>
 
 
-                            <form action="Carrito.html">
+                            @using (Ajax.BeginForm("Detalle2", "Home", new AjaxOptions { UpdateTargetId = "info_login" }))
+        {
 
-                                <div class="row mt-3 mb-4">
+                                <div id ="info_login" class="row mt-3 mb-4">
                                     <div class="col">
                                         <div class="col-md-12 text-center text-md-left text-md-right">
                                             <button class="btn btn-primary waves-effect waves-light">
@@ -225,26 +226,27 @@
                                                 Agregar al
                                                 carrito
                                             </button>
+
+
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div id="buscar">
-                                            <form action="ejemplo.html">
-                                                <input name="s" type="number" class="cantidad brradius" placeholder="Cantidad">
-
-                                            </form>
+                                         
+                                                <input name="cantidad" id="cantidad" type="number" class="cantidad brradius" placeholder="Cantidad">
+                                                <input type="hidden" id="idProducto" name="idProducto" value="@ViewBag.idProducto">
+                                                <input type="hidden" id="PrecioProducto" name="PrecioProducto" value="@ViewBag.precioProducto">
+                                            
                                         </div>
 
                                     </div>
 
                                 </div>
 
+                              
 
 
-
-
-
-                            </form>
+        }
                         </div>
                     </section>
                     <!-- /.Add to Cart -->

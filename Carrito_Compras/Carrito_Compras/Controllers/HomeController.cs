@@ -53,6 +53,7 @@ namespace Carrito_Compras.Controllers
                 ViewBag.idx = "Se agrego el producto al carrito";
                 System.Diagnostics.Debug.WriteLine(Agregar.resultado);
                 ViewBag.Listado = Obtener.Productos();
+                Session["subtotal"] = Convert.ToDouble(Session["subtotal"]) + precio;
                 return View("Principal");
             }
             else{
@@ -62,6 +63,21 @@ namespace Carrito_Compras.Controllers
             }
         }
 
+        [HttpPost]
+        public ActionResult Detalle2()
+        {
+              int prod=  Convert.ToInt32(Request["idProducto"]);
+              double precio= Convert.ToDouble(Request["PrecioProducto"]);
+              int cantidad = Convert.ToInt32(Request["cantidad"]);
+              ViewBag.prods = Obtener.Productos();
+              System.Diagnostics.Debug.WriteLine("id:"+prod+"precio:"+precio + "cant:"+ cantidad);
+              //return View("Descripcion");
+              return RedirectToAction("Descripcion", new
+              {
+                  id =prod ,
+                  precio =precio 
+              });
+        }
         public ActionResult Principal()
         {
             //Variable Contador de producto encontrados
@@ -152,7 +168,7 @@ namespace Carrito_Compras.Controllers
             return View();
         }
 
-        public ActionResult Descripcion(int id)
+        public ActionResult Descripcion(int id,double precio)
         {
 
             //Recibe/envia id de producto 
@@ -160,6 +176,7 @@ namespace Carrito_Compras.Controllers
             //Recibimos el id del producto para mostrar la descripcion enviamos a la Vista Descripcion
             ViewBag.prods = Obtener.Productos();
             ViewBag.idProducto = id;
+            ViewBag.precioProducto= precio;
 
             try {
                 ViewBag.idUser = Session["id_user"].ToString();
