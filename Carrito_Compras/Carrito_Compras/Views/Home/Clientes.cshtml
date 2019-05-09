@@ -16,6 +16,8 @@
 
         @foreach (var obj in @ViewBag.Cliente)
         {
+            string modalConcat = String.Concat("#modalEditUser", obj.id.ToString());
+            string modalConcatCall = String.Concat("modalEditUser", obj.id.ToString());
 
 
             <div class="col-md-4 mb-1">
@@ -32,7 +34,11 @@
                     <div class="card-body pt-0 mt-0" style="background-color:#3c96df; color:white">
                         <!--Name-->
                         <div class="text-center">
-                            <a href="" class="white-text" data-book-id="5"  data-toggle="modal" data-target="#modalLoginForm"
+
+
+
+
+                            <a href="" class="white-text" data-toggle="modal" data-target="@modalConcat"
                                title="Edit"><i class="fas fa-pencil-alt"></i></a>
                             <a href="@Url.Action("EliminarCliente", "Home", new {id=@obj.id })" class="white-text" data-toggle="tooltip" data-placement="top"
                                title="Remove"><i class="fas fa-times"></i></a>
@@ -78,8 +84,82 @@
                 </div>
 
             </div>
+            using (Ajax.BeginForm("EditarCliente", "Home", new AjaxOptions { UpdateTargetId = "EditarCliente" }, new { @class = "" }))
+            {
+
+                <div class="modal fade" id="@modalConcatCall" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header text-center">
+                                <h4 class="modal-title w-100 font-weight-bold">Edición</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body mx-3">
+                                <div class="md-form mb-5">
+                                    <i class="fas fa-envelope prefix grey-text"></i>
+                                    <input type="text" id="correo" name="correo" class="form-control validate" value="@obj.correo">
+                                    <input type="hidden" id="id" name="id" class="form-control validate" value="@obj.id">
+                                </div>
+                                <div class="md-form mb-4">
+                                    <i class="fas fa-user-edit prefix grey-text"></i>
+                                    <input type="text" id="nombres" name="nombres" class="form-control validate" value="@obj.nombres">
+                                </div>
+                                <div class="md-form mb-4">
+                                    <i class="fas fa-user-edit prefix grey-text"></i>
+                                    <input type="text" id="apellidos" name="apellidos" class="form-control validate" value="@obj.apellidos">
+                                </div>
+                                <div class="md-form mb-4">
+                                    <i class="fas fa-home prefix grey-text"></i>
+                                    <input type="text" id="direccion" name="direccion" class="form-control validate" value="@obj.direccion">
+                                </div>
+                                <div class="md-form mb-4">
+                                    <h4>Rol</h4>
+                                    <select name="rol" id="rol" class="browser-default custom-select">
+
+                                        @if (obj.rol == 1)
+                                        {
+                                            <option value="1">Administrador</option>
+                                            <option value="2">Empleado</option>
+                                            <option value="3">Cliente</option>
+
+                                        }
+                                        else if (obj.rol == 2)
+                                        {
+
+                                            <option value="2">Empleado</option>
+                                            <option value="3">Cliente</option>
+                                            <option value="1">Administrador</option>
+                                        }
+                                        else if (obj.rol == 3)
+                                        {
+
+                                            <option value="3">Cliente</option>
+                                            <option value="2">Empleado</option>
+                                            <option value="1">Administrador</option>
+                                        }
 
 
+
+
+                                    </select>
+                                </div>
+                                <div class="md-form mb-4">
+                                    <i class="fas fa-globe prefix grey-text"></i>
+                                    <input type="text" id="url" name="url" class="form-control validate" value="@obj.foto">
+                                </div>
+
+                            </div>
+                            <div class="modal-footer d-flex justify-content-center">
+                                <button class="btn btn-default">Editar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            }
         }
 
 
@@ -94,48 +174,76 @@
 
 </div>
 
-<div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header text-center">
-                <h4 class="modal-title w-100 font-weight-bold">Sign in</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body mx-3">
-                <div class="md-form mb-5">
-                    <i class="fas fa-envelope prefix grey-text"></i>
-                    <input type="email" id="defaultForm-email" class="form-control validate">
-                    <label data-error="wrong" data-success="right" for="defaultForm-email">Your email</label>
-                </div>
-
-                <div class="md-form mb-4">
-                    <i class="fas fa-lock prefix grey-text"></i>
-                    <input type="password" id="defaultForm-pass" name="bookId" class="form-control validate" >
-                    
-                </div>
-
-            </div>
-            <div class="modal-footer d-flex justify-content-center">
-                <button class="btn btn-default">Login</button>
-            </div>
+<!--Este div contiene el boton flotante que servira para agregar usuario-->
+<div class="footer-copyright py-3 text-center">
+    <div class="container-fluid">
+        <div class="flotante">
+            <a href="" class="btn btn-danger btn-rounded mb-4  brradius" data-toggle="modal" data-target="#modalAgregarUser">
+                <i class="fas fa-user-plus"></i>
+                Add User
+            </a>
         </div>
     </div>
 </div>
+<!--Este div es un modal que se abre al momento de presionar el boton flotante anterior-->
 
-<div class="text-center">
-    <a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalLoginForm">
-        Launch
-        Modal Login Form
-    </a>
-</div>
+@using (Ajax.BeginForm("AgregarCliente", "Home", new AjaxOptions { UpdateTargetId = "validarRegistrar" }, new { @class = "" }))
+{
+    <div class="modal fade" id="modalAgregarUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h4 class="modal-title w-100 font-weight-bold">Edición</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body mx-3">
+                    <div class="md-form mb-5">
+                        <i class="fas fa-envelope prefix grey-text"></i>
+                        <input type="email" id="correo" name="correo" class="form-control validate" placeholder="Correo" required>
+                    </div>
+                    <div class="md-form mb-4">
+                        <i class="fas fa-user-alt prefix grey-text"></i>
+                        <input type="text" id="nombres" name="nombres" class="form-control validate" placeholder="Nombres" required>
+                    </div>
+                    <div class="md-form mb-4">
+                        <i class="fas fa-user-alt prefix grey-text"></i>
+                        <input type="text" id="apellidos" name="apellidos" class="form-control validate" placeholder="Apellidos" required>
+                    </div>
+                    <div class="md-form mb-4">
+                        <i class="fas fa-home prefix grey-text"></i>
+                        <input type="text" id="direccion" name="direccion" class="form-control validate" placeholder="Direccion" required>
+                    </div>
+                    <div class="md-form mb-4">
+                        <i class="fas fa-lock prefix grey-text"></i>
+                        <input type="password" id="password1" name="password1" class="form-control validate" placeholder="Contraseña" required>
+                    </div>
+                    <div class="md-form mb-4">
+                        <i class="fas fa-lock prefix grey-text"></i>
+                        <input type="password" id="password2" name="password2" class="form-control validate" placeholder="Confirme contraseña" required>
+                    </div>
+                    <div class="md-form mb-4">
+                        <h4>Rol</h4>
+                        <select name="rol" id="rol" class="browser-default custom-select" required>
 
-<script>
-    $('#modalLoginForm').on('show.bs.modal', function (e) {
-        var bookId = $(e.relatedTarget).data('book-id');
-        $(e.currentTarget).find('input[name="bookId"]').val(bookId);
-    });
+                            <option value="1">Administrador</option>
+                            <option value="2">Empleado</option>
+                            <option value="3">Cliente</option>
 
-</script>
+                        </select>
+                    </div>
+                    <div class="md-form mb-4">
+                        <i class="fas fa-globe prefix grey-text"></i>
+                        <input type="url" id="url" name="url" class="form-control validate" placeholder="Url Fotografía" required>
+                    </div>
+
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                    <button class="btn btn-default">Agregar Usuario</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}

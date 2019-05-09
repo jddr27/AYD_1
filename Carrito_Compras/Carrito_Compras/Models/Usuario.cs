@@ -246,7 +246,48 @@ namespace Carrito_Compras.Models
             return null;
         }
 
-        
+        public static int EditarCliente(string id, string correo ,string nombres,string apellidos ,string direccion,string rol ,string foto)
+        {
+
+            Get_Connection();
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = connection;
+                string cadena = "call EditarC("+id+",'"+correo+"','"+nombres+"','"+apellidos+"','"+direccion+"',"+rol+",'"+foto+"');";
+
+
+                cmd.CommandText = string.Format(cadena);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                try
+                {
+                    reader.Read();
+                    Console.WriteLine(reader.ToString());
+                    reader.Close();
+                    return 1;
+
+                }
+                catch (MySqlException e)
+                {
+                    string MessageString = "***************** Read error occurred  / entry not found loading the Column details: "
+                        + e.ErrorCode + " - " + e.Message + "; \n\nPlease Continue";
+                    reader.Close();
+                    return 0;
+                }
+            }
+            catch (MySqlException e)
+            {
+                string MessageString = "*********************** The following error occurred loading the Column details: "
+                    + e.ErrorCode + " - " + e.Message;
+
+
+
+            }
+
+            connection.Close();
+            return 0;
+        }
 
         public static int EliminarUsuario(int id)
         {

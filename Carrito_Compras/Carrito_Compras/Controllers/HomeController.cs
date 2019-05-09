@@ -335,6 +335,61 @@ namespace Carrito_Compras.Controllers
 
         }
 
+        public ActionResult EditarCliente()
+        {
+            string id = Request["id"].ToString();
+            string nombres = Request["nombres"].ToString();
+            string apellidos = Request["apellidos"].ToString();
+            string correo = Request["correo"].ToString();
+            string direccion = Request["direccion"].ToString();
+            string rol = Request["rol"].ToString();
+            string url = Request["url"].ToString();
+
+
+            int resultado = Usuario.EditarCliente(id, correo, nombres, apellidos, direccion, rol,url);
+            TempData["resultado"] = resultado.ToString();
+            TempData["ambito"] = "EditC";
+
+
+            return RedirectToAction("Operacion", "Home");
+
+
+        }
+
+        public ActionResult AgregarCliente()
+        {
+            
+            string nombres = Request["nombres"].ToString();
+            string apellidos = Request["apellidos"].ToString();
+            string correo = Request["correo"].ToString();
+            string direccion = Request["direccion"].ToString();
+            string password1 = Request["password1"].ToString();
+            string password2 = Request["password2"].ToString();
+            string rol = Request["rol"].ToString();
+            string url = Request["url"].ToString();
+            TempData["ambito"] = "AddUser";
+
+            if (!password1.Equals(password2))
+            {
+                TempData["resultado"] = "3";
+                return RedirectToAction("Operacion", "Home");
+            }
+            Agregar.Usuario(correo, nombres, apellidos, direccion,Int32.Parse(rol),password1,url);
+            if (Agregar.resultado.Equals("exito"))
+            {
+                TempData["resultado"] = "1";
+            }
+            else
+            {
+                TempData["resultado"] = "0";
+            }
+            
+
+            return RedirectToAction("Operacion", "Home");
+
+
+        }
+
         public ActionResult DashBoard()
         {
             ViewBag.Message = "Your contact page.";

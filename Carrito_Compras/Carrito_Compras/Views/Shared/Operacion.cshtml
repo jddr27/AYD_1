@@ -37,6 +37,17 @@ else if (@ViewBag.Message == "0")
     </div>
 
 }
+else if (@ViewBag.Message == "3")
+{
+
+    //Si se realizo el registro exitosamente mostramos un mensaje de  no exitoso
+    <div class="alert alert-info">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>¡Advertencia!</strong>
+        <h1>Contraseñas no coinciden!</h1>
+    </div>
+
+}
 else
 {
     <div class="alert alert-info">
@@ -90,5 +101,14 @@ else if (@ViewBag.Ambito == "deleteC")
 
 
 }
+else if (@ViewBag.Ambito == "EditC"|| @ViewBag.Ambito == "AddUser")
+{
+
+    using (Ajax.BeginForm("Clientes", "Home", new AjaxOptions { UpdateTargetId = "deleteC" }, new { @class = "text-center border border-light p-5" }))
+    {
+        <button class="btn btn-info btn-block my-4" type="submit">Regresar a Clientes</button>
+    }
 
 
+
+}
