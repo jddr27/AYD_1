@@ -202,7 +202,13 @@ namespace Carrito_Compras.Controllers
 
         public ActionResult Carrito()
         {
+          
+            int user = Convert.ToInt32(Session["id_user"]);
+            int carrito = Convert.ToInt32(Session["CarritoId"]);
 
+            Carrito car = new Carrito(carrito);
+            if(car.usuario.Equals(user)) {
+            ViewBag.compras = 1;
             ViewBag.detalles = Obtener.Detalles(Convert.ToInt32(Session["CarritoId"]));
             ViewBag.prods = Obtener.Productos();
 
@@ -230,7 +236,12 @@ namespace Carrito_Compras.Controllers
                 System.Diagnostics.Debug.WriteLine("idproducto:" + obj.id_prod + "precio:" + obj.precio + "total" + Convert.ToDouble(Session["subtotal"]));
 
             }
-            
+            }
+
+            else
+            {
+                ViewBag.compras =0;
+            }
 
 
 
