@@ -36,12 +36,13 @@ namespace Carrito_Compras.Controllers
        
 
        
-        public ActionResult detalles(int prod, double precio)
+        public ActionResult detalles(int prod, double precio,int comprando)
         {
             int carrito = Convert.ToInt32(Session["CarritoId"]);
             Agregar.DetalleCarritoRapido(carrito,prod, precio);
             if(Agregar.resultado.Equals("exito"))
             {
+                Session["Comprando"] = comprando;
                 ViewBag.idx = "Se agrego el producto al carrito";
                 System.Diagnostics.Debug.WriteLine(Agregar.resultado);
                 ViewBag.Listado = Obtener.Productos();
@@ -86,6 +87,7 @@ namespace Carrito_Compras.Controllers
             //Variable Contador de producto encontrados
             int contadorProductos = 0;
             Session["CarritoId"] = 1;
+            Session["Comprando"] = 0;
             //Lista para almacenar productos encontrados en la bùsqueda
             LinkedList<Producto> list = new LinkedList<Producto>();
 
@@ -156,11 +158,25 @@ namespace Carrito_Compras.Controllers
 
          public ActionResult EliminarDetalle(int id)
         {
+            
             Eliminar.Detalle_Carrito(id);
             if (Eliminar.resultado.Equals("exito"))
             {
+                
+             LinkedList<Detalle_Carrito> detalle = Obtener.Detalles(Convert.ToInt32(Session["CarritoId"]));
+             double descontar=0;
+             foreach (var obj in detalle)
+            {
+                    if (obj.id_prod.Equals(id))
+                    {
+                      descontar=obj.precio;
+                    }
+
+                 }
+
                 ViewBag.detalles = Obtener.Detalles(Convert.ToInt32(Session["CarritoId"]));
                 ViewBag.prods = Obtener.Productos();
+                Session["subtotal"] = Convert.ToDouble(Session["subtotal"])-descontar ;
                 return View("Carrito");
             }
             else
@@ -178,7 +194,7 @@ namespace Carrito_Compras.Controllers
           
             int user = Convert.ToInt32(Session["id_user"]);
             int carrito = Convert.ToInt32(Session["CarritoId"]);
-
+            Session["subtotal"] = 0;
             Carrito car = new Carrito(carrito);
             if(car.usuario.Equals(user)) {
             ViewBag.compras = 1;
@@ -205,7 +221,9 @@ namespace Carrito_Compras.Controllers
 
                 }
 
+              
                 Session["subtotal"] = Convert.ToDouble(Session["subtotal"]) + obj.precio;
+            
                 System.Diagnostics.Debug.WriteLine("idproducto:" + obj.id_prod + "precio:" + obj.precio + "total" + Convert.ToDouble(Session["subtotal"]));
 
             }
