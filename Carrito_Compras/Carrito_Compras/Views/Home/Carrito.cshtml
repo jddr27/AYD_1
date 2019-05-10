@@ -4,17 +4,17 @@
         int contador = 0;
     }
 
-    <div>
-
-        <h4>@Session["id_user"]</h4>
-
-    </div>
+    
 
 
 
     @if (@ViewBag.compras != 0)
     {
 
+        <div>
+        <h4>Usuario=@Session["UserName"]</h4>
+        <h4>Total Compras= @Session["subtotal"]</h4>
+       </div>
         <div class="container">
 
             <form action="/Home/Principal">
@@ -137,9 +137,12 @@
             
         </div>
     }
-
+    else  {
     <div>
-
+        <div>
+            <h4>Total Compras: 0</h4>
+        </div>
         <h4>No hay compras</h4>
 
     </div>
+    }

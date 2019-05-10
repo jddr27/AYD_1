@@ -82,39 +82,38 @@
 
                                             </ul>
 
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <!--Card image-->
+                                    <!--Card content-->
+                                    <div class="card-body des">
+                                        <!--Category & Title-->
 
-                                        </div>
-                                    </a>
-                                </div>
-                                <!--Card image-->
-                                <!--Card content-->
-                                <div class="card-body des">
-                                    <!--Category & Title-->
-
-                                    <h5 class="card-title mb-1">
-                                        <strong>
-                                            <a href="@Url.Action("Descripcion", "Home", new { id =@obj.id ,precio=@obj.precio})" class="white-text">@obj.nombre</a>
-                                        </strong>
-                                    </h5>
-                                    <span class="badge badge-info mb-2">nuevo</span>
+                                        <h5 class="card-title mb-1">
+                                            <strong>
+                                                <a href="@Url.Action("Descripcion", "Home", new { id =@obj.id ,precio=@obj.precio})" class="white-text">@obj.nombre</a>
+                                            </strong>
+                                        </h5>
+                                        <span class="badge badge-info mb-2">nuevo</span>
 
 
-                                    <!--Card footer-->
-                                    <div class="card-footer pb-0">
-                                        <div class="row mb-0">
-                                            <span class="float-left">
-                                                <strong>Q @obj.precio</strong>
-                                            </span>
-                                            <span class="float-right">
+                                        <!--Card footer-->
+                                        <div class="card-footer pb-0">
+                                            <div class="row mb-0">
+                                                <span class="float-left">
+                                                    <strong>Q @obj.precio</strong>
+                                                </span>
+                                                <span class="float-right">
 
-                                                <a href="@Url.Action("detalles", "Home", new { prod = @obj.id, precio = @obj.precio })" class="" data-toggle="tooltip" data-placement="top"
-                                                   title="Add to Cart">
-                                                    <i class="fas fa-shopping-cart ml-3"></i>
-                                                </a>
+                                                    <a href="@Url.Action("detalles", "Home", new { prod = @obj.id, precio = @obj.precio, @comprando =1})" class="" data-toggle="tooltip" data-placement="top"
+                                                       title="Add to Cart">
+                                                        <i class="fas fa-shopping-cart ml-3"></i>
+                                                    </a>
 
-                                                @if (ViewBag.idx != null)
-                                                {
-                                                    <script type="text/javascript">
+                                                    @if (ViewBag.idx != null)
+                                                    {
+                                                        <script type="text/javascript">
                                                             window.onload = function () {
                                                                      alert("@ViewBag.idx");
                                                             };
