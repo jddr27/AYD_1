@@ -223,11 +223,26 @@ namespace Carrito_Compras.Controllers
             return View();
         }
 
-        public ActionResult Reporte1() {
+        public ActionResult ReporteComentarios() {
             ReporteComentarios reporte = new ReporteComentarios();
             byte[] abytes = reporte.PrepareReport();
             return File(abytes, "application/pdf");
+        }
 
+
+        public ActionResult ReporteClientes()
+        {
+            ReporteUsuarios reporte = new ReporteUsuarios();
+            byte[] abytes = reporte.PrepareReport();
+            return File(abytes, "application/pdf");
+        }
+
+
+        public ActionResult ReporteProductos()
+        {
+            ReporteProductos reporte = new ReporteProductos();
+            byte[] abytes = reporte.PrepareReport();
+            return File(abytes, "application/pdf");
         }
 
         public ActionResult Descripcion(int id,double precio)
@@ -262,6 +277,7 @@ namespace Carrito_Compras.Controllers
 
             try {
                 ViewBag.idUser = Session["id_user"].ToString();
+                ViewBag.precio = Session["precio"].ToString();
                 ViewBag.Valor = Comentario.Verificar_Comentario(Int32.Parse(Session["id_user"].ToString()), id);
             }
             catch (System.NullReferenceException e) {
@@ -597,6 +613,7 @@ namespace Carrito_Compras.Controllers
             ViewBag.Ambito = TempData["ambito"].ToString();
             if (TempData["id_producto"] != null) {
                 ViewBag.Id_Producto = TempData["id_producto"].ToString();
+                ViewBag.precio = TempData["precio"].ToString();
             }
 
             

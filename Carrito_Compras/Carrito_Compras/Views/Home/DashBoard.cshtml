@@ -182,10 +182,9 @@
 
                                     </tbody>
                                 </table>
-
-                                <button class="btn btn btn-flat grey lighten-3 btn-rounded waves-effect font-weight-bold dark-grey-text float-right">
-                                    Ver Reporte Completo
-                                </button>
+                                <a href="@Url.Action("ReporteComentarios", "Home")" class="btn btn btn-flat grey lighten-3 btn-rounded waves-effect font-weight-bold dark-grey-text float-right">
+                                        Ver Reporte Completo                                    
+                                </a>
 
                             </div>
                         </div>
@@ -278,70 +277,18 @@
 
                     <div class="col-lg-6 col-md-12">
 
-                        <!--Panel-->
-                        <div class="card mb-4">
-                            <div class="card-header white-text primary-color">
-                                Users activity
+                        <a href="@Url.Action("ReporteClientes", "Home")">
+                            <div class="card mb-4 text-center py-3 red accent-2 white-text">
+                                <i class="fas fa-user fa-3x mb-3"></i>
+                                <h4 class="h4-responsive">Reporte Clientes</h4>
                             </div>
-                            <div class="card-body">
-                                <div class="row mb-1">
-                                    <div class="col-4">
-                                        <small class="grey-text">Pages/Visits</small>
-                                        <h4>139 419</h4>
-                                    </div>
-                                    <div class="col-4">
-                                        <small class="grey-text">New visitors</small>
-                                        <h4>51.94%</h4>
-                                    </div>
-                                    <div class="col-4">
-                                        <small class="grey-text">Last week</small>
-                                        <h4>51 932</h4>
-                                    </div>
-                                </div>
-                                <div class="row mb-1">
-                                    <div class="col-4">
-                                        <small class="grey-text">Pages/Visits</small>
-                                        <h4>139 419</h4>
-                                    </div>
-                                    <div class="col-4">
-                                        <small class="grey-text">New visitors</small>
-                                        <h4>51.94%</h4>
-                                    </div>
-                                    <div class="col-4">
-                                        <small>Last week</small>
-                                        <h4>51 932</h4>
-                                    </div>
-                                </div>
-
-                                <div class="row mb-1">
-                                    <div class="col-4">
-                                        <small class="grey-text">Pages/Visits</small>
-                                        <h4>139 419</h4>
-                                    </div>
-                                    <div class="col-4">
-                                        <small class="grey-text">New visitors</small>
-                                        <h4>51.94%</h4>
-                                    </div>
-                                    <div class="col-4">
-                                        <small class="grey-text">Last week</small>
-                                        <h4>51 932</h4>
-                                    </div>
-                                </div>
-
-                                <button class="btn btn btn-flat grey lighten-3 btn-rounded waves-effect font-weight-bold dark-grey-text float-right">
-                                    View
-                                    full report
-                                </button>
+                        </a>
+                        <a href="@Url.Action("ReporteProductos", "Home")">
+                            <div class="card mb-4 text-center py-3 blue accent-2 white-text">
+                                <i class="fas fa-archive fa-3x mb-3"></i>
+                                <h4 class="h4-responsive">Reporte Productos</h4>
                             </div>
-                        </div>
-                        <!--/.Panel-->
-                        <!-- Panel -->
-                        <div class="card mb-4 text-center py-3 red accent-2 white-text">
-                            <i class="fas fa-bell fa-3x mb-3"></i>
-                            <h4 class="h4-responsive">28 important messages</h4>
-                        </div>
-                        <!-- /.Panel -->
-                        <!--Section: Intro-->
+                        </a>
                         <section class="mt-lg-5">
 
                             <!--Grid row-->
@@ -353,7 +300,7 @@
                                     <!--Panel-->
                                     <div class="card">
                                         <div class="card-header white-text grey darken-1">
-                                            Orders
+                                            Ordenes
                                         </div>
 
                                         <h6 class="ml-4 pt-4 mt-1 dark-grey-text font-weight-bold"><i class="fas fa-arrow-up blue-text mr-3" aria-hidden="true"></i> 2000</h6>
@@ -379,7 +326,7 @@
                                     <!--Panel-->
                                     <div class="card">
                                         <div class="card-header white-text warning-color">
-                                            Monthly sales
+                                            Ventas Totales
                                         </div>
 
                                         <h6 class="ml-4 pt-4 mt-1 dark-grey-text font-weight-bold"><i class="fas fa-arrow-up blue-text mr-3" aria-hidden="true"></i> $ 2000</h6>

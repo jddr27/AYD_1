@@ -107,16 +107,16 @@ else if (@ViewBag.Ambito == "EditC" || @ViewBag.Ambito == "AddUser")
     using (Ajax.BeginForm("Clientes", "Home", new AjaxOptions { UpdateTargetId = "deleteC" }, new { @class = "text-center border border-light p-5" }))
     {
         <button class="btn btn-info btn-block my-4" type="submit">Regresar a Clientes</button>
-                }
+    }
 
 
 
-            }
-            else if (@ViewBag.Ambito == "AddR")
-            {
-                string concatenarUrl = String.Concat("Descripcion/", @ViewBag.Id_Producto);
+}
+else if (@ViewBag.Ambito == "AddR")
+{
+    string concatenarUrl = String.Concat("Descripcion/", @ViewBag.Id_Producto, "?precio=",ViewBag.precio);
 
-                using (Ajax.BeginForm(concatenarUrl, "Home", new AjaxOptions { UpdateTargetId = "AddR" }, new { @class = "text-center border border-light p-5" }))
+    using (Ajax.BeginForm(concatenarUrl, "Home", new AjaxOptions { UpdateTargetId = "AddR" }, new { @class = "text-center border border-light p-5" }))
     {
         <button class="btn btn-info btn-block my-4" type="submit">Regresar a Descripcion!</button>
     }

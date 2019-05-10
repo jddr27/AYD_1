@@ -212,6 +212,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Clase_Reportes\ReporteComentarios.cs" />
+    <Compile Include="Clase_Reportes\ReporteProductos.cs" />
+    <Compile Include="Clase_Reportes\ReporteUsuarios.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Login.cs" />
