@@ -91,7 +91,7 @@ namespace Carrito_Compras.Controllers
             //Variable Contador de producto encontrados
             int contadorProductos = 0;
             Session["CarritoId"] = 1;
-            Session["Comprando"] = 0;
+           
             //Lista para almacenar productos encontrados en la bùsqueda
             LinkedList<Producto> list = new LinkedList<Producto>();
 
