@@ -74,6 +74,8 @@ namespace Carrito_Compras.Models
             connection.Close();
         }
 
+        //public static int 
+
         private void Get_Connection()
         {
             connection_open = false;

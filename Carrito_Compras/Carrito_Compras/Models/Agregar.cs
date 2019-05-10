@@ -307,6 +307,7 @@ namespace Carrito_Compras.Models
 
             connection.Close();
         }
+
         public static int AgregarReseña(string idUser,string idProducto,string reseña,string valoracion)
         {
 
@@ -348,6 +349,42 @@ namespace Carrito_Compras.Models
 
             connection.Close();
             return 0;
+        }
+
+        public static void Facturacion(int carrito, double total, int tipo)
+        {
+            resultado = null;
+            Get_Connection();
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = connection;
+                string cadena = "call EscribirF(" + carrito + "," + total + "," + tipo + ");";
+                cmd.CommandText = string.Format(cadena);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                try
+                {
+                    reader.Read();
+                    reader.Close();
+                    resultado = "exito";
+                }
+                catch (MySqlException e)
+                {
+                    string MessageString = "***************** Read error occurred  / entry not found loading the Column details: "
+                        + e.ErrorCode + " - " + e.Message + "; \n\nPlease Continue";
+                    resultado = MessageString;
+                    reader.Close();
+                }
+            }
+            catch (MySqlException e)
+            {
+                string MessageString = "*********************** The following error occurred loading the Column details: "
+                    + e.ErrorCode + " - " + e.Message;
+                resultado = MessageString;
+            }
+
+            connection.Close();
         }
     }
 }

@@ -396,7 +396,6 @@ namespace Carrito_Compras.Controllers
             return Content(sbInterest.ToString());
         }
 
-
         public ActionResult Boleta()
         {
             ViewBag.Message = "Your contact page.";
@@ -416,8 +415,8 @@ namespace Carrito_Compras.Controllers
             string numero = Request["txtnumero"].ToString();
             string codigo = Request["txtcodigo"].ToString();
             string fecha = Request["txtfecha"].ToString();
-
-            if(codigo.Length == 4)
+            #region VALIDACIONES
+            if (codigo.Length == 4)
             {
                 foreach(Char c in codigo.ToCharArray())
                 {
@@ -473,11 +472,24 @@ namespace Carrito_Compras.Controllers
                 sbInterest.Append("<br><b>Error:</b> La fecha solo debe tener 2 dígitos para el mes y 2 dígitos para el año, separados por una diagonal<br/>");
                 return Content(sbInterest.ToString());
             }
-
+            #endregion
             string limpio = ValidarTarjeta.NormalizeCardNumber(numero);
             if (ValidarTarjeta.IsCardNumberValid(limpio))
             {
-                return RedirectToAction("Principal", "Home");
+                int carrito = Convert.ToInt32(Session["CarritoId"]);
+                double total = Convert.ToDouble(Session["total"]);
+                Agregar.Facturacion(carrito,total,1);
+                
+                if (Agregar.resultado.Equals("exito"))
+                {
+                    return RedirectToAction("Principal", "Home");
+                }
+                else
+                {
+                    StringBuilder sbInterest = new StringBuilder();
+                    sbInterest.Append("<br><b>Error:</b>" + Agregar.resultado +  "<br/>");
+                    return Content(sbInterest.ToString());
+                }
             }
             else
             {
