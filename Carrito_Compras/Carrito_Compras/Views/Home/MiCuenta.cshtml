@@ -1,0 +1,89 @@
+﻿@{
+    Layout = "~/Views/Shared/Footer.cshtml";
+}
+
+
+
+<div class="grid-container" style="background-color: rgb(60, 150, 223)">
+    <div class="Fondo_icono" style="background-color: rgb(17, 68, 97)">
+        <img class="center" src=@ViewBag.foto>
+    </div>
+
+    <div class="LOGIN" style="background-color: rgb(255, 255, 255)">
+
+        <div class="LINKS">
+            <ul>
+                <li><h3><a style="color:rgb(60, 150, 223)">Mi Cuenta</a></h3></li>
+               
+            </ul>
+        </div>
+
+     
+            <div id="info_login">
+                <div class="CORREO">
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">mail_outline</i>
+                        <input id="txtcorreo" name="txtcorreo" type="email" class="validate" disabled>
+                        <label for="icon_prefix">@ViewBag.email</label>
+                    </div>
+                </div>
+                <div class="USUARIO">
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">account_circle</i>
+                        <input id="txtnombres" name="txtnombres" type="text" class="validate">
+                        <label for="icon_prefix">@ViewBag.nombres</label>
+                    </div>
+                </div>
+                <div class="USUARIO">
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">account_circle</i>
+                        <input id="txtapellidos" name="txtapellidos" type="text" class="validate" disabled>
+                        <label for="icon_prefix">@ViewBag.apellidos</label>
+                    </div>
+                </div>
+                <div class="USUARIO">
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">home</i>
+                        <input id="txtdireccion" name="txtdireccion" type="text" class="validate" disabled>
+                        <label for="icon_prefix">@ViewBag.direccion</label>
+                    </div>
+                </div>
+
+               
+                <div class="row pt-4">
+                    <li><b><a style="color:rgb(60, 150, 223)" href="@Url.Action("Principal", "Home")">Aceptar</a></b></li>
+                </div>
+            </div>
+      
+
+    </div>
+    <div class="ESPACIO_LOGO">
+        <div class="LOGO">
+         
+            <a href="@Url.Action("Principal", "Home")">
+                    <img class="center" src="~/Content/Iconos/logo_empresa.png">
+            </a>
+
+        </div>
+    </div>
+
+
+    <div class="PIE">
+        <div class="FOOTER">
+
+            <footer class="page-footer" style="background-color: rgb(60, 150, 223); margin-top:11%;">
+
+                <div class="footer-copyright" style="background-color: rgb(17, 68, 97)">
+                    <div class="container">
+                        © 2019 Proyecto AYD1
+                        <a class="grey-text text-lighten-4 right" href="https://www.facebook.com">More Links</a>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
+
+    </div>
+
+
+</div>

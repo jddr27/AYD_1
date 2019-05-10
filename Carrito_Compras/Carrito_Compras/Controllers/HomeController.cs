@@ -714,11 +714,77 @@ namespace Carrito_Compras.Controllers
 
             return View();
 
-
-            
-
         }
+
+        public ActionResult MiCuenta()
+        {
+
+            if (Session["id_user"]!=null)
+            {
+          
+            int user = Convert.ToInt32(Session["id_user"]);
+            Usuario usuario = new Usuario(user);
+            ViewBag.email = usuario.correo;
+            ViewBag.nombres = usuario.nombres;
+            ViewBag.apellidos = usuario.apellidos;
+            ViewBag.direccion = usuario.direccion;
+            ViewBag.foto = usuario.foto;
+                  }
+            else
+            {
+
+                return RedirectToAction("Principal", "Home");
+            }
+            
+            return View();
+        }
+
+
+        public ActionResult Marcas()
+        {
+
+            LinkedList<Marca> lista = new LinkedList<Marca>();
+            foreach (var obj in Marca.ObtenerMarca())
+            {
+                //Agregamos a la lista
+                lista.AddLast(obj);
+            }
+           
+            ViewBag.Listado = lista;
+            return RedirectToAction("Principal", "Home");
+        }
+        public ActionResult Categorias()
+        {
+            LinkedList<Categoria> lista = new LinkedList<Categoria>();
+            foreach (var obj in Categoria.ObtenerCategoria())
+            { //Agregamos a la lista
+                lista.AddLast(obj);
+            }
+
+            ViewBag.Listado = lista;
+            return RedirectToAction("Principal", "Home");
+        }
+
+        public ActionResult Promociones()
+        {
+            LinkedList<Promocion> lista = new LinkedList<Promocion>();
+            foreach (var obj in Promocion.ObtenerPromo())
+            { //Agregamos a la lista
+                lista.AddLast(obj);
+            }
+            ViewBag.Listado = lista;
+            return RedirectToAction("Principal", "Home");
+        }
+
+        /*public ActionResult Ofertas()
+        {
+            LinkedList<Promocion> lista = new LinkedList<Promocion>();
+            foreach (var obj in Promocion.ObtenerPromo())
+            { //Agregamos a la lista
+                lista.AddLast(obj);
+            }
+            ViewBag.Listado = lista;
+            return View();
+        }*/
     }
-
-
 }
