@@ -33,44 +33,7 @@ namespace Carrito_Compras.Controllers
             return View();
         }
 
-        //seguir comprando
-
-        public ActionResult carrito2()
-        {
-            Session["total"] =0;
-            ViewBag.detalles = Obtener.Detalles(Convert.ToInt32(Session["CarritoId"]));
-            ViewBag.prods = Obtener.Productos();
-
-            LinkedList<Detalle_Carrito> detalle = Obtener.Detalles(Convert.ToInt32(Session["CarritoId"]));
-            LinkedList<Producto> prods = Obtener.Productos();
-            foreach (var obj in detalle)
-            {
-                foreach (var obj2 in prods)
-                {
-
-
-                    if (obj.id_prod.Equals(obj2.id))
-                    {
-                        foreach (var img in obj2.imagenes)
-                        {
-                            System.Diagnostics.Debug.WriteLine("foto:" + img);
-                            break;
-
-                        }
-                    }
-
-                }
-
-                Session["subtotal"] = Convert.ToDouble(Session["subtotal"]) + obj.precio;
-                System.Diagnostics.Debug.WriteLine("idproducto:" + obj.id_prod + "precio:" + obj.precio + "total" + Convert.ToDouble(Session["subtotal"]));
-
-            }
-            
-
-
-             
-            return View();
-        }
+        
 
         public ActionResult detalles(int prod, double precio)
         {
@@ -209,6 +172,7 @@ namespace Carrito_Compras.Controllers
             Carrito car = new Carrito(carrito);
             if(car.usuario.Equals(user)) {
             ViewBag.compras = 1;
+            Session["subtotal"] = 0;
             ViewBag.detalles = Obtener.Detalles(Convert.ToInt32(Session["CarritoId"]));
             ViewBag.prods = Obtener.Productos();
 
@@ -241,6 +205,7 @@ namespace Carrito_Compras.Controllers
             else
             {
                 ViewBag.compras =0;
+                Session["subtotal"] = 0;
             }
 
 

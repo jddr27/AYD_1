@@ -6,7 +6,7 @@
 
     <div>
 
-        <h4>@Session["id_user"]</h4>
+        <h4>Usuario: @Session["UserName"]</h4>
 
     </div>
 
@@ -14,6 +14,13 @@
 
     @if (@ViewBag.compras != 0)
     {
+        
+         <div>
+
+        
+        <h4>Total: @Session["subtotal"]</h4>
+
+       </div>
 
         <div class="container">
 
@@ -121,5 +128,6 @@
     <div>
 
         <h4>No hay compras</h4>
+        <h4>Total: @Session["subtotal"]</h4>
 
     </div>
