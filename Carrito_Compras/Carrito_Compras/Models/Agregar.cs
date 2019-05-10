@@ -199,7 +199,7 @@ namespace Carrito_Compras.Models
             connection.Close();
         }
 
-        public static void Carrito(int usuario)
+        public static void Carrito(int usuario,double total)
         {
             Get_Connection();
             try
@@ -207,7 +207,7 @@ namespace Carrito_Compras.Models
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = connection;
                 cmd.CommandText = string.Format("INSERT INTO `Carrito` (`usuario_carrito`,`total_carrito`,`estado_carrito`)" +
-                    " VALUES (" + usuario + ", 0.00, 1);");
+                    " VALUES (" + usuario +"," + total + ", 1);");
                 MySqlDataReader reader = cmd.ExecuteReader();
 
                 try

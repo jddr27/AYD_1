@@ -104,6 +104,10 @@
                                                 <span class="float-left">
                                                     <strong>Q @obj.precio</strong>
                                                 </span>
+
+
+                                                @if (@Session["UserName"]!=null)
+                                                {
                                                 <span class="float-right">
 
                                                     <a href="@Url.Action("detalles", "Home", new { prod = @obj.id, precio = @obj.precio, @comprando =1})" class="" data-toggle="tooltip" data-placement="top"
@@ -119,8 +123,30 @@
                                                             };
 
 
+                                                           
+                                                        </script>
+                                                    }
+                                                </span>
+                                                      }
+                                                      else   {
+                                                        <span class="float-right">
+
+                                                    <a name="" class="" data-toggle="tooltip" data-placement="top"
+                                                       title="Add to Cart">
+                                                        <i class="fas fa-shopping-cart ml-3"></i>
+                                                    </a>
+                                                   </span>
+                                                      } 
+                                                      
+
+
+
                                                     </script>
                                                 }
+
+
+                                            </div>
+                                        </div>
 
 
                                             </span>

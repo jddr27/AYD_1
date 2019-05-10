@@ -2,7 +2,17 @@
     Layout = "~/Views/Shared/Footer.cshtml";
 }
 
+@if (@ViewBag.error == 0)
+{
+
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <a href="@Url.Action("Login", "Home")" class="close">&times;</a>
+        <strong>Error!</strong>Usuario No encontrado
+    </div>
+}
 <div class="grid-container" style="background-color: rgb(60, 150, 223)">
+   
+
     <div class="Fondo_icono" style="background-color: #114461">
         
         <img class="center" src="~/Content/Iconos/user.png" />
@@ -17,9 +27,6 @@
             </ul>
 
         </div>
-
-
-
 
         
         @using (Ajax.BeginForm("Validar", "Home", new AjaxOptions { UpdateTargetId = "info_login" }, new { @class = "USUARIO" }))
@@ -46,6 +53,7 @@
         }
 
 
+      
         </div>
             <div class="ESPACIO_LOGO">
                 <div class="LOGO">
