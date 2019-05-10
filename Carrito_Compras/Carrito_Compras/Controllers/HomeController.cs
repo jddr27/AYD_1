@@ -190,10 +190,19 @@ namespace Carrito_Compras.Controllers
 
         }
 
+         public ActionResult Eliminar(int idProducto)
+        {
+            //Eliminar(idProducto);
+            ViewBag.detalles = Obtener.Detalles(Convert.ToInt32(Session["CarritoId"]));
+            ViewBag.prods = Obtener.Productos();
+            return View();
+
+        }
+
+
         public ActionResult Carrito()
         {
 
-         
             ViewBag.detalles = Obtener.Detalles(Convert.ToInt32(Session["CarritoId"]));
             ViewBag.prods = Obtener.Productos();
 

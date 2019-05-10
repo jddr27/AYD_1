@@ -6,7 +6,7 @@
 
     <div>
       
-        <h4>@Session["total"]</h4>
+        <h4>@Session["id_user"]</h4>
        
     </div>
 
@@ -86,10 +86,11 @@
                                         <strong>Q @obj.precio</strong>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-sm btn-primary waves-effect waves-light" onclick="myFunction();" data-toggle="tooltip" data-placement="top" id="myBtn" title=" " data-original-title=" remove item">
-                                            X
+                                        <button type="button" class="btn btn-sm btn-primary waves-effect waves-light"  data-toggle="tooltip" data-placement="top" data-original-title=" remove item">
+                                            <a href="@Url.Action("Eliminar", "Home", new {id =@obj.id_prod})" class="white-text">X</a>
                                         </button>
 
+                                        
 
                                     </td>
                                 </tr>
