@@ -74,6 +74,8 @@
 
                             <li><strong>Dirección:</strong>@obj.direccion</li>
 
+                            <li><strong>Estado:</strong>@obj.estado</li>
+
 
 
                         </ul>
@@ -150,6 +152,29 @@
                                     <i class="fas fa-globe prefix grey-text"></i>
                                     <input type="text" id="url" name="url" class="form-control validate" value="@obj.foto">
                                 </div>
+
+                                <div class="md-form mb-4">
+                                    <h4>Estado</h4>
+                                    <select name="estado" id="estado" class="browser-default custom-select">
+
+                                        @if (obj.estado == "activo")
+                                        {
+                                            <option value="activo">Activo</option>
+                                            <option value="no_activo">No activo</option>
+
+
+                                        }
+                                        else if (obj.estado == "no_activo")
+                                        {
+
+                                            <option value="no_activo">No activo</option>
+                                            <option value="activo">Activo</option>
+
+                                        }
+
+                                    </select>
+                                </div>
+
 
                             </div>
                             <div class="modal-footer d-flex justify-content-center">

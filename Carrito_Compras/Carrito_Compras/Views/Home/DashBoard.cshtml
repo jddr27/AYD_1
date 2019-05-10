@@ -137,54 +137,54 @@
                         <!--Panel-->
                         <div class="card mb-4">
                             <div class="card-header white-text primary-color">
-                                Recent comments and replies
+                                Comentarios Recientes
                             </div>
                             <div class="card-body">
 
                                 <table class="table no-header mt-1">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Cliente</th>
+                                            <th scope="col">Comentario</th>
+                                            <th scope="col">Fotografía</th>
+                                            
+                                        </tr>
+                                    </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>John Doe</td>
-                                            <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</td>
-                                            <td class="hour">
-                                                <small>
-                                                    <span class="grey-text float-right">
-                                                        <i class="far fa-clock-o" aria-hidden="true"></i>
-                                                        12 min
-                                                    </span>
-                                                </small>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Merry Joe</td>
-                                            <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</td>
-                                            <td class="hour">
-                                                <small>
-                                                    <span class="grey-text float-right">
-                                                        <i class="far fa-clock-o" aria-hidden="true"></i>
-                                                        12 min
-                                                    </span>
-                                                </small>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Jessie Doe</td>
-                                            <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</td>
-                                            <td class="hour">
-                                                <small>
-                                                    <span class="grey-text float-right">
-                                                        <i class="far fa-clock-o" aria-hidden="true"></i>
-                                                        12 min
-                                                    </span>
-                                                </small>
-                                            </td>
-                                        </tr>
+                                        @{int contador = 0;}
+                                        @foreach (var obj in @ViewBag.Comentarios)
+                                        {
+                                            contador++;
+
+                                            if (contador <= 3) {
+                                            <tr>
+                                                <td>@obj.usuario.nombres</td>
+                                                <td>@obj.texto_comentario</td>
+                                                <td class="hour">
+                                                    <small>
+                                                        <span class="grey-text float-right">
+                                                            <i class="far fa-clock-o" aria-hidden="true"></i>
+                                                            <img src="@obj.usuario.foto" height="50" width="50" class="avatar rounded-circle z-depth-1-half" />
+
+                                                        </span>
+                                                    </small>
+                                                </td>
+                                            </tr>
+                                            }
+                                            else {
+
+                                                break;
+                                            }
+
+                                        }
+
+
+
                                     </tbody>
                                 </table>
 
                                 <button class="btn btn btn-flat grey lighten-3 btn-rounded waves-effect font-weight-bold dark-grey-text float-right">
-                                    View
-                                    full report
+                                    Ver Reporte Completo
                                 </button>
 
                             </div>
@@ -194,7 +194,7 @@
 
                         <div class="card mb-4">
                             <div class="card-header white-text primary-color">
-                                Issues
+                                Productos Mejor Valorados
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">

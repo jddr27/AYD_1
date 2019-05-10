@@ -444,3 +444,5 @@ C:\Users\hh\Videos\Proyecto\AYD_1\Carrito_Compras\Carrito_Compras\obj\Debug\Carr
 C:\Users\hh\Videos\Proyecto\AYD_1\Carrito_Compras\Carrito_Compras\obj\Debug\Carrito_Compras.pdb
 C:\Users\gmgcomercial\Documents\GitHub\AYD_1\Carrito_Compras\Carrito_Compras\obj\Debug\Carrito_Compras.csprojAssemblyReference.cache
 C:\Users\hh\Videos\Proyecto\AYD_1\Carrito_Compras\Carrito_Compras\obj\Debug\Carrito_Compras.csprojResolveAssemblyReference.cache
+C:\Users\gmgcomercial\Documents\GitHub\AYD_1\Carrito_Compras\Carrito_Compras\bin\itextsharp.dll
+C:\Users\gmgcomercial\Documents\GitHub\AYD_1\Carrito_Compras\Carrito_Compras\bin\itextsharp.xml
