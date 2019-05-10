@@ -3,133 +3,126 @@
         Layout = "~/Views/Shared/Layout1.cshtml";
         int contador=0;
         }
-    <div>
-        <li>
-            total =@ViewBag.actual
 
-        </li>
-        <li>
+                <div class="alert alert-success">
+                    <a href="#" class="close" data-dismiss="alert">&times;</a>
+                    <h4>Success</h4>
+                    <br />
+                    <div>All records were processed correctly!</div>
+                </div>
 
-            id= @ViewBag.idprod
+             
 
-        </li>
-    </div>
-                <script type="text/javascript">
+      
+  <script>
+      function myFunction() {
+               
+                $(".alert-success").fadeTo(500, 0).slideUp(500, function () {
+                $(this).remove();
+                });
+                }, 5000);
+            
+      
+  </script>
+ 
+              
+                    <div class="container">
 
-                    function AlertName(name,precio) {        
-                        alert("nombre:"+name);
-                    }
+                        <form action="/Home/Principal">
+                            <div class="row pt-4">
 
-                </script>
+                                <button type="submit" style="background-color: #f52388" class="centrarBoton btn  waves-effect waves-light">
+                                    Seguir Comprando
+                                    <i class="fas fa-angle-right right"></i>
+                                </button>
+                            </div>
+                        </form>
+                        <div class="row pt-4">
+                            <section class="section my-5 pb-5">
 
+                                <!-- Shopping Cart table -->
+                                <div class="table-responsive">
 
-    <div class="container">
+                                     <table class="table product-table">
 
-        <form action="/Home/Principal">
-            <div class="row pt-4">
+                                        <!-- Table head -->
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th class="font-weight-bold">
+                                                    <strong>Producto</strong>
+                                                </th>
 
-                <button type="submit" style="background-color: #f52388" class="centrarBoton btn  waves-effect waves-light">
-                    Seguir Comprando
-                    <i class="fas fa-angle-right right"></i>
-                </button>
-            </div>
-        </form>
-        <div class="row pt-4">
-            <section class="section my-5 pb-5">
+                                                <th></th>
+                                                <th class="font-weight-bold">
+                                                    <strong>Precio Unitario</strong>
+                                                </th>
 
-                <!-- Shopping Cart table -->
-                <div class="table-responsive">
+                                                <th class="font-weight-bold">
+                                                    <strong>Precio Total</strong>
+                                                </th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <!-- /.Table head -->
+                                        <!-- Table body -->
+                                        <tbody>
 
-                    <table class="table product-table">
+                                            @foreach (var obj in @ViewBag.detalles)
+                                            {
 
-                        <!-- Table head -->
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th class="font-weight-bold">
-                                    <strong>Producto</strong>
-                                </th>
-                                
-                                <th></th>
-                                <th class="font-weight-bold">
-                                    <strong>Precio Unitario</strong>
-                                </th>
-                                <th class="font-weight-bold">
-                                    <strong>Cantidad</strong>
-                                </th>
-                                <th class="font-weight-bold">
-                                    <strong>Precio Total</strong>
-                                </th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <!-- /.Table head -->
-                        <!-- Table body -->
-                        <tbody>
-                    @foreach (var obj in @ViewBag.prods)
-                                          {
                             <!-- First row -->
-                            <tr>
+                                                <tr>
+                                                    @foreach (var obj2 in @ViewBag.prods)
+                                                    {
+                                                        if (@obj.id_prod.Equals(@obj2.id))
+                                                        {
+                                                            foreach (var img in @obj2.imagenes)
+                                                            {
+                                                                <th scope="row">
+                                                                    <img src=@img alt="" class="img-fluid z-depth-0">
+                                                                </th>
+
+                                                                break;
+                                                            }
+                                                        }
+                                                    }
+                                                    <td>
+                                                        <h5 class="mt-3">
+                                                            <strong>@obj.producto.nombre</strong>
+                                                        </h5>
+                                                        <p class="text-muted">@obj.producto.marca.nombre</p>
+                                                    </td>
+
+                                                    <td></td>
+                                                    <td>Q @obj.producto.precio</td>
+
+                                                    <td class="font-weight-bold">
+                                                        <strong>Q @obj.precio</strong>
+                                                    </td>
+                                                    <td>
+                                                        <button type="button" class="btn btn-sm btn-primary waves-effect waves-light" onclick="myFunction();" data-toggle="tooltip" data-placement="top" id="myBtn" title=" " data-original-title=" remove item">
+                                                            X
+                                                        </button>
 
 
-                                @foreach (var img in @obj.imagenes)
-                                {
-                                <th scope="row">
-                                    <img src=@img alt="" class="img-fluid z-depth-0">
-                                </th>
-
-                                    break; 
-                                }
-
-
-                                <td>
-                                    <h5 class="mt-3">
-                                        <strong>@obj.nombre</strong>
-                                    </h5>
-                                    <p class="text-muted">@obj.marca.nombre</p>
-                                </td>
-                               
-                                <td></td>
-                                <td>Q @obj.precio</td>
-                                <td class="text-center text-md-left">
-                                    <span id ="demo" class="qty"></span>
-                                    <div class="btn-group radio-group ml-2" data-toggle="buttons">
-                                        <label class="btn btn-sm btn-primary button button4 waves-effect waves-light" onclick="AlertName('@obj.nombre', '@obj.precio')">
-                                            <input class=" custom-control-input" class="custom-control-input" name="options" id="option1">
-                                            —
-
-
-
-                                        </label>
-                                        <label class="btn btn-sm btn-primary button button4 waves-effect waves-light" onclick="AlertName('@obj.nombre', '@obj.precio')">
-                                            <input class="custom-control-input" name="options" id="option2">+
-                                        </label>
-                                    </div>
-                                </td>
-                                <td class="font-weight-bold">
-                                    <strong>Q @obj.precio</strong>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-sm btn-primary waves-effect waves-light" data-toggle="tooltip" data-placement="top" title="" data-original-title="Remove item">
-                                        X
-                                    </button>
-                                </td>
-                            </tr>
+                                                    </td>
+                                                </tr>
                             <!-- /.First row -->
 
-                                          }
+                                            }
 
 
-                        </tbody>
-                        <!-- /.Table body -->
+                                        </tbody>
+                                        <!-- /.Table body -->
 
-                    </table>
+                                    </table>
 
-                </div>
-                <!-- Shopping Cart table -->
+                                </div>
+                                <!-- Shopping Cart table -->
 
-            </section>
+                            </section>
 
 
-        </div>
-    </div>
+                        </div>
+                    </div>

@@ -35,12 +35,37 @@ namespace Carrito_Compras.Controllers
 
         //seguir comprando
 
-        public ActionResult carrito2(double precio,int idProducto)
+        public ActionResult carrito2()
         {
-            Session["subtotal"] = Convert.ToDouble(Session["subtotal"]) + precio;
-            ViewBag.actual = Convert.ToDouble(Session["subtotal"]);
-            ViewBag.idprod = idProducto;
+            Session["total"] =0;
+            ViewBag.detalles = Obtener.Detalles(Convert.ToInt32(Session["CarritoId"]));
             ViewBag.prods = Obtener.Productos();
+
+            LinkedList<Detalle_Carrito> detalle = Obtener.Detalles(Convert.ToInt32(Session["CarritoId"]));
+            LinkedList<Producto> prods = Obtener.Productos();
+            foreach (var obj in detalle)
+            {
+                foreach (var obj2 in prods)
+                {
+
+
+                    if (obj.id_prod.Equals(obj2.id))
+                    {
+                        foreach (var img in obj2.imagenes)
+                        {
+                            System.Diagnostics.Debug.WriteLine("foto:" + img);
+                            break;
+
+                        }
+                    }
+
+                }
+                System.Diagnostics.Debug.WriteLine("idproducto:" + obj.id_prod + "precio:" + obj.precio );
+            }
+            
+
+
+
             return View();
         }
 
@@ -173,20 +198,16 @@ namespace Carrito_Compras.Controllers
                
            if (obj.id_prod.Equals(obj2.id))
         {
-            foreach (var img in obj2.Idimagenes)
+            foreach (var img in obj2.imagenes)
             {
                 System.Diagnostics.Debug.WriteLine("foto:" +img);
                 break;
               
             }
         }
-
-
-
-
-               
+  
             }
-                  System.Diagnostics.Debug.WriteLine("idproducto:" + obj.id_prod + "precio:" + obj.precio);
+                  System.Diagnostics.Debug.WriteLine("idproducto:" + obj.id_prod + "precio:" + obj.precio );
             }
             
             return View();
