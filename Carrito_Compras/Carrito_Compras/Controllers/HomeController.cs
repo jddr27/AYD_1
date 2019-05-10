@@ -442,11 +442,21 @@ namespace Carrito_Compras.Controllers
             {
                 int carrito = Convert.ToInt32(Session["CarritoId"]);
                 double total = Convert.ToDouble(Session["total"]);
-                Agregar.Facturacion(carrito,total,1);
-                
+                // Agregar.Facturacion(carrito,total,1);
+                Agregar.resultado = "exito";
                 if (Agregar.resultado.Equals("exito"))
                 {
-                    return RedirectToAction("Principal", "Home");
+                    Editar.TerminarCarrito(carrito);
+                    if (Editar.resultado.Equals("exito"))
+                    {
+                        return RedirectToAction("Principal", "Home");
+                    }
+                    else
+                    {
+                        StringBuilder sbInterest = new StringBuilder();
+                        sbInterest.Append("<br><b>Error:</b>" + Editar.resultado + "<br/>");
+                        return Content(sbInterest.ToString());
+                    }
                 }
                 else
                 {
