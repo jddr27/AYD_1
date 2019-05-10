@@ -60,12 +60,15 @@ namespace Carrito_Compras.Controllers
                     }
 
                 }
-                System.Diagnostics.Debug.WriteLine("idproducto:" + obj.id_prod + "precio:" + obj.precio );
+
+                Session["subtotal"] = Convert.ToDouble(Session["subtotal"]) + obj.precio;
+                System.Diagnostics.Debug.WriteLine("idproducto:" + obj.id_prod + "precio:" + obj.precio + "total" + Convert.ToDouble(Session["subtotal"]));
+
             }
             
 
 
-
+             
             return View();
         }
 
@@ -189,27 +192,39 @@ namespace Carrito_Compras.Controllers
 
         public ActionResult Carrito()
         {
+
+         
             ViewBag.detalles = Obtener.Detalles(Convert.ToInt32(Session["CarritoId"]));
+            ViewBag.prods = Obtener.Productos();
+
             LinkedList<Detalle_Carrito> detalle = Obtener.Detalles(Convert.ToInt32(Session["CarritoId"]));
             LinkedList<Producto> prods = Obtener.Productos();
-            foreach (var obj in detalle){
-                  foreach (var obj2 in prods){
-
-               
-           if (obj.id_prod.Equals(obj2.id))
-        {
-            foreach (var img in obj2.imagenes)
+            foreach (var obj in detalle)
             {
-                System.Diagnostics.Debug.WriteLine("foto:" +img);
-                break;
-              
-            }
-        }
-  
-            }
-                  System.Diagnostics.Debug.WriteLine("idproducto:" + obj.id_prod + "precio:" + obj.precio );
+                foreach (var obj2 in prods)
+                {
+
+
+                    if (obj.id_prod.Equals(obj2.id))
+                    {
+                        foreach (var img in obj2.imagenes)
+                        {
+                            System.Diagnostics.Debug.WriteLine("foto:" + img);
+                            break;
+
+                        }
+                    }
+
+                }
+
+                Session["subtotal"] = Convert.ToDouble(Session["subtotal"]) + obj.precio;
+                System.Diagnostics.Debug.WriteLine("idproducto:" + obj.id_prod + "precio:" + obj.precio + "total" + Convert.ToDouble(Session["subtotal"]));
+
             }
             
+
+
+
             return View();
         }
 
