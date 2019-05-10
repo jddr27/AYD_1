@@ -16,13 +16,14 @@ namespace Carrito_Compras.Models
         public string direccion { get; set; }
         public string foto { get; set; }        
         public int rol { get; set; } //1=admin, 2=empleado, 3=cliente
-        public string rol_name{ get; set; } 
+        public string rol_name{ get; set; }
+        public string estado { get; set; }
         public string resultado { get; set; }
 
         private static bool connection_open;
         private static MySqlConnection connection;
 
-        public Usuario(int id, string nombres,string apellidos,string correo,string direccion,int rol,string foto)
+        public Usuario(int id, string nombres,string apellidos,string correo,string direccion,int rol,string foto,string estado)
         {
             this.id = id;
             this.nombres = nombres;
@@ -31,6 +32,7 @@ namespace Carrito_Compras.Models
             this.direccion = direccion;
             this.rol = rol;
             this.foto = foto;
+            this.estado = estado;
             
         }
 
@@ -185,7 +187,8 @@ namespace Carrito_Compras.Models
             string correo;
             string direccion;
             int rol;
-            string foto; 
+            string foto;
+            string estado;
             LinkedList<Usuario> lista = new LinkedList<Usuario>();
             Get_Connection();
             try
@@ -223,12 +226,16 @@ namespace Carrito_Compras.Models
                             foto = reader.GetString(7);
                         else
                             foto = null;
+                        if (reader.IsDBNull(8) == false)
+                            estado = reader.GetString(8);
+                        else
+                            estado = null;
                         if (reader.IsDBNull(0) == false)
                             id = int.Parse(reader.GetString(0));
                         else
                             id = -1;
                         
-                        lista.AddLast(new Usuario(id,nombres,apellidos,correo,direccion,rol,foto));
+                        lista.AddLast(new Usuario(id,nombres,apellidos,correo,direccion,rol,foto,estado));
                     }
                 }
                 else
@@ -250,7 +257,7 @@ namespace Carrito_Compras.Models
             return null;
         }
 
-        public static int EditarCliente(string id, string correo ,string nombres,string apellidos ,string direccion,string rol ,string foto)
+        public static int EditarCliente(string id, string correo ,string nombres,string apellidos ,string direccion,string rol ,string foto,string estado)
         {
 
             Get_Connection();
@@ -258,7 +265,7 @@ namespace Carrito_Compras.Models
             {
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = connection;
-                string cadena = "call EditarC("+id+",'"+correo+"','"+nombres+"','"+apellidos+"','"+direccion+"',"+rol+",'"+foto+"');";
+                string cadena = "call EditarC("+id+",'"+correo+"','"+nombres+"','"+apellidos+"','"+direccion+"',"+rol+",'"+foto+"','"+estado+"');";
 
 
                 cmd.CommandText = string.Format(cadena);

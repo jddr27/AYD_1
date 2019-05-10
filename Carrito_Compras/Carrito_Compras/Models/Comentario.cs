@@ -16,6 +16,7 @@ namespace Carrito_Compras.Models
         public string fecha_comentario { get; set; }
         public int valoracion_comentario { get; set; }    
         public Usuario usuario { get; set; }
+        public Producto producto { get; set; }
 
         private static bool connection_open;
         private static MySqlConnection connection;

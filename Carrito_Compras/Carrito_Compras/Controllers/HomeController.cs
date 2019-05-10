@@ -6,6 +6,8 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using Carrito_Compras.Models;
+using Carrito_Compras.Clase_Reportes;
+
 namespace Carrito_Compras.Controllers
 {
     public class HomeController : Controller
@@ -228,10 +230,16 @@ namespace Carrito_Compras.Controllers
             return View();
         }
 
+        public ActionResult Reporte1() {
+            ReporteComentarios reporte = new ReporteComentarios();
+            byte[] abytes = reporte.PrepareReport();
+            return File(abytes, "application/pdf");
+
+        }
+
         public ActionResult Descripcion(int id,double precio)
         {
-            LinkedList<Comentario> Reseña = new LinkedList<Comentario>();
-            
+            LinkedList<Comentario> Reseña = new LinkedList<Comentario>();            
 
             ViewBag.prods = Obtener.Productos();
             ViewBag.idProducto = id;           
@@ -463,16 +471,13 @@ namespace Carrito_Compras.Controllers
 
 
             LinkedList<Usuario> usuarios = new LinkedList<Usuario>();
-
             Usuario l = new Usuario();
-
             foreach (var obj in l.ObtenerUsuario())
             {
                 //Agregamos a la lista
                 usuarios.AddLast(obj);
 
             }
-
             ViewBag.Cliente= usuarios;
             return View();
         }
@@ -497,9 +502,10 @@ namespace Carrito_Compras.Controllers
             string direccion = Request["direccion"].ToString();
             string rol = Request["rol"].ToString();
             string url = Request["url"].ToString();
+            string estado = Request["estado"].ToString();
 
 
-            int resultado = Usuario.EditarCliente(id, correo, nombres, apellidos, direccion, rol,url);
+            int resultado = Usuario.EditarCliente(id, correo, nombres, apellidos, direccion, rol,url,estado);
             TempData["resultado"] = resultado.ToString();
             TempData["ambito"] = "EditC";
 
@@ -545,9 +551,29 @@ namespace Carrito_Compras.Controllers
 
         public ActionResult DashBoard()
         {
-            ViewBag.Message = "Your contact page.";
+
+            LinkedList<Comentario> Comentarios = new LinkedList<Comentario>();            
+            foreach (var obj in Comentario.ObtenerReseña())
+            {                
+                Comentarios.AddLast(obj);
+            }
+            foreach (Comentario obj in Comentarios)
+            {
+                var usu = new Usuario(obj.usuario_comentario);
+                obj.usuario = usu;
+            }
+
+            foreach (Comentario obj in Comentarios)
+            {
+                var producto = new Producto(obj.producto_comentario);
+                obj.producto =producto;
+            }
+
+            ViewBag.Comentarios = Comentarios;            
 
             return View();
+
+            
         }
 
         public ActionResult Operacion()
