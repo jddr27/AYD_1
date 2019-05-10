@@ -154,7 +154,9 @@ namespace Carrito_Compras.Controllers
                
                 
                 ViewBag.Listado = Obtener.Productos();
-               
+                ViewBag.prueba = Session["id_user"].ToString();
+
+
             }
             return View();
 
