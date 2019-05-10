@@ -214,8 +214,10 @@
                                 </div>
                             </div>
 
+            @if(@Session["UserName"]!=null)
+                                                {
 
-                            @using (Ajax.BeginForm("Detalle2", "Home", new AjaxOptions { UpdateTargetId = "info_login" }))
+                            using (Ajax.BeginForm("Detalle2", "Home", new AjaxOptions { UpdateTargetId = "info_login" }))
         {
 
                                 <div id ="info_login" class="row mt-3 mb-4">
@@ -247,6 +249,10 @@
 
 
         }
+                                                }
+                                                
+
+
                         </div>
                     </section>
                     <!-- /.Add to Cart -->

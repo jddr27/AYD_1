@@ -38,13 +38,13 @@ namespace Carrito_Compras.Controllers
        
 
        
-        public ActionResult detalles(int prod, double precio,int comprando)
+        public ActionResult detalles(int prod, double precio)
         {
             int carrito = Convert.ToInt32(Session["CarritoId"]);
             Agregar.DetalleCarritoRapido(carrito,prod, precio);
             if(Agregar.resultado.Equals("exito"))
             {
-                Session["Comprando"] = comprando;
+               
                 ViewBag.idx = "Se agrego el producto al carrito";
                 System.Diagnostics.Debug.WriteLine(Agregar.resultado);
                 ViewBag.Listado = Obtener.Productos();
@@ -52,9 +52,11 @@ namespace Carrito_Compras.Controllers
                 return View("Principal");
             }
             else{
-                StringBuilder sbInterest = new StringBuilder();
-                sbInterest.Append("<br><b>Error:</b> " + Agregar.resultado + "<br/>");
-                return Content(sbInterest.ToString());
+                //StringBuilder sbInterest = new StringBuilder();
+              //  sbInterest.Append("<br><b>Error:</b> " + Agregar.resultado + "<br/>");
+
+                return RedirectToAction("Descripcion", new { id = prod, precio = precio });
+               // return Content(sbInterest.ToString());
             }
         }
 
@@ -343,9 +345,10 @@ namespace Carrito_Compras.Controllers
             else
             {
                 //Sino Existe el  Usuario Se Muestra un  Mensaje
-                StringBuilder sbInterest = new StringBuilder();
-                sbInterest.Append("<br><b>Error:</b> " + usu.resultado + "<br/>");
-                return Content(sbInterest.ToString());
+                //StringBuilder sbInterest = new StringBuilder();
+                //sbInterest.Append("<br><b>Error:</b> " + usu.resultado + "<br/>");
+                ViewBag.error = 0;
+                return View("Login");
             }
         }
 
