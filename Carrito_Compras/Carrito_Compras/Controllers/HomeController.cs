@@ -227,7 +227,6 @@ namespace Carrito_Compras.Controllers
 
               
                 Session["subtotal"] = Convert.ToDouble(Session["subtotal"]) + obj.precio;
-            
                 System.Diagnostics.Debug.WriteLine("idproducto:" + obj.id_prod + "precio:" + obj.precio + "total" + Convert.ToDouble(Session["subtotal"]));
 
             }
@@ -840,12 +839,13 @@ namespace Carrito_Compras.Controllers
             LinkedList<Marca> lista = new LinkedList<Marca>();
             foreach (var obj in Marca.ObtenerMarca())
             {
+               
                 //Agregamos a la lista
                 lista.AddLast(obj);
             }
            
             ViewBag.Listado = lista;
-            return RedirectToAction("Principal", "Home");
+            return View("Principal");
         }
         public ActionResult Categorias()
         {
