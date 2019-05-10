@@ -6,7 +6,7 @@
 
     <div>
 
-        <h4>Usuario: @Session["UserName"]</h4>
+        <h4>@Session["id_user"]</h4>
 
     </div>
 
@@ -14,13 +14,6 @@
 
     @if (@ViewBag.compras != 0)
     {
-        
-         <div>
-
-        
-        <h4>Total: @Session["subtotal"]</h4>
-
-       </div>
 
         <div class="container">
 
@@ -98,7 +91,7 @@
                                         </td>
                                         <td>
                                             <button type="button" class="btn btn-sm btn-primary waves-effect waves-light" data-toggle="tooltip" data-placement="top" data-original-title=" remove item">
-                                                <a href="@Url.Action("Eliminar", "Home", new {id =@obj.id_prod})" class="white-text">X</a>
+                                                <a href="@Url.Action("EliminarDetalle", "Home", new {id =@obj.id})" class="white-text">X</a>
                                             </button>
 
 
@@ -128,6 +121,5 @@
     <div>
 
         <h4>No hay compras</h4>
-        <h4>Total: @Session["subtotal"]</h4>
 
     </div>
