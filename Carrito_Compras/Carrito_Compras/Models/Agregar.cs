@@ -307,6 +307,7 @@ namespace Carrito_Compras.Models
 
             connection.Close();
         }
+
         public static int AgregarReseña(string idUser,string idProducto,string reseña,string valoracion)
         {
 
