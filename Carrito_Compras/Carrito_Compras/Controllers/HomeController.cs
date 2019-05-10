@@ -771,6 +771,7 @@ namespace Carrito_Compras.Controllers
             foreach (var obj in Promocion.ObtenerPromo())
             { //Agregamos a la lista
                 lista.AddLast(obj);
+
             }
             ViewBag.Listado = lista;
             return RedirectToAction("Principal", "Home");
