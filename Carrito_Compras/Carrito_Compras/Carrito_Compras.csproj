@@ -313,6 +313,7 @@
     <Content Include="Views\Home\Carga.cshtml" />
     <Content Include="Views\Shared\Operacion.cshtml" />
     <Content Include="Views\Home\EdicionProducto.cshtml" />
+    <Content Include="Views\Home\MiCuenta.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

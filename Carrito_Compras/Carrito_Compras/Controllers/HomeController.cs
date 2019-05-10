@@ -33,45 +33,9 @@ namespace Carrito_Compras.Controllers
             return View();
         }
 
-        //seguir comprando
+       
 
-        public ActionResult carrito2()
-        {
-            Session["total"] =0;
-            ViewBag.detalles = Obtener.Detalles(Convert.ToInt32(Session["CarritoId"]));
-            ViewBag.prods = Obtener.Productos();
-
-            LinkedList<Detalle_Carrito> detalle = Obtener.Detalles(Convert.ToInt32(Session["CarritoId"]));
-            LinkedList<Producto> prods = Obtener.Productos();
-            foreach (var obj in detalle)
-            {
-                foreach (var obj2 in prods)
-                {
-
-
-                    if (obj.id_prod.Equals(obj2.id))
-                    {
-                        foreach (var img in obj2.imagenes)
-                        {
-                            System.Diagnostics.Debug.WriteLine("foto:" + img);
-                            break;
-
-                        }
-                    }
-
-                }
-
-                Session["subtotal"] = Convert.ToDouble(Session["subtotal"]) + obj.precio;
-                System.Diagnostics.Debug.WriteLine("idproducto:" + obj.id_prod + "precio:" + obj.precio + "total" + Convert.ToDouble(Session["subtotal"]));
-
-            }
-            
-
-
-             
-            return View();
-        }
-
+       
         public ActionResult detalles(int prod, double precio)
         {
             int carrito = Convert.ToInt32(Session["CarritoId"]);
@@ -770,11 +734,78 @@ namespace Carrito_Compras.Controllers
 
             return View();
 
-
-            
-
         }
+
+        public ActionResult MiCuenta()
+        {
+
+            if (Session["id_user"]!=null)
+            {
+          
+            int user = Convert.ToInt32(Session["id_user"]);
+            Usuario usuario = new Usuario(user);
+            ViewBag.email = usuario.correo;
+            ViewBag.nombres = usuario.nombres;
+            ViewBag.apellidos = usuario.apellidos;
+            ViewBag.direccion = usuario.direccion;
+            ViewBag.foto = usuario.foto;
+                  }
+            else
+            {
+
+                return RedirectToAction("Principal", "Home");
+            }
+            
+            return View();
+        }
+
+
+        public ActionResult Marcas()
+        {
+
+            LinkedList<Marca> lista = new LinkedList<Marca>();
+            foreach (var obj in Marca.ObtenerMarca())
+            {
+                //Agregamos a la lista
+                lista.AddLast(obj);
+            }
+           
+            ViewBag.Listado = lista;
+            return RedirectToAction("Principal", "Home");
+        }
+        public ActionResult Categorias()
+        {
+            LinkedList<Categoria> lista = new LinkedList<Categoria>();
+            foreach (var obj in Categoria.ObtenerCategoria())
+            { //Agregamos a la lista
+                lista.AddLast(obj);
+            }
+
+            ViewBag.Listado = lista;
+            return RedirectToAction("Principal", "Home");
+        }
+
+        public ActionResult Promociones()
+        {
+            LinkedList<Promocion> lista = new LinkedList<Promocion>();
+            foreach (var obj in Promocion.ObtenerPromo())
+            { //Agregamos a la lista
+                lista.AddLast(obj);
+
+            }
+            ViewBag.Listado = lista;
+            return RedirectToAction("Principal", "Home");
+        }
+
+        /*public ActionResult Ofertas()
+        {
+            LinkedList<Promocion> lista = new LinkedList<Promocion>();
+            foreach (var obj in Promocion.ObtenerPromo())
+            { //Agregamos a la lista
+                lista.AddLast(obj);
+            }
+            ViewBag.Listado = lista;
+            return View();
+        }*/
     }
-
-
 }
