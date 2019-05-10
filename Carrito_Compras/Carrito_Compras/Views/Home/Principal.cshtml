@@ -1,10 +1,10 @@
 ﻿@model IList<Carrito_Compras.Models.Producto>
-    @{
-        Layout = "~/Views/Shared/Layout1.cshtml";
-    }
+@{
+    Layout = "~/Views/Shared/Layout1.cshtml";
+}
 
-
-                @if (@ViewBag.contador!=null && @ViewBag.contador == 0)
+<!--
+               @if (@ViewBag.contador!=null && @ViewBag.contador == 0)
                 {
                     //Si no hay productos al buscar  Mostramos mensaje en la pantalla
                     <div class="alert alert-info">
@@ -34,55 +34,53 @@
         <li>Ruta: @idI</li>
 
         }
-       
+
         <br />
         @Html.ActionLink("Agregar", "Carrito", new { id = @obj.id })
 
     }
 
 </div>
-               
-              
-    <!-- /Mega menu -->
-    <!-- /.Main Container -->
-    <div class="container">
-        <div class="row pt-4">
+   -->
+<!-- /Mega menu -->
+<!-- /.Main Container -->
+<div class="container">
+    <div class="row pt-4">
 
-            <!-- Content -->
-            <div class="col-lg-12">
+        <!-- Content -->
+        <div class="col-lg-12">
 
 
-                <!-- /.Filter Area -->
-                <!-- Products Grid -->
-                <section class="section pt-4">
+            <!-- /.Filter Area -->
+            <!-- Products Grid -->
+            <section class="section pt-4">
 
-                    <!-- Grid row -->
-                    <div class="row">
+                <!-- Grid row -->
+                <div class="row">
 
-                        @foreach (var obj in @ViewBag.Listado)
-                        {
-                            <div class="col-lg-4 col-md-6 mb-4">
-                                <!--Card-->
-                                <div class="card card-ecommerce">
+                    @foreach (var obj in @ViewBag.Listado)
+                    {
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <!--Card-->
+                            <div class="card card-ecommerce">
 
-                                    <!--Card image-->
-                                    <div class="view overlay">
-                                        @foreach (var img in @obj.imagenes)
-                                        {
+                                <!--Card image-->
+                                <div class="view overlay">
+                                    @foreach (var img in @obj.imagenes)
+                                    {
                                         <img src=@img class="img-fluid" alt="">
-                                            break;
-                                        }
+                                        break;
+                                    }
 
-                                        
-                                        <a>
-                                            <div class="mask rgba-white-slight">
-                                                <ul>
-                                                    <li>
-                                                        @obj.descripcion
-                                                    </li>
 
-                                                </ul>
+                                    <a>
+                                        <div class="mask rgba-white-slight">
+                                            <ul>
+                                                <li>
+                                                    @obj.descripcion
+                                                </li>
 
+                                            </ul>
 
                                             </div>
                                         </a>
@@ -124,6 +122,7 @@
                                                                      alert("@ViewBag.idx");
                                                             };
 
+
                                                            
                                                         </script>
                                                     }
@@ -142,35 +141,44 @@
 
 
 
+                                                    </script>
+                                                }
+
+
                                             </div>
                                         </div>
 
+
+                                            </span>
+                                        </div>
                                     </div>
-                                    <!--Card content-->
 
                                 </div>
-                                <!--Card-->
-
+                                <!--Card content-->
 
                             </div>
-
-                        }
-
-                    </div>
+                            <!--Card-->
 
 
+                        </div>
+
+                    }
+
+                </div>
 
 
 
 
 
-                    <!--Grid row-->
-                </section>
-                <!-- /.Products Grid -->
 
-            </div>
-            <!-- /.Content -->
+
+                <!--Grid row-->
+            </section>
+            <!-- /.Products Grid -->
 
         </div>
+        <!-- /.Content -->
+
     </div>
-    <!-- /.Main Container -->
+</div>
+<!-- /.Main Container -->

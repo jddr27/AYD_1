@@ -9,7 +9,7 @@ using System.Web;
 
 namespace Carrito_Compras.Clase_Reportes
 {
-    public class ReporteComentarios
+    public class ReporteUsuarios
     {
         #region declaration
         int total_column = 5;
@@ -19,7 +19,8 @@ namespace Carrito_Compras.Clase_Reportes
         PdfPCell pdfCell;
         MemoryStream memoryStream = new MemoryStream();
 
-        public byte[] PrepareReport() {
+        public byte[] PrepareReport()
+        {
 
             #region
             document = new Document(PageSize.A4, 0f, 0f, 0f, 0f);
@@ -30,7 +31,7 @@ namespace Carrito_Compras.Clase_Reportes
             fontStyle = FontFactory.GetFont("Tahoma", 8f, 1);
             PdfWriter.GetInstance(document, memoryStream);
             document.Open();
-            pdftable.SetWidths(new float[] {100f,100f,200f,150f,100f});
+            pdftable.SetWidths(new float[] { 100f, 100f, 200f, 150f, 100f });
             #endregion
 
             this.ReportHeader();
@@ -39,7 +40,7 @@ namespace Carrito_Compras.Clase_Reportes
             document.Add(pdftable);
             document.Close();
             return memoryStream.ToArray();
-            
+
 
         }
 
@@ -47,33 +48,33 @@ namespace Carrito_Compras.Clase_Reportes
         {
             #region TableHeader
 
-            fontStyle = FontFactory.GetFont("Tahoma",10f, 1);
-            pdfCell = new PdfPCell(new Phrase("Usuario", fontStyle));            
+            fontStyle = FontFactory.GetFont("Tahoma", 10f, 1);
+            pdfCell = new PdfPCell(new Phrase("Nombres", fontStyle));
             pdfCell.HorizontalAlignment = Element.ALIGN_CENTER;
-            pdfCell.VerticalAlignment = Element.ALIGN_MIDDLE;            
-            pdfCell.BackgroundColor = BaseColor.LIGHT_GRAY;            
+            pdfCell.VerticalAlignment = Element.ALIGN_MIDDLE;
+            pdfCell.BackgroundColor = BaseColor.LIGHT_GRAY;
             pdftable.AddCell(pdfCell);
 
-            pdfCell = new PdfPCell(new Phrase("Producto", fontStyle));
+            pdfCell = new PdfPCell(new Phrase("Apellidos", fontStyle));
             pdfCell.HorizontalAlignment = Element.ALIGN_CENTER;
             pdfCell.VerticalAlignment = Element.ALIGN_MIDDLE;
             pdfCell.BackgroundColor = BaseColor.LIGHT_GRAY;
             pdftable.AddCell(pdfCell);
 
 
-            pdfCell = new PdfPCell(new Phrase("Comentario", fontStyle));
+            pdfCell = new PdfPCell(new Phrase("E-mail", fontStyle));
             pdfCell.HorizontalAlignment = Element.ALIGN_CENTER;
             pdfCell.VerticalAlignment = Element.ALIGN_MIDDLE;
             pdfCell.BackgroundColor = BaseColor.LIGHT_GRAY;
             pdftable.AddCell(pdfCell);
 
-            pdfCell = new PdfPCell(new Phrase("Fecha", fontStyle));
+            pdfCell = new PdfPCell(new Phrase("Dirección", fontStyle));
             pdfCell.HorizontalAlignment = Element.ALIGN_CENTER;
             pdfCell.VerticalAlignment = Element.ALIGN_MIDDLE;
             pdfCell.BackgroundColor = BaseColor.LIGHT_GRAY;
             pdftable.AddCell(pdfCell);
 
-            pdfCell = new PdfPCell(new Phrase("Valoracion", fontStyle));
+            pdfCell = new PdfPCell(new Phrase("Rol", fontStyle));
             pdfCell.HorizontalAlignment = Element.ALIGN_CENTER;
             pdfCell.VerticalAlignment = Element.ALIGN_MIDDLE;
             pdfCell.BackgroundColor = BaseColor.LIGHT_GRAY;
@@ -83,34 +84,50 @@ namespace Carrito_Compras.Clase_Reportes
 
             #region table body
             fontStyle = FontFactory.GetFont("Tahoma", 10f, 0);
-            foreach (var obj in this.RecorreComentarios()) {
+            foreach (var obj in this.RecorrerUsuarios())
+            {
 
-                pdfCell = new PdfPCell(new Phrase(obj.usuario.nombres.ToString(), fontStyle));
+                pdfCell = new PdfPCell(new Phrase(obj.nombres.ToString(), fontStyle));
                 pdfCell.HorizontalAlignment = Element.ALIGN_CENTER;
                 pdfCell.VerticalAlignment = Element.ALIGN_MIDDLE;
                 pdfCell.BackgroundColor = BaseColor.WHITE;
                 pdftable.AddCell(pdfCell);
 
 
-                pdfCell = new PdfPCell(new Phrase(obj.producto.nombre.ToString(), fontStyle));
+                pdfCell = new PdfPCell(new Phrase(obj.apellidos.ToString(), fontStyle));
                 pdfCell.HorizontalAlignment = Element.ALIGN_CENTER;
                 pdfCell.VerticalAlignment = Element.ALIGN_MIDDLE;
                 pdfCell.BackgroundColor = BaseColor.WHITE;
                 pdftable.AddCell(pdfCell);
 
-                pdfCell = new PdfPCell(new Phrase(obj.texto_comentario.ToString(), fontStyle));
+                pdfCell = new PdfPCell(new Phrase(obj.correo.ToString(), fontStyle));
                 pdfCell.HorizontalAlignment = Element.ALIGN_LEFT;
                 pdfCell.VerticalAlignment = Element.ALIGN_MIDDLE;
                 pdfCell.BackgroundColor = BaseColor.WHITE;
                 pdftable.AddCell(pdfCell);
 
-                pdfCell = new PdfPCell(new Phrase(obj.fecha_comentario.ToString(), fontStyle));
+                pdfCell = new PdfPCell(new Phrase(obj.direccion.ToString(), fontStyle));
                 pdfCell.HorizontalAlignment = Element.ALIGN_LEFT;
                 pdfCell.VerticalAlignment = Element.ALIGN_MIDDLE;
                 pdfCell.BackgroundColor = BaseColor.WHITE;
                 pdftable.AddCell(pdfCell);
 
-                pdfCell = new PdfPCell(new Phrase(obj.valoracion_comentario.ToString(), fontStyle));
+                string rol="";
+                if (obj.rol == 1)
+                {
+                    rol = "Administrador";
+                }
+                else if (obj.rol == 2)
+                {
+                    rol = "Empleado";
+                }
+                else if (obj.rol == 3)
+                {
+                    rol = "Empleado";
+                }
+            
+
+                pdfCell = new PdfPCell(new Phrase(rol, fontStyle));
                 pdfCell.HorizontalAlignment = Element.ALIGN_CENTER;
                 pdfCell.VerticalAlignment = Element.ALIGN_MIDDLE;
                 pdfCell.BackgroundColor = BaseColor.WHITE;
@@ -124,7 +141,7 @@ namespace Carrito_Compras.Clase_Reportes
         private void ReportHeader()
         {
             fontStyle = FontFactory.GetFont("Tahoma", 18f, 1);
-            pdfCell = new PdfPCell(new Phrase("UNIVERSIDAD DE SAN CARLOS", fontStyle));
+            pdfCell = new PdfPCell(new Phrase("UNIVERSIDAD DE SAN CARLOS DE GUATEMALA", fontStyle));
             pdfCell.Colspan = total_column;
             pdfCell.HorizontalAlignment = Element.ALIGN_CENTER;
             pdfCell.Border = 0;
@@ -133,7 +150,7 @@ namespace Carrito_Compras.Clase_Reportes
             pdftable.AddCell(pdfCell);
             pdftable.CompleteRow();
 
-            fontStyle = FontFactory.GetFont("Tahoma", 18f, 1);
+            fontStyle = FontFactory.GetFont("Tahoma", 16f, 1);
             pdfCell = new PdfPCell(new Phrase("PROYECTO AYD1-TIENDA EN LINEA", fontStyle));
             pdfCell.Colspan = total_column;
             pdfCell.HorizontalAlignment = Element.ALIGN_CENTER;
@@ -143,9 +160,8 @@ namespace Carrito_Compras.Clase_Reportes
             pdftable.AddCell(pdfCell);
             pdftable.CompleteRow();
 
-
             fontStyle = FontFactory.GetFont("Tahoma", 12f, 1);
-            pdfCell = new PdfPCell(new Phrase("Lista de Comentarios", fontStyle));
+            pdfCell = new PdfPCell(new Phrase("Reporte de Usuarios", fontStyle));
             pdfCell.Colspan = total_column;
             pdfCell.HorizontalAlignment = Element.ALIGN_CENTER;
             pdfCell.Border = 0;
@@ -153,32 +169,28 @@ namespace Carrito_Compras.Clase_Reportes
             pdfCell.ExtraParagraphSpace = 0;
             pdftable.AddCell(pdfCell);
             pdftable.CompleteRow();
-        }
-
-        public LinkedList<Comentario> RecorreComentarios() {
-            LinkedList<Comentario> Comentarios = new LinkedList<Comentario>();
-            foreach (var obj in Comentario.ObtenerReseña())
-            {
-                Comentarios.AddLast(obj);
-            }
-            foreach (Comentario obj in Comentarios)
-            {
-                var usu = new Usuario(obj.usuario_comentario);
-                obj.usuario = usu;
-            }
-
-            foreach (Comentario obj in Comentarios)
-            {
-                var producto = new Producto(obj.producto_comentario);
-                obj.producto = producto;
-            }
-            return Comentarios;
-        }
-
-
-        
 
             
+        }
+
+        public LinkedList<Usuario> RecorrerUsuarios()
+        {
+            LinkedList<Usuario> usuarios = new LinkedList<Usuario>();
+            Usuario l = new Usuario();
+            foreach (var obj in l.ObtenerUsuario())
+            {
+                //Agregamos a la lista
+                usuarios.AddLast(obj);
+
+            }
+            
+            return usuarios;
+        }
+
+
+
+
+
         #endregion
 
     }
