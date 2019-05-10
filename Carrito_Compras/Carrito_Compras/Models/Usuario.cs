@@ -16,14 +16,14 @@ namespace Carrito_Compras.Models
         public string direccion { get; set; }
         public string foto { get; set; }        
         public int rol { get; set; } //1=admin, 2=empleado, 3=cliente
-        public string rol_name{ get; set; }
+        public string rol_name { get; set; } 
         public string estado { get; set; }
         public string resultado { get; set; }
 
         private static bool connection_open;
         private static MySqlConnection connection;
 
-        public Usuario(int id, string nombres,string apellidos,string correo,string direccion,int rol,string foto,string estado)
+        public Usuario(int id, string nombres,string apellidos,string correo,string direccion,int rol,string foto, string estado)
         {
             this.id = id;
             this.nombres = nombres;
@@ -33,7 +33,6 @@ namespace Carrito_Compras.Models
             this.rol = rol;
             this.foto = foto;
             this.estado = estado;
-            
         }
 
         public Usuario(int arg_id)
@@ -45,7 +44,7 @@ namespace Carrito_Compras.Models
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = connection;
                 cmd.CommandText = string.Format("SELECT nombres_usuario, apellidos_usuario, password_usuario, correo_usuario,"
-                    + " direccion_usuario, rol_usuario, foto_usuario FROM Usuario WHERE id_usuario = '{0}'", id);
+                    + " direccion_usuario, rol_usuario, foto_usuario, estado_usuario FROM Usuario WHERE id_usuario = '{0}'", id);
                 MySqlDataReader reader = cmd.ExecuteReader();
 
                 try
@@ -79,6 +78,10 @@ namespace Carrito_Compras.Models
                         foto = reader.GetString(6);
                     else
                         foto = null;
+                    if (reader.IsDBNull(7) == false)
+                        estado = reader.GetString(7);
+                    else
+                        estado = null;
                     reader.Close();
 
                 }
@@ -89,7 +92,7 @@ namespace Carrito_Compras.Models
                     //MessageBox.Show(MessageString, "SQL Read Error");
                     reader.Close();
                     nombres = MessageString;
-                    apellidos = encriptada = correo = direccion = null;
+                    apellidos = encriptada = correo = direccion = estado = null;
                 }
             }
             catch (MySqlException e)
@@ -97,7 +100,7 @@ namespace Carrito_Compras.Models
                 string MessageString = "The following error occurred loading the Column details: "
                     + e.ErrorCode + " - " + e.Message;
                 nombres = MessageString;
-                apellidos = encriptada = correo = direccion = null;
+                apellidos = encriptada = correo = direccion = estado = null;
             }
 
             connection.Close();
@@ -112,7 +115,7 @@ namespace Carrito_Compras.Models
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = connection;
                 cmd.CommandText = string.Format("SELECT nombres_usuario, apellidos_usuario, password_usuario, id_usuario,"
-                    + " direccion_usuario, rol_usuario FROM Usuario WHERE correo_usuario = '{0}'", correo);
+                    + " direccion_usuario, rol_usuario, estado_usuario FROM Usuario WHERE correo_usuario = '{0}'", correo);
                 MySqlDataReader reader = cmd.ExecuteReader();
 
                 try
@@ -142,7 +145,10 @@ namespace Carrito_Compras.Models
                         rol = int.Parse(reader.GetString(5));
                     else
                         rol = -1;
-
+                    if (reader.IsDBNull(6) == false)
+                        estado = reader.GetString(6);
+                    else
+                        estado = null;
                     string[] aux = encriptada.Split(',');
                     byte[] arreglo = new byte[aux.Length];
                     for (int i = 0; i < aux.Length; i++)
@@ -151,6 +157,7 @@ namespace Carrito_Compras.Models
                     }
                     Encriptador enc = new Encriptador(arreglo);
                     resultado = !enc.des.Equals(arg_pas) ? "Contraseña inválida" : "exito";
+                    resultado = !estado.Equals("activo") ? "Usuario fue dado de baja" : "exito";
                     reader.Close();
 
                 }

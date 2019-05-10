@@ -225,6 +225,7 @@
     <Compile Include="Models\Categoria.cs" />
     <Compile Include="Models\Comentario.cs" />
     <Compile Include="Models\Detalle_Carrito.cs" />
+    <Compile Include="Models\Editar.cs" />
     <Compile Include="Models\Eliminar.cs" />
     <Compile Include="Models\Encriptador.cs" />
     <Compile Include="Models\Estado.cs" />
@@ -317,7 +318,7 @@
     <Content Include="Views\Home\Carga.cshtml" />
     <Content Include="Views\Shared\Operacion.cshtml" />
     <Content Include="Views\Home\EdicionProducto.cshtml" />
-    <Content Include="Views\Home\carrito2.cshtml" />
+    <Content Include="Views\Home\MiCuenta.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

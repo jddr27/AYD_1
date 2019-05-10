@@ -7,7 +7,7 @@ using System.Web;
 
 namespace Carrito_Compras.Models
 {
-    public static class Eliminar
+    public static class Editar
     {
         public static string resultado { get; set; }
 
@@ -43,23 +43,20 @@ namespace Carrito_Compras.Models
             }
         }
 
-        public static void Detalle_Carrito(int id)
+        public static string TerminarCarrito(int id)
         {
             Get_Connection();
             try
             {
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = connection;
-                cmd.CommandText = string.Format("DELETE FROM `Detalle_Carrito` WHERE `id_detalle_carrito` = " + id + ";");
+                cmd.CommandText = string.Format("UPDATE `Carrito` SET `estado_carrito` = 2 WHERE `id_carrito` = " + id + ";");
                 MySqlDataReader reader = cmd.ExecuteReader();
-
                 try
                 {
                     reader.Read();
-                    resultado = "exito";
-                    Console.WriteLine(reader.ToString());
                     reader.Close();
-
+                    resultado = "exito";
                 }
                 catch (MySqlException e)
                 {
@@ -77,6 +74,7 @@ namespace Carrito_Compras.Models
             }
 
             connection.Close();
+            return "exito";
         }
     }
 }
