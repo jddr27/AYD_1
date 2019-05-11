@@ -401,7 +401,7 @@
                 </button>
             </div>
 
-            @if (ViewBag.idUser == null)
+            @if (Session["id_user"] == null)
             {
 
                 <div class="modal-body mx-3">
@@ -414,7 +414,8 @@
             }
             else
             {
-                if (@ViewBag.Valor == 1)
+
+                if (ViewBag.result>=1)
                 {
                     using (Ajax.BeginForm("AgregarReseña", "Home", new AjaxOptions { UpdateTargetId = "EditarCliente" }, new { @class = "" }))
                     {
@@ -454,9 +455,9 @@
                 {
                     <div class="modal-body mx-3">
                         <div class="md-form mb-5">
-                            <h1>Para escribir una reseña sobre este producto debió haberlo comprado con anterioridad!</h1>
+                            <h1>Para escribir una reseña sobre este producto debió haberlo comprado con anterioridad! @ViewBag.result </h1>
 
-                        </div>
+</div>
 
                     </div>
 

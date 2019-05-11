@@ -114,13 +114,8 @@ else if (@ViewBag.Ambito == "EditC" || @ViewBag.Ambito == "AddUser")
 }
 else if (@ViewBag.Ambito == "AddR")
 {
-    string concatenarUrl = String.Concat("Descripcion/", @ViewBag.Id_Producto, "?precio=",ViewBag.precio);
 
-    using (Ajax.BeginForm(concatenarUrl, "Home", new AjaxOptions { UpdateTargetId = "AddR" }, new { @class = "text-center border border-light p-5" }))
-    {
-        <button class="btn btn-info btn-block my-4" type="submit">Regresar a Descripcion!</button>
-    }
-
+        <a href="@Url.Action("Descripcion", "Home", new { id = @ViewBag.Id_Producto,precio=ViewBag.precio})" class="btn btn-info btn-block my-4">Regresar a Descripcion!</a>
 
 
 }

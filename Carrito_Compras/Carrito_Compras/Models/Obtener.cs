@@ -373,5 +373,51 @@ namespace Carrito_Compras.Models
                 return -1;
             }
         }
+
+        public static string VentasTotales()
+        {
+            int ventas;
+            int numero_ventas;
+            Get_Connection();
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = connection;
+                cmd.CommandText = string.Format("Select SUM(Facturacion.total_facturacion),count(*) from Facturacion;");
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                try
+                {
+                    reader.Read();
+                    if (reader.IsDBNull(0) == false)
+                        ventas = int.Parse(reader.GetString(0));
+                    else
+                        ventas = -1;
+                    if (reader.IsDBNull(1) == false)
+                        numero_ventas = int.Parse(reader.GetString(1));
+                    else
+                        numero_ventas = -1;
+
+                    reader.Close();
+                    connection.Close();
+                    return string.Concat(ventas,"|",numero_ventas);
+                }
+                catch (MySqlException e)
+                {
+                    string MessageString = "Read error occurred  / entry not found loading the Column details: "
+                        + e.ErrorCode + " - " + e.Message + "; \n\nPlease Continue";
+                    //MessageBox.Show(MessageString, "SQL Read Error");
+                    reader.Close();
+                    return "";
+                }
+            }
+            catch (MySqlException e)
+            {
+                string MessageString = "*********************** The following error occurred loading the Column details: "
+                    + e.ErrorCode + " - " + e.Message;
+                resultado = MessageString;
+                return "";
+            }
+        }
     }
 }

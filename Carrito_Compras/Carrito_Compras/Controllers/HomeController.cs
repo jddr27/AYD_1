@@ -34,57 +34,57 @@ namespace Carrito_Compras.Controllers
 
             return View();
         }
-  
+
         public ActionResult detalles(int prod, double precio)
         {
             int carrito = Convert.ToInt32(Session["CarritoId"]);
-            Agregar.DetalleCarritoRapido(carrito,prod, precio);
-            if(Agregar.resultado.Equals("exito"))
+            Agregar.DetalleCarritoRapido(carrito, prod, precio);
+            if (Agregar.resultado.Equals("exito"))
             {
-               
+
                 ViewBag.idx = "Se agrego el producto al carrito";
                 System.Diagnostics.Debug.WriteLine(Agregar.resultado);
                 ViewBag.Listado = Obtener.Productos();
                 double total = Convert.ToDouble(Session["subtotal"]) + precio;
-                Editar.CambiarTotal(carrito,total);
+                Editar.CambiarTotal(carrito, total);
                 Session["subtotal"] = total;
                 return View("Principal");
             }
-            else{
+            else {
                 //StringBuilder sbInterest = new StringBuilder();
-              //  sbInterest.Append("<br><b>Error:</b> " + Agregar.resultado + "<br/>");
+                //  sbInterest.Append("<br><b>Error:</b> " + Agregar.resultado + "<br/>");
 
                 return RedirectToAction("Descripcion", new { id = prod, precio = precio });
-               // return Content(sbInterest.ToString());
+                // return Content(sbInterest.ToString());
             }
         }
 
         [HttpPost]
         public ActionResult Detalle2()
         {
-              int prod=  Convert.ToInt32(Request["idProducto"]);
-              double precio= Convert.ToDouble(Request["PrecioProducto"]);
-              int cantidad = Convert.ToInt32(Request["cantidad"]);
-              //System.Diagnostics.Debug.WriteLine("id:"+prod+"precio:"+precio + "cant:"+ cantidad);
-              precio = precio * cantidad;
+            int prod = Convert.ToInt32(Request["idProducto"]);
+            double precio = Convert.ToDouble(Request["PrecioProducto"]);
+            int cantidad = Convert.ToInt32(Request["cantidad"]);
+            //System.Diagnostics.Debug.WriteLine("id:"+prod+"precio:"+precio + "cant:"+ cantidad);
+            precio = precio * cantidad;
 
-              int carrito = Convert.ToInt32(Session["CarritoId"]);
-              Agregar.DetalleCarrito(carrito, prod, cantidad, precio);
-              if (Agregar.resultado.Equals("exito"))
-              {
-                  ViewBag.Listado = Obtener.Productos();
-                  double total = Convert.ToDouble(Session["subtotal"]) + precio;
-                  Editar.CambiarTotal(carrito, total);
-                  Session["subtotal"] = total;
-                  return RedirectToAction("Descripcion", new {id = prod, precio = precio});
-              }
-              else
-              {
-                  StringBuilder sbInterest = new StringBuilder();
-                  sbInterest.Append("<br><b>Error:</b> " + Agregar.resultado + "<br/>");
-                  return Content(sbInterest.ToString());
-              }
-              
+            int carrito = Convert.ToInt32(Session["CarritoId"]);
+            Agregar.DetalleCarrito(carrito, prod, cantidad, precio);
+            if (Agregar.resultado.Equals("exito"))
+            {
+                ViewBag.Listado = Obtener.Productos();
+                double total = Convert.ToDouble(Session["subtotal"]) + precio;
+                Editar.CambiarTotal(carrito, total);
+                Session["subtotal"] = total;
+                return RedirectToAction("Descripcion", new { id = prod, precio = precio });
+            }
+            else
+            {
+                StringBuilder sbInterest = new StringBuilder();
+                sbInterest.Append("<br><b>Error:</b> " + Agregar.resultado + "<br/>");
+                return Content(sbInterest.ToString());
+            }
+
         }
 
         public ActionResult Principal()
@@ -92,7 +92,7 @@ namespace Carrito_Compras.Controllers
             //Variable Contador de producto encontrados
             int contadorProductos = 0;
             //Session["CarritoId"] = 1;
-           
+
             //Lista para almacenar productos encontrados en la bùsqueda
             LinkedList<Producto> list = new LinkedList<Producto>();
 
@@ -151,9 +151,9 @@ namespace Carrito_Compras.Controllers
             else
             {
                 // ViewBag.contador = contadorProductos;
-              
-               
-                
+
+
+
                 ViewBag.Listado = Obtener.Productos();
                 //ViewBag.prueba = Session["id_user"].ToString();
 
@@ -163,27 +163,27 @@ namespace Carrito_Compras.Controllers
 
         }
 
-         public ActionResult EliminarDetalle(int id)
+        public ActionResult EliminarDetalle(int id)
         {
-            
+
             Eliminar.Detalle_Carrito(id);
             if (Eliminar.resultado.Equals("exito"))
             {
-                
-             LinkedList<Detalle_Carrito> detalle = Obtener.Detalles(Convert.ToInt32(Session["CarritoId"]));
-             double descontar=0;
-             foreach (var obj in detalle)
-            {
+
+                LinkedList<Detalle_Carrito> detalle = Obtener.Detalles(Convert.ToInt32(Session["CarritoId"]));
+                double descontar = 0;
+                foreach (var obj in detalle)
+                {
                     if (obj.id_prod.Equals(id))
                     {
-                      descontar=obj.precio;
+                        descontar = obj.precio;
                     }
 
-                 }
+                }
 
                 ViewBag.detalles = Obtener.Detalles(Convert.ToInt32(Session["CarritoId"]));
                 ViewBag.prods = Obtener.Productos();
-                Session["subtotal"] = Convert.ToDouble(Session["subtotal"])-descontar ;
+                Session["subtotal"] = Convert.ToDouble(Session["subtotal"]) - descontar;
                 return View("Carrito");
             }
             else
@@ -197,46 +197,46 @@ namespace Carrito_Compras.Controllers
 
         public ActionResult Carrito()
         {
-          
+
             int user = Convert.ToInt32(Session["id_user"]);
             int carrito = Convert.ToInt32(Session["CarritoId"]);
             //Session["subtotal"] = 0;
             Carrito car = new Carrito(carrito);
-            if(car.usuario.Equals(user)) {
-            ViewBag.compras = 1;
-            ViewBag.detalles = Obtener.Detalles(Convert.ToInt32(Session["CarritoId"]));
-            ViewBag.prods = Obtener.Productos();
+            if (car.usuario.Equals(user)) {
+                ViewBag.compras = 1;
+                ViewBag.detalles = Obtener.Detalles(Convert.ToInt32(Session["CarritoId"]));
+                ViewBag.prods = Obtener.Productos();
 
-            LinkedList<Detalle_Carrito> detalle = Obtener.Detalles(Convert.ToInt32(Session["CarritoId"]));
-            LinkedList<Producto> prods = Obtener.Productos();
-            foreach (var obj in detalle)
-            {
-                foreach (var obj2 in prods)
+                LinkedList<Detalle_Carrito> detalle = Obtener.Detalles(Convert.ToInt32(Session["CarritoId"]));
+                LinkedList<Producto> prods = Obtener.Productos();
+                foreach (var obj in detalle)
                 {
-
-
-                    if (obj.id_prod.Equals(obj2.id))
+                    foreach (var obj2 in prods)
                     {
-                        foreach (var img in obj2.imagenes)
-                        {
-                            System.Diagnostics.Debug.WriteLine("foto:" + img);
-                            break;
 
+
+                        if (obj.id_prod.Equals(obj2.id))
+                        {
+                            foreach (var img in obj2.imagenes)
+                            {
+                                System.Diagnostics.Debug.WriteLine("foto:" + img);
+                                break;
+
+                            }
                         }
+
                     }
 
+
+                    //Session["subtotal"] = Convert.ToDouble(Session["subtotal"]) + obj.precio;
+                    //System.Diagnostics.Debug.WriteLine("idproducto:" + obj.id_prod + "precio:" + obj.precio + "total" + Convert.ToDouble(Session["subtotal"]));
+
                 }
-
-              
-                //Session["subtotal"] = Convert.ToDouble(Session["subtotal"]) + obj.precio;
-                //System.Diagnostics.Debug.WriteLine("idproducto:" + obj.id_prod + "precio:" + obj.precio + "total" + Convert.ToDouble(Session["subtotal"]));
-
-            }
             }
 
             else
             {
-                ViewBag.compras =0;
+                ViewBag.compras = 0;
             }
 
 
@@ -264,12 +264,12 @@ namespace Carrito_Compras.Controllers
             return File(abytes, "application/pdf");
         }
 
-        public ActionResult Descripcion(int id,double precio)
+        public ActionResult Descripcion(int id, double precio)
         {
-            LinkedList<Comentario> Reseña = new LinkedList<Comentario>();            
+            LinkedList<Comentario> Reseña = new LinkedList<Comentario>();
 
             ViewBag.prods = Obtener.Productos();
-            ViewBag.idProducto = id;           
+            ViewBag.idProducto = id;
 
             foreach (var obj in Comentario.ObtenerReseña())
             {
@@ -277,32 +277,36 @@ namespace Carrito_Compras.Controllers
                 Reseña.AddLast(obj);
 
             }
-          
+
 
             foreach (Comentario obj in Reseña)
             {
                 //Agregamos a la lista
                 var usu = new Usuario(obj.usuario_comentario);
-                
-                
-                    obj.usuario = usu;                   
-             
+
+
+                obj.usuario = usu;
+
 
             }
 
             ViewBag.Reseña = Reseña;
             ViewBag.idProducto = id;
-            ViewBag.precioProducto= precio;
+            ViewBag.precioProducto = precio;
+            
 
             try {
+                ViewBag.result = Comentario.Verificar_Comentario(Int32.Parse(Session["id_user"].ToString()), id);
                 ViewBag.idUser = Session["id_user"].ToString();
-                ViewBag.precio = Session["precio"].ToString();
-                ViewBag.Valor = Comentario.Verificar_Comentario(Int32.Parse(Session["id_user"].ToString()), id);
+                Session["precio"]=precio;
+                
+//                Session["valor"] = Comentario.Verificar_Comentario(Int32.Parse(Session["id_user"].ToString()), id);
             }
             catch (System.NullReferenceException e) {
                 ViewBag.idUser = null;
+                Session["valor"] = "0";
             }
-            
+
 
             return View();
         }
@@ -315,7 +319,7 @@ namespace Carrito_Compras.Controllers
             string valoracion = Request["valoracion"].ToString();
             string reseña = Request["reseña"].ToString();
 
-            int resultado = Agregar.AgregarReseña(idUser,idProducto,reseña,valoracion);
+            int resultado = Agregar.AgregarReseña(idUser, idProducto, reseña, valoracion);
             TempData["resultado"] = resultado.ToString();
             TempData["id_producto"] = idProducto.ToString();
             TempData["ambito"] = "AddR";
@@ -323,7 +327,7 @@ namespace Carrito_Compras.Controllers
 
             return RedirectToAction("Operacion", "Home");
 
-           
+
 
 
         }
@@ -392,7 +396,7 @@ namespace Carrito_Compras.Controllers
             if (Agregar.resultado.Equals("exito"))
             {
                 int id = Obtener.UsuarioPorCorreo(correo);
-                if(id == -1)
+                if (id == -1)
                 {
                     StringBuilder sbInterest = new StringBuilder();
                     sbInterest.Append("<br><b>Error:</b> Error: No se pudo crear un Carrito <br/>");
@@ -421,7 +425,7 @@ namespace Carrito_Compras.Controllers
         {
             //return RedirectToAction("controlador", "vista", new { PARAMS });
             Usuario usu = new Usuario(Convert.ToInt32(Session["id_user"]));
-            if(usu.id == -1)
+            if (usu.id == -1)
             {
                 StringBuilder sbInterest = new StringBuilder();
                 sbInterest.Append("<br><b>Resultado:</b>No se encontro el usuario<br/>");
@@ -440,7 +444,7 @@ namespace Carrito_Compras.Controllers
         {
             int carrito = Convert.ToInt32(Session["CarritoId"]);
             double total = Convert.ToDouble(Session["subtotal"]);
-            Agregar.Facturacion(carrito,total,2);
+            Agregar.Facturacion(carrito, total, 2);
             //Agregar.resultado = "exito";
             if (Agregar.resultado.Equals("exito"))
             {
@@ -452,7 +456,7 @@ namespace Carrito_Compras.Controllers
                     foreach (Detalle_Carrito dc in detalles)
                     {
                         Producto prod = new Producto(dc.id_prod);
-                        if(prod.id == -1)
+                        if (prod.id == -1)
                         {
                             StringBuilder sbInterest = new StringBuilder();
                             sbInterest.Append("<br><b>Error:</b> Error al entrar al producto: " + dc.id_prod + " < br/>");
@@ -463,9 +467,9 @@ namespace Carrito_Compras.Controllers
                         System.Diagnostics.Debug.WriteLine("nueva: " + prod.cantidad);
                         prods.AddLast(prod);
                     }
-                    foreach(Producto p in prods)
+                    foreach (Producto p in prods)
                     {
-                        Editar.RestarInventario(p.id,p.cantidad);
+                        Editar.RestarInventario(p.id, p.cantidad);
                         if (!Editar.resultado.Equals("exito"))
                         {
                             StringBuilder sbInterest = new StringBuilder();
@@ -510,9 +514,9 @@ namespace Carrito_Compras.Controllers
             #region VALIDACIONES
             if (codigo.Length == 4)
             {
-                foreach(Char c in codigo.ToCharArray())
+                foreach (Char c in codigo.ToCharArray())
                 {
-                    if(Char.IsDigit(c) == false)
+                    if (Char.IsDigit(c) == false)
                     {
                         StringBuilder sbInterest = new StringBuilder();
                         sbInterest.Append("<br><b>Error:</b> El código de seguridad debe tener solamente dígitos<br/>");
@@ -528,7 +532,7 @@ namespace Carrito_Compras.Controllers
             }
             if (fecha.Length == 5)
             {
-                if(Char.IsDigit(fecha.ElementAt(0)) == false){
+                if (Char.IsDigit(fecha.ElementAt(0)) == false) {
                     StringBuilder sbInterest = new StringBuilder();
                     sbInterest.Append("<br><b>Error:</b> La fecha solo debe tener 2 dígitos para el mes y 2 dígitos para el año, separados por una diagonal<br/>");
                     return Content(sbInterest.ToString());
@@ -570,7 +574,7 @@ namespace Carrito_Compras.Controllers
             {
                 int carrito = Convert.ToInt32(Session["CarritoId"]);
                 double total = Convert.ToDouble(Session["subtotal"]);
-                Agregar.Facturacion(carrito,total,1);
+                Agregar.Facturacion(carrito, total, 1);
                 if (Agregar.resultado.Equals("exito"))
                 {
                     Editar.TerminarCarrito(carrito);
@@ -619,7 +623,7 @@ namespace Carrito_Compras.Controllers
                 else
                 {
                     StringBuilder sbInterest = new StringBuilder();
-                    sbInterest.Append("<br><b>Error:</b>" + Agregar.resultado +  "<br/>");
+                    sbInterest.Append("<br><b>Error:</b>" + Agregar.resultado + "<br/>");
                     return Content(sbInterest.ToString());
                 }
             }
@@ -641,7 +645,7 @@ namespace Carrito_Compras.Controllers
                 usuarios.AddLast(obj);
 
             }
-            ViewBag.Cliente= usuarios;
+            ViewBag.Cliente = usuarios;
             return View();
         }
 
@@ -668,7 +672,7 @@ namespace Carrito_Compras.Controllers
             string estado = Request["estado"].ToString();
 
 
-            int resultado = Usuario.EditarCliente(id, correo, nombres, apellidos, direccion, rol,url,estado);
+            int resultado = Usuario.EditarCliente(id, correo, nombres, apellidos, direccion, rol, url, estado);
             TempData["resultado"] = resultado.ToString();
             TempData["ambito"] = "EditC";
 
@@ -680,7 +684,7 @@ namespace Carrito_Compras.Controllers
 
         public ActionResult AgregarCliente()
         {
-            
+
             string nombres = Request["nombres"].ToString();
             string apellidos = Request["apellidos"].ToString();
             string correo = Request["correo"].ToString();
@@ -696,7 +700,7 @@ namespace Carrito_Compras.Controllers
                 TempData["resultado"] = "3";
                 return RedirectToAction("Operacion", "Home");
             }
-            Agregar.Usuario(correo, nombres, apellidos, direccion,Int32.Parse(rol),password1,url);
+            Agregar.Usuario(correo, nombres, apellidos, direccion, Int32.Parse(rol), password1, url);
             if (Agregar.resultado.Equals("exito"))
             {
                 TempData["resultado"] = "1";
@@ -705,7 +709,7 @@ namespace Carrito_Compras.Controllers
             {
                 TempData["resultado"] = "0";
             }
-            
+
 
             return RedirectToAction("Operacion", "Home");
 
@@ -715,9 +719,9 @@ namespace Carrito_Compras.Controllers
         public ActionResult DashBoard()
         {
 
-            LinkedList<Comentario> Comentarios = new LinkedList<Comentario>();            
+            LinkedList<Comentario> Comentarios = new LinkedList<Comentario>();
             foreach (var obj in Comentario.ObtenerReseña())
-            {                
+            {
                 Comentarios.AddLast(obj);
             }
             foreach (Comentario obj in Comentarios)
@@ -729,10 +733,15 @@ namespace Carrito_Compras.Controllers
             foreach (Comentario obj in Comentarios)
             {
                 var producto = new Producto(obj.producto_comentario);
-                obj.producto =producto;
+                obj.producto = producto;
             }
 
-            ViewBag.Comentarios = Comentarios;            
+            ViewBag.Comentarios = Comentarios;
+            string [] vector= Obtener.VentasTotales().Split('|');
+
+            ViewBag.Comentarios = Comentarios;
+            ViewBag.ventas = vector[0];
+            ViewBag.no_ventas = vector[1];
 
             return View();
 
@@ -745,7 +754,7 @@ namespace Carrito_Compras.Controllers
             ViewBag.Ambito = TempData["ambito"].ToString();
             if (TempData["id_producto"] != null) {
                 ViewBag.Id_Producto = TempData["id_producto"].ToString();
-                ViewBag.precio = TempData["precio"].ToString();
+                ViewBag.precio = Session["precio"].ToString();
             }
 
             
