@@ -94,22 +94,28 @@ namespace Carrito_Compras.Models
                         + e.ErrorCode + " - " + e.Message + "; \n\nPlease Continue";
                     //MessageBox.Show(MessageString, "SQL Read Error");
                     reader.Close();
+                    id = -1;
                     nombre = MessageString;
                     cantidad = -1;
                     precio = -1.0;
                     descripcion = null;
                     marca_id = categoria_id =  promocion_id = -1;
+                    connection.Close();
+                    return;
                 }
             }
             catch (MySqlException e)
             {
                 string MessageString = "The following error occurred loading the Column details: "
                     + e.ErrorCode + " - " + e.Message;
+                id = -1;
                 nombre = MessageString;
                 cantidad = -1;
                 precio = -1.0;
                 descripcion = null;
                 marca_id = categoria_id = promocion_id = -1;
+                connection.Close();
+                return;
             }
 
             connection.Close();

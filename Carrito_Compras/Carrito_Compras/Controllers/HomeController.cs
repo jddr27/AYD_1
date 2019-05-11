@@ -391,6 +391,14 @@ namespace Carrito_Compras.Controllers
             Agregar.Usuario(correo, nombres, apellidos, direccion, 3, contra, foto);
             if (Agregar.resultado.Equals("exito"))
             {
+                int id = Obtener.UsuarioPorCorreo(correo);
+                if(id == -1)
+                {
+                    StringBuilder sbInterest = new StringBuilder();
+                    sbInterest.Append("<br><b>Error:</b> Error: No se pudo crear un Carrito <br/>");
+                    return Content(sbInterest.ToString());
+                }
+                Agregar.Carrito(id, 0.00);
                 return View("Login");
             }
             else
@@ -412,9 +420,79 @@ namespace Carrito_Compras.Controllers
         public ActionResult Boleta()
         {
             //return RedirectToAction("controlador", "vista", new { PARAMS });
-            ViewBag.usuario = new Usuario(Convert.ToInt32(Session["id_user"]));
-            ViewBag.boleta = 11511023;
+            Usuario usu = new Usuario(Convert.ToInt32(Session["id_user"]));
+            if(usu.id == -1)
+            {
+                StringBuilder sbInterest = new StringBuilder();
+                sbInterest.Append("<br><b>Resultado:</b>No se encontro el usuario<br/>");
+                return Content(sbInterest.ToString());
+            }
+            ViewBag.usuario = usu;
+            Random random = new Random();
+            ViewBag.boleta = random.Next(100000, 1000000);
+            ViewBag.total = Convert.ToDouble(Session["subtotal"]);
+            ViewBag.fecha = DateTime.Now.ToString("MM/dd/yyyy");
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult BoletaValidar()
+        {
+            int carrito = Convert.ToInt32(Session["CarritoId"]);
+            double total = Convert.ToDouble(Session["subtotal"]);
+            Agregar.Facturacion(carrito,total,2);
+            //Agregar.resultado = "exito";
+            if (Agregar.resultado.Equals("exito"))
+            {
+                Editar.TerminarCarrito(carrito);
+                if (Editar.resultado.Equals("exito"))
+                {
+                    LinkedList<Detalle_Carrito> detalles = Obtener.Detalles(carrito);
+                    LinkedList<Producto> prods = new LinkedList<Producto>();
+                    foreach (Detalle_Carrito dc in detalles)
+                    {
+                        Producto prod = new Producto(dc.id_prod);
+                        if(prod.id == -1)
+                        {
+                            StringBuilder sbInterest = new StringBuilder();
+                            sbInterest.Append("<br><b>Error:</b> Error al entrar al producto: " + dc.id_prod + " < br/>");
+                            return Content(sbInterest.ToString());
+                        }
+                        System.Diagnostics.Debug.WriteLine("anterior: " + prod.cantidad + ", lo q se quitara " + dc.cantidad);
+                        prod.cantidad = prod.cantidad - dc.cantidad;
+                        System.Diagnostics.Debug.WriteLine("nueva: " + prod.cantidad);
+                        prods.AddLast(prod);
+                    }
+                    foreach(Producto p in prods)
+                    {
+                        Editar.RestarInventario(p.id,p.cantidad);
+                        if (!Editar.resultado.Equals("exito"))
+                        {
+                            StringBuilder sbInterest = new StringBuilder();
+                            sbInterest.Append("<br><b>Error:</b> Error al editar el producto: " + p.id + " < br/>");
+                            return Content(sbInterest.ToString());
+                        }
+                    }
+                    int user = Convert.ToInt32(Session["id_user"]);
+                    Agregar.Carrito(user, 0.00);
+                    Carrito nuevo = Obtener.CarritoActual(user);
+                    Session["CarritoId"] = nuevo.id;
+                    Session["subtotal"] = nuevo.total;
+                    return RedirectToAction("Principal", "Home");
+                }
+                else
+                {
+                    StringBuilder sbInterest = new StringBuilder();
+                    sbInterest.Append("<br><b>Error:</b>" + Editar.resultado + "<br/>");
+                    return Content(sbInterest.ToString());
+                }
+            }
+            else
+            {
+                StringBuilder sbInterest = new StringBuilder();
+                sbInterest.Append("<br><b>Error:</b>" + Agregar.resultado + "<br/>");
+                return Content(sbInterest.ToString());
+            }
         }
 
         public ActionResult Tarjeta()
@@ -492,13 +570,38 @@ namespace Carrito_Compras.Controllers
             {
                 int carrito = Convert.ToInt32(Session["CarritoId"]);
                 double total = Convert.ToDouble(Session["subtotal"]);
-                // Agregar.Facturacion(carrito,total,1);
-                Agregar.resultado = "exito";
+                Agregar.Facturacion(carrito,total,1);
                 if (Agregar.resultado.Equals("exito"))
                 {
                     Editar.TerminarCarrito(carrito);
                     if (Editar.resultado.Equals("exito"))
                     {
+                        LinkedList<Detalle_Carrito> detalles = Obtener.Detalles(carrito);
+                        LinkedList<Producto> prods = new LinkedList<Producto>();
+                        foreach (Detalle_Carrito dc in detalles)
+                        {
+                            Producto prod = new Producto(dc.id_prod);
+                            if (prod.id == -1)
+                            {
+                                StringBuilder sbInterest = new StringBuilder();
+                                sbInterest.Append("<br><b>Error:</b> Error al entrar al producto: " + dc.id_prod + " < br/>");
+                                return Content(sbInterest.ToString());
+                            }
+                            System.Diagnostics.Debug.WriteLine("anterior: " + prod.cantidad + ", lo q se quitara " + dc.cantidad);
+                            prod.cantidad = prod.cantidad - dc.cantidad;
+                            System.Diagnostics.Debug.WriteLine("nueva: " + prod.cantidad);
+                            prods.AddLast(prod);
+                        }
+                        foreach (Producto p in prods)
+                        {
+                            Editar.RestarInventario(p.id, p.cantidad);
+                            if (!Editar.resultado.Equals("exito"))
+                            {
+                                StringBuilder sbInterest = new StringBuilder();
+                                sbInterest.Append("<br><b>Error:</b> Error al editar el producto: " + p.id + " < br/>");
+                                return Content(sbInterest.ToString());
+                            }
+                        }
                         int user = Convert.ToInt32(Session["id_user"]);
                         Agregar.Carrito(user, 0.00);
                         Carrito nuevo = Obtener.CarritoActual(user);

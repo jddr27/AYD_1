@@ -12,36 +12,45 @@
         @using (Ajax.BeginForm("BoletaValidar", "Home", new AjaxOptions { UpdateTargetId = "info_login" }, new { @class = "USUARIO" }))
         {
             <div id="info_login">
-                <div class="USUARIO">
-                    <div class="input-field col s6">
-                        <i class="material-icons prefix">account_circle</i>
-                        <p>@ViewBag.boleta </p>
-                        <label for="icon_prefix">Numero de Boleta</label>
-                    </div>
-                </div>
-                <div class="USUARIO">
-                    <div class="input-field col s6">
-                        <i class="material-icons prefix">payment</i>
-                        <input id="txtnumero" name="txtnumero" type="text" class="validate">
-                        <label for="icon_prefix">Numero de Tarjeta</label>
-                    </div>
-                </div>
-                <div class="CORREO">
-                    <div class="input-field col s6">
-                        <i class="material-icons prefix">security</i>
-                        <input id="txtcodigo" name="txtcodigo" type="text" class="validate">
-                        <label for="icon_prefix">Codigo de Seguridad</label>
-                    </div>
-                </div>
-                <div class="CORREO">
-                    <div class="input-field col s6">
-                        <i class="material-icons prefix">today</i>
-                        <input id="txtfecha" name="txtfecha" type="text" placeholder="MM/AA" class="validate">
-                        <label for="icon_prefix">Fecha de Vencimiento</label>
-                    </div>
-                </div>
+                <ul class="collection">
+                    <li class="collection-item avatar">
+                        <i class="material-icons circle">account_balance</i>
+                        <span class="title">Numero de Boleta BANRURAL</span>
+                        <p>
+                            <b>@ViewBag.boleta </b> <br>
+                        </p>
+                    </li>
+                    <li class="collection-item avatar">
+                        <i class="material-icons circle">today</i>
+                        <span class="title">Fecha de Generación</span>
+                        <p>
+                            <b>@ViewBag.fecha</b> <br>
+                        </p>
+                    </li>
+                    <li class="collection-item avatar">
+                        <i class="material-icons circle">account_circle</i>
+                        <span class="title">Nombre completo</span>
+                        <p>
+                            <b>@ViewBag.usuario.nombres @ViewBag.usuario.apellidos</b> <br>
+                        </p>
+                    </li>
+                    <li class="collection-item avatar">
+                        <i class="material-icons circle">home</i>
+                        <span class="title">Direccion</span>
+                        <p>
+                            <b>@ViewBag.usuario.direccion</b> <br>
+                        </p>
+                    </li>
+                    <li class="collection-item avatar">
+                        <i class="material-icons circle">monetization_on</i>
+                        <span class="title">Total a pagar</span>
+                        <p>
+                            <b>Q. @ViewBag.total</b> <br>
+                        </p>
+                    </li>
+                </ul>
                 <div class="BOTON">
-                    <button class="waves-effect waves-light btn" style="color:#FFFFFF" ;><i class="material-icons right"></i>Confirmar el pago</button>
+                    <button class="waves-effect waves-light btn" style="color:#FFFFFF" ;><i class="material-icons right"></i>Confirmar la boleta</button>
                 </div>
             </div>
         }

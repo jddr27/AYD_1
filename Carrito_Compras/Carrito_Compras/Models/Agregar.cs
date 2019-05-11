@@ -50,8 +50,8 @@ namespace Carrito_Compras.Models
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = connection;
                 cmd.CommandText = string.Format("INSERT INTO `Usuario` (`correo_usuario`,`nombres_usuario`,`apellidos_usuario`," +
-                    "`direccion_usuario`,`rol_usuario`,`password_usuario`,`foto_usuario`) VALUES (\"" + correo + "\",\"" + nombres + "\"," +
-                    "\"" + apellido + "\",\"" + direccion + "\"," + rol + ",\"" + bob + "\",\"" + foto + "\");");
+                    "`direccion_usuario`,`rol_usuario`,`password_usuario`,`foto_usuario`,`estado_usuario`) VALUES (\"" + correo + "\",\"" + nombres + "\"," +
+                    "\"" + apellido + "\",\"" + direccion + "\"," + rol + ",\"" + bob + "\",\"" + foto + "\",\"activo\");");
                 MySqlDataReader reader = cmd.ExecuteReader();
 
                 try
