@@ -321,6 +321,9 @@
     <Content Include="Views\Shared\Operacion.cshtml" />
     <Content Include="Views\Home\EdicionProducto.cshtml" />
     <Content Include="Views\Home\MiCuenta.cshtml" />
+    <Content Include="Views\Home\Categorias.cshtml" />
+    <Content Include="Views\Home\Marcas.cshtml" />
+    <Content Include="Views\Home\Promociones.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

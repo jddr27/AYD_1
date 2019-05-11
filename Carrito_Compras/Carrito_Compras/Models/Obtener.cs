@@ -140,7 +140,7 @@ namespace Carrito_Compras.Models
             connection.Close();
             return null;
         }
-
+        
         public static LinkedList<string> Imagenes(int produ)
         {
             string ruta;
