@@ -856,13 +856,16 @@ namespace Carrito_Compras.Controllers
 
         public ActionResult Categorias()
         {
-            LinkedList<Categoria> lista = new LinkedList<Categoria>();
-            foreach (var obj in Categoria.ObtenerCategoria())
-            { //Agregamos a la lista
-                lista.AddLast(obj);
-            }
+            LinkedList<Producto> productos = new LinkedList<Producto>();
 
-            ViewBag.Listado = lista;
+                 foreach (var obj2 in Obtener.Productos())
+                 {
+                     System.Diagnostics.Debug.WriteLine("categoria:"+obj2.categoria.nombre);
+                 }
+
+
+                 ViewBag.Listado = Obtener.Productos();
+           //return View();
             return RedirectToAction("Principal", "Home");
         }
 
