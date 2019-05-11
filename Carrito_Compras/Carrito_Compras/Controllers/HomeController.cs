@@ -391,6 +391,14 @@ namespace Carrito_Compras.Controllers
             Agregar.Usuario(correo, nombres, apellidos, direccion, 3, contra, foto);
             if (Agregar.resultado.Equals("exito"))
             {
+                int id = Obtener.UsuarioPorCorreo(correo);
+                if(id == -1)
+                {
+                    StringBuilder sbInterest = new StringBuilder();
+                    sbInterest.Append("<br><b>Error:</b> Error: No se pudo crear un Carrito <br/>");
+                    return Content(sbInterest.ToString());
+                }
+                Agregar.Carrito(id, 0.00);
                 return View("Login");
             }
             else

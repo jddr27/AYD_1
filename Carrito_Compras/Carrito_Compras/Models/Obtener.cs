@@ -333,5 +333,45 @@ namespace Carrito_Compras.Models
                 return null;
             }
         }
+
+        public static int UsuarioPorCorreo(string correo)
+        {
+            int id;
+            Get_Connection();
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = connection;
+                cmd.CommandText = string.Format("SELECT id_usuario FROM Usuario WHERE correo_usuario = '{0}'", correo);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                try
+                {
+                    reader.Read();
+                    if (reader.IsDBNull(0) == false)
+                        id = int.Parse(reader.GetString(0));
+                    else
+                        id = -1;
+                    reader.Close();
+                    connection.Close();
+                    return id;
+                }
+                catch (MySqlException e)
+                {
+                    string MessageString = "Read error occurred  / entry not found loading the Column details: "
+                        + e.ErrorCode + " - " + e.Message + "; \n\nPlease Continue";
+                    //MessageBox.Show(MessageString, "SQL Read Error");
+                    reader.Close();
+                    return -1;
+                }
+            }
+            catch (MySqlException e)
+            {
+                string MessageString = "*********************** The following error occurred loading the Column details: "
+                    + e.ErrorCode + " - " + e.Message;
+                resultado = MessageString;
+                return -1;
+            }
+        }
     }
 }
