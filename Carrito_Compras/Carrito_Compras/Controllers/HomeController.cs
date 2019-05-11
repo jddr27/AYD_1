@@ -411,8 +411,6 @@ namespace Carrito_Compras.Controllers
 
         public ActionResult Boleta()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
 
