@@ -443,8 +443,10 @@ C:\Users\hh\Videos\Proyecto\AYD_1\Carrito_Compras\Carrito_Compras\bin\es\Microso
 C:\Users\hh\Videos\Proyecto\AYD_1\Carrito_Compras\Carrito_Compras\obj\Debug\Carrito_Compras.dll
 C:\Users\hh\Videos\Proyecto\AYD_1\Carrito_Compras\Carrito_Compras\obj\Debug\Carrito_Compras.pdb
 C:\Users\gmgcomercial\Documents\GitHub\AYD_1\Carrito_Compras\Carrito_Compras\obj\Debug\Carrito_Compras.csprojAssemblyReference.cache
-C:\Users\hh\Videos\Proyecto\AYD_1\Carrito_Compras\Carrito_Compras\obj\Debug\Carrito_Compras.csprojResolveAssemblyReference.cache
 C:\Users\gmgcomercial\Documents\GitHub\AYD_1\Carrito_Compras\Carrito_Compras\bin\itextsharp.dll
 C:\Users\gmgcomercial\Documents\GitHub\AYD_1\Carrito_Compras\Carrito_Compras\bin\itextsharp.xml
 C:\Users\hh\Videos\Proyecto\AYD_1\Carrito_Compras\Carrito_Compras\bin\itextsharp.dll
 C:\Users\hh\Videos\Proyecto\AYD_1\Carrito_Compras\Carrito_Compras\bin\itextsharp.xml
+C:\Ana1\AYD_1\Carrito_Compras\Carrito_Compras\bin\itextsharp.dll
+C:\Ana1\AYD_1\Carrito_Compras\Carrito_Compras\bin\itextsharp.xml
+C:\Users\hh\Videos\Proyecto\AYD_1\Carrito_Compras\Carrito_Compras\obj\Debug\Carrito_Compras.csprojResolveAssemblyReference.cache

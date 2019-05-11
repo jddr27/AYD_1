@@ -34,10 +34,7 @@ namespace Carrito_Compras.Controllers
 
             return View();
         }
-
-       
-
-       
+  
         public ActionResult detalles(int prod, double precio)
         {
             int carrito = Convert.ToInt32(Session["CarritoId"]);
@@ -48,7 +45,9 @@ namespace Carrito_Compras.Controllers
                 ViewBag.idx = "Se agrego el producto al carrito";
                 System.Diagnostics.Debug.WriteLine(Agregar.resultado);
                 ViewBag.Listado = Obtener.Productos();
-                Session["subtotal"] = Convert.ToDouble(Session["subtotal"]) + precio;
+                double total = Convert.ToDouble(Session["subtotal"]) + precio;
+                Editar.CambiarTotal(carrito,total);
+                Session["subtotal"] = total;
                 return View("Principal");
             }
             else{
@@ -74,7 +73,9 @@ namespace Carrito_Compras.Controllers
               if (Agregar.resultado.Equals("exito"))
               {
                   ViewBag.Listado = Obtener.Productos();
-                  Session["subtotal"] = Convert.ToDouble(Session["subtotal"]) + precio;
+                  double total = Convert.ToDouble(Session["subtotal"]) + precio;
+                  Editar.CambiarTotal(carrito, total);
+                  Session["subtotal"] = total;
                   return RedirectToAction("Descripcion", new {id = prod, precio = precio});
               }
               else
@@ -90,8 +91,8 @@ namespace Carrito_Compras.Controllers
         {
             //Variable Contador de producto encontrados
             int contadorProductos = 0;
-            Session["CarritoId"] = 1;
-            Session["Comprando"] = 0;
+            //Session["CarritoId"] = 1;
+           
             //Lista para almacenar productos encontrados en la bùsqueda
             LinkedList<Producto> list = new LinkedList<Producto>();
 
@@ -154,7 +155,7 @@ namespace Carrito_Compras.Controllers
                
                 
                 ViewBag.Listado = Obtener.Productos();
-                ViewBag.prueba = Session["id_user"].ToString();
+                //ViewBag.prueba = Session["id_user"].ToString();
 
 
             }
@@ -194,13 +195,12 @@ namespace Carrito_Compras.Controllers
             }
         }
 
-
         public ActionResult Carrito()
         {
           
             int user = Convert.ToInt32(Session["id_user"]);
             int carrito = Convert.ToInt32(Session["CarritoId"]);
-            Session["subtotal"] = 0;
+            //Session["subtotal"] = 0;
             Carrito car = new Carrito(carrito);
             if(car.usuario.Equals(user)) {
             ViewBag.compras = 1;
@@ -228,9 +228,8 @@ namespace Carrito_Compras.Controllers
                 }
 
               
-                Session["subtotal"] = Convert.ToDouble(Session["subtotal"]) + obj.precio;
-            
-                System.Diagnostics.Debug.WriteLine("idproducto:" + obj.id_prod + "precio:" + obj.precio + "total" + Convert.ToDouble(Session["subtotal"]));
+                //Session["subtotal"] = Convert.ToDouble(Session["subtotal"]) + obj.precio;
+                //System.Diagnostics.Debug.WriteLine("idproducto:" + obj.id_prod + "precio:" + obj.precio + "total" + Convert.ToDouble(Session["subtotal"]));
 
             }
             }
@@ -251,14 +250,12 @@ namespace Carrito_Compras.Controllers
             return File(abytes, "application/pdf");
         }
 
-
         public ActionResult ReporteClientes()
         {
             ReporteUsuarios reporte = new ReporteUsuarios();
             byte[] abytes = reporte.PrepareReport();
             return File(abytes, "application/pdf");
         }
-
 
         public ActionResult ReporteProductos()
         {
@@ -353,6 +350,11 @@ namespace Carrito_Compras.Controllers
             {   //Se guarda usuario en la session
                 Session["UserName"] = usu.nombres;
                 Session["id_user"] = usu.id.ToString();
+
+                Carrito carrito = Obtener.CarritoActual(usu.id);
+                Session["CarritoId"] = carrito.id;
+                Session["subtotal"] = carrito.total;
+
                 // Manejo de Roles 
                 /*1.Administrador softech (Estadisticas, reportes...)
                 * 2. Empleado (Gestiona  productos, promociones,...) 
@@ -409,8 +411,6 @@ namespace Carrito_Compras.Controllers
 
         public ActionResult Boleta()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
 
@@ -488,7 +488,7 @@ namespace Carrito_Compras.Controllers
             if (ValidarTarjeta.IsCardNumberValid(limpio))
             {
                 int carrito = Convert.ToInt32(Session["CarritoId"]);
-                double total = Convert.ToDouble(Session["total"]);
+                double total = Convert.ToDouble(Session["subtotal"]);
                 // Agregar.Facturacion(carrito,total,1);
                 Agregar.resultado = "exito";
                 if (Agregar.resultado.Equals("exito"))
@@ -496,6 +496,11 @@ namespace Carrito_Compras.Controllers
                     Editar.TerminarCarrito(carrito);
                     if (Editar.resultado.Equals("exito"))
                     {
+                        int user = Convert.ToInt32(Session["id_user"]);
+                        Agregar.Carrito(user, 0.00);
+                        Carrito nuevo = Obtener.CarritoActual(user);
+                        Session["CarritoId"] = nuevo.id;
+                        Session["subtotal"] = nuevo.total;
                         return RedirectToAction("Principal", "Home");
                     }
                     else
@@ -522,8 +527,6 @@ namespace Carrito_Compras.Controllers
 
         public ActionResult Clientes()
         {
-
-
             LinkedList<Usuario> usuarios = new LinkedList<Usuario>();
             Usuario l = new Usuario();
             foreach (var obj in l.ObtenerUsuario())
@@ -842,22 +845,27 @@ namespace Carrito_Compras.Controllers
             LinkedList<Marca> lista = new LinkedList<Marca>();
             foreach (var obj in Marca.ObtenerMarca())
             {
+               
                 //Agregamos a la lista
                 lista.AddLast(obj);
             }
            
             ViewBag.Listado = lista;
-            return RedirectToAction("Principal", "Home");
+            return View("Principal");
         }
+
         public ActionResult Categorias()
         {
-            LinkedList<Categoria> lista = new LinkedList<Categoria>();
-            foreach (var obj in Categoria.ObtenerCategoria())
-            { //Agregamos a la lista
-                lista.AddLast(obj);
-            }
+            LinkedList<Producto> productos = new LinkedList<Producto>();
 
-            ViewBag.Listado = lista;
+                 foreach (var obj2 in Obtener.Productos())
+                 {
+                     System.Diagnostics.Debug.WriteLine("categoria:"+obj2.categoria.nombre);
+                 }
+
+
+                 ViewBag.Listado = Obtener.Productos();
+           //return View();
             return RedirectToAction("Principal", "Home");
         }
 
