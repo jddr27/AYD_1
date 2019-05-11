@@ -91,6 +91,7 @@ namespace Carrito_Compras.Models
                         + e.ErrorCode + " - " + e.Message + "; \n\nPlease Continue";
                     //MessageBox.Show(MessageString, "SQL Read Error");
                     reader.Close();
+                    id = -1;
                     nombres = MessageString;
                     apellidos = encriptada = correo = direccion = estado = null;
                 }
@@ -99,6 +100,7 @@ namespace Carrito_Compras.Models
             {
                 string MessageString = "The following error occurred loading the Column details: "
                     + e.ErrorCode + " - " + e.Message;
+                id = -1;
                 nombres = MessageString;
                 apellidos = encriptada = correo = direccion = estado = null;
             }
