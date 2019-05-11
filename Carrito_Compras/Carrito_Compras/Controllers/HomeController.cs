@@ -940,54 +940,24 @@ namespace Carrito_Compras.Controllers
         public ActionResult Marcas()
         {
 
-            LinkedList<Marca> lista = new LinkedList<Marca>();
-            foreach (var obj in Marca.ObtenerMarca())
-            {
-               
-                //Agregamos a la lista
-                lista.AddLast(obj);
-            }
-           
-            ViewBag.Listado = lista;
-            return View("Principal");
+            ViewBag.Listado = Obtener.Productos();
+            return View();
         }
 
         public ActionResult Categorias()
         {
-            LinkedList<Producto> productos = new LinkedList<Producto>();
-
-                 foreach (var obj2 in Obtener.Productos())
-                 {
-                     System.Diagnostics.Debug.WriteLine("categoria:"+obj2.categoria.nombre);
-                 }
-
-
-                 ViewBag.Listado = Obtener.Productos();
-           //return View();
-            return RedirectToAction("Principal", "Home");
+          
+            ViewBag.Listado = Obtener.Productos();
+           return View();
+        
         }
 
         public ActionResult Promociones()
         {
-            LinkedList<Promocion> lista = new LinkedList<Promocion>();
-            foreach (var obj in Promocion.ObtenerPromo())
-            { //Agregamos a la lista
-                lista.AddLast(obj);
-
-            }
-            ViewBag.Listado = lista;
-            return RedirectToAction("Principal", "Home");
+            ViewBag.Listado = Obtener.Productos();
+            return View();
         }
 
-        /*public ActionResult Ofertas()
-        {
-            LinkedList<Promocion> lista = new LinkedList<Promocion>();
-            foreach (var obj in Promocion.ObtenerPromo())
-            { //Agregamos a la lista
-                lista.AddLast(obj);
-            }
-            ViewBag.Listado = lista;
-            return View();
-        }*/
+        
     }
 }
