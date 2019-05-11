@@ -411,6 +411,9 @@ namespace Carrito_Compras.Controllers
 
         public ActionResult Boleta()
         {
+            //return RedirectToAction("controlador", "vista", new { PARAMS });
+            ViewBag.usuario = new Usuario(Convert.ToInt32(Session["id_user"]));
+            ViewBag.boleta = 11511023;
             return View();
         }
 
