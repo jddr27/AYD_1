@@ -1,0 +1,433 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="c:\program files (x86)\microsoft visual studio\2017\community\team tools\static analysis tools\fxcop\Xml\CodeAnalysisReport.xsl"?>
+<FxCopReport Version="15.0">
+ <Targets>
+  <Target Name="C:\Users\gmgcomercial\Documents\GitHub\AYD_1\Carrito_Compras\Carrito_Compras\bin\Carrito_Compras.dll">
+   <Modules>
+    <Module Name="carrito_compras.dll">
+     <Namespaces>
+      <Namespace Name="Carrito_Compras.Clase_Reportes">
+       <Types>
+        <Type Name="ReporteComentarios" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001" Status="Active" Created="2019-05-11 06:52:28Z" FixCategory="DependsOnFix">
+           <Issue Name="DependsOnFix" Certainty="95" Level="CriticalError">Implemente IDisposable en 'ReporteComentarios' porque crea miembros de los tipos IDisposable siguientes: 'Document', 'MemoryStream'. Si ya se había distribuido 'ReporteComentarios', agregar nuevos miembros que implementen IDisposable en este tipo se considera un cambio rotundo para los consumidores existentes.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="ReporteProductos" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001" Status="Active" Created="2019-05-11 06:52:28Z" FixCategory="DependsOnFix">
+           <Issue Name="DependsOnFix" Certainty="95" Level="CriticalError">Implemente IDisposable en 'ReporteProductos' porque crea miembros de los tipos IDisposable siguientes: 'Document', 'MemoryStream'. Si ya se había distribuido 'ReporteProductos', agregar nuevos miembros que implementen IDisposable en este tipo se considera un cambio rotundo para los consumidores existentes.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="ReporteUsuarios" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001" Status="Active" Created="2019-05-11 06:52:28Z" FixCategory="DependsOnFix">
+           <Issue Name="DependsOnFix" Certainty="95" Level="CriticalError">Implemente IDisposable en 'ReporteUsuarios' porque crea miembros de los tipos IDisposable siguientes: 'Document', 'MemoryStream'. Si ya se había distribuido 'ReporteUsuarios', agregar nuevos miembros que implementen IDisposable en este tipo se considera un cambio rotundo para los consumidores existentes.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+       </Types>
+      </Namespace>
+      <Namespace Name="Carrito_Compras.Models">
+       <Types>
+        <Type Name="Agregar" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#AgregarReseña(System.String,System.String,System.String,System.String)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Revisar consultas SQL para comprobar si tienen vulnerabilidades de seguridad" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2019-05-11 06:52:28Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\gmgcomercial\Documents\GitHub\AYD_1\Carrito_Compras\Carrito_Compras\Models" File="Agregar.cs" Line="322">La cadena de consulta pasada a 'MySqlCommand.CommandText.set(string)' en 'Agregar.AgregarReseña(string, string, string, string)' podría contener las siguientes variables: 'idUser', 'idProducto', 'reseña', 'valoracion'. Si alguna de estas variables puede proceder de datos proporcionados por el usuario, considere el uso de un procedimiento almacenado o una consulta SQL parametrizada en lugar de compilar la consulta con concatenaciones de cadenas.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Carrito(System.Int32,System.Double)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Revisar consultas SQL para comprobar si tienen vulnerabilidades de seguridad" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2019-05-11 06:52:28Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\gmgcomercial\Documents\GitHub\AYD_1\Carrito_Compras\Carrito_Compras\Models" File="Agregar.cs" Line="209">La cadena de consulta pasada a 'MySqlCommand.CommandText.set(string)' en 'Agregar.Carrito(int, double)' podría contener las siguientes variables: 'usuario', 'total'. Si alguna de estas variables puede proceder de datos proporcionados por el usuario, considere el uso de un procedimiento almacenado o una consulta SQL parametrizada en lugar de compilar la consulta con concatenaciones de cadenas.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#DetalleCarrito(System.Int32,System.Int32,System.Int32,System.Double)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="No usar Dispose varias veces en objetos" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2019-05-11 06:52:28Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="C:\Users\gmgcomercial\Documents\GitHub\AYD_1\Carrito_Compras\Carrito_Compras\Models" File="Agregar.cs" Line="298">El objeto 'reader' admite Dispose más de una vez en el método 'Agregar.DetalleCarrito(int, int, int, double)'. Para evitar generar una excepción System.ObjectDisposedException, no debe llamar a Dispose más de una vez en un objeto.: Lines: 298</Issue>
+            </Message>
+            <Message TypeName="Revisar consultas SQL para comprobar si tienen vulnerabilidades de seguridad" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2019-05-11 06:52:28Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\gmgcomercial\Documents\GitHub\AYD_1\Carrito_Compras\Carrito_Compras\Models" File="Agregar.cs" Line="283">La cadena de consulta pasada a 'MySqlCommand.CommandText.set(string)' en 'Agregar.DetalleCarrito(int, int, int, double)' podría contener las siguientes variables: 'carrito', 'producto', 'cantidad', 'precio'. Si alguna de estas variables puede proceder de datos proporcionados por el usuario, considere el uso de un procedimiento almacenado o una consulta SQL parametrizada en lugar de compilar la consulta con concatenaciones de cadenas.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#DetalleCarritoRapido(System.Int32,System.Int32,System.Double)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="No usar Dispose varias veces en objetos" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2019-05-11 06:52:28Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="C:\Users\gmgcomercial\Documents\GitHub\AYD_1\Carrito_Compras\Carrito_Compras\Models" File="Agregar.cs" Line="262">El objeto 'reader' admite Dispose más de una vez en el método 'Agregar.DetalleCarritoRapido(int, int, double)'. Para evitar generar una excepción System.ObjectDisposedException, no debe llamar a Dispose más de una vez en un objeto.: Lines: 262</Issue>
+            </Message>
+            <Message TypeName="Revisar consultas SQL para comprobar si tienen vulnerabilidades de seguridad" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2019-05-11 06:52:28Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\gmgcomercial\Documents\GitHub\AYD_1\Carrito_Compras\Carrito_Compras\Models" File="Agregar.cs" Line="247">La cadena de consulta pasada a 'MySqlCommand.CommandText.set(string)' en 'Agregar.DetalleCarritoRapido(int, int, double)' podría contener las siguientes variables: 'carrito', 'producto', 'precio'. Si alguna de estas variables puede proceder de datos proporcionados por el usuario, considere el uso de un procedimiento almacenado o una consulta SQL parametrizada en lugar de compilar la consulta con concatenaciones de cadenas.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Facturacion(System.Int32,System.Double,System.Int32)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="No usar Dispose varias veces en objetos" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2019-05-11 06:52:28Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="C:\Users\gmgcomercial\Documents\GitHub\AYD_1\Carrito_Compras\Carrito_Compras\Models" File="Agregar.cs" Line="377">El objeto 'reader' admite Dispose más de una vez en el método 'Agregar.Facturacion(int, double, int)'. Para evitar generar una excepción System.ObjectDisposedException, no debe llamar a Dispose más de una vez en un objeto.: Lines: 377</Issue>
+            </Message>
+            <Message TypeName="Revisar consultas SQL para comprobar si tienen vulnerabilidades de seguridad" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2019-05-11 06:52:28Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\gmgcomercial\Documents\GitHub\AYD_1\Carrito_Compras\Carrito_Compras\Models" File="Agregar.cs" Line="363">La cadena de consulta pasada a 'MySqlCommand.CommandText.set(string)' en 'Agregar.Facturacion(int, double, int)' podría contener las siguientes variables: 'carrito', 'total', 'tipo'. Si alguna de estas variables puede proceder de datos proporcionados por el usuario, considere el uso de un procedimiento almacenado o una consulta SQL parametrizada en lugar de compilar la consulta con concatenaciones de cadenas.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Producto(System.String,System.Int32,System.Double,System.String,System.Int32,System.Int32,System.Int32)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Revisar consultas SQL para comprobar si tienen vulnerabilidades de seguridad" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2019-05-11 06:52:28Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\gmgcomercial\Documents\GitHub\AYD_1\Carrito_Compras\Carrito_Compras\Models" File="Agregar.cs" Line="90">La cadena de consulta pasada a 'MySqlCommand.CommandText.set(string)' en 'Agregar.Producto(string, int, double, string, int, int, int)' podría contener las siguientes variables: 'nombre', 'cantidad', 'precio', 'descripcion', 'marca', 'categoria', 'promocion'. Si alguna de estas variables puede proceder de datos proporcionados por el usuario, considere el uso de un procedimiento almacenado o una consulta SQL parametrizada en lugar de compilar la consulta con concatenaciones de cadenas.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ProductoConImagen(System.String,System.Int32,System.Double,System.String,System.Int32,System.Int32,System.Int32,System.String,System.String,System.String)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Revisar consultas SQL para comprobar si tienen vulnerabilidades de seguridad" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2019-05-11 06:52:28Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\gmgcomercial\Documents\GitHub\AYD_1\Carrito_Compras\Carrito_Compras\Models" File="Agregar.cs" Line="128">La cadena de consulta pasada a 'MySqlCommand.CommandText.set(string)' en 'Agregar.ProductoConImagen(string, int, double, string, int, int, int, string, string, string)' podría contener las siguientes variables: 'nombre', 'cantidad', 'precio', 'descripcion', 'marca', 'categoria', 'promocion', 'img1', 'img2', 'img3'. Si alguna de estas variables puede proceder de datos proporcionados por el usuario, considere el uso de un procedimiento almacenado o una consulta SQL parametrizada en lugar de compilar la consulta con concatenaciones de cadenas.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Promocion(System.String,System.String,System.DateTime,System.DateTime,System.Double)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Revisar consultas SQL para comprobar si tienen vulnerabilidades de seguridad" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2019-05-11 06:52:28Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\gmgcomercial\Documents\GitHub\AYD_1\Carrito_Compras\Carrito_Compras\Models" File="Agregar.cs" Line="171">La cadena de consulta pasada a 'MySqlCommand.CommandText.set(string)' en 'Agregar.Promocion(string, string, DateTime, DateTime, double)' podría contener las siguientes variables: 'nombre', 'descripcion', 'inicio', 'fin', 'descuento'. Si alguna de estas variables puede proceder de datos proporcionados por el usuario, considere el uso de un procedimiento almacenado o una consulta SQL parametrizada en lugar de compilar la consulta con concatenaciones de cadenas.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Usuario(System.String,System.String,System.String,System.String,System.Int32,System.String,System.String)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Revisar consultas SQL para comprobar si tienen vulnerabilidades de seguridad" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2019-05-11 06:52:28Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\gmgcomercial\Documents\GitHub\AYD_1\Carrito_Compras\Carrito_Compras\Models" File="Agregar.cs" Line="52">La cadena de consulta pasada a 'MySqlCommand.CommandText.set(string)' en 'Agregar.Usuario(string, string, string, string, int, string, string)' podría contener las siguientes variables: 'correo', 'nombres', 'apellido', 'direccion', 'rol', 'enc.enc', 'foto'. Si alguna de estas variables puede proceder de datos proporcionados por el usuario, considere el uso de un procedimiento almacenado o una consulta SQL parametrizada en lugar de compilar la consulta con concatenaciones de cadenas.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="Carrito" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001" Status="Active" Created="2019-05-11 06:52:28Z" FixCategory="DependsOnFix">
+           <Issue Name="DependsOnFix" Certainty="95" Level="CriticalError">Implemente IDisposable en 'Carrito' porque crea miembros de los tipos IDisposable siguientes: 'MySqlConnection'. Si ya se había distribuido 'Carrito', agregar nuevos miembros que implementen IDisposable en este tipo se considera un cambio rotundo para los consumidores existentes.</Issue>
+          </Message>
+         </Messages>
+         <Members>
+          <Member Name="#.ctor(System.Int32)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Revisar consultas SQL para comprobar si tienen vulnerabilidades de seguridad" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2019-05-11 06:52:28Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\gmgcomercial\Documents\GitHub\AYD_1\Carrito_Compras\Carrito_Compras\Models" File="Carrito.cs" Line="34">La cadena de consulta pasada a 'MySqlCommand.CommandText.set(string)' en 'Carrito.Carrito(int)' podría contener las siguientes variables: 'this.id'. Si alguna de estas variables puede proceder de datos proporcionados por el usuario, considere el uso de un procedimiento almacenado o una consulta SQL parametrizada en lugar de compilar la consulta con concatenaciones de cadenas.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="Categoria" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#.ctor(System.Int32)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Revisar consultas SQL para comprobar si tienen vulnerabilidades de seguridad" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2019-05-11 06:52:28Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\gmgcomercial\Documents\GitHub\AYD_1\Carrito_Compras\Carrito_Compras\Models" File="Categoria.cs" Line="84">La cadena de consulta pasada a 'MySqlCommand.CommandText.set(string)' en 'Categoria.Categoria(int)' podría contener las siguientes variables: 'this.id'. Si alguna de estas variables puede proceder de datos proporcionados por el usuario, considere el uso de un procedimiento almacenado o una consulta SQL parametrizada en lugar de compilar la consulta con concatenaciones de cadenas.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="Comentario" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#Verificar_Comentario(System.Int32,System.Int32)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Revisar consultas SQL para comprobar si tienen vulnerabilidades de seguridad" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2019-05-11 06:52:28Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\gmgcomercial\Documents\GitHub\AYD_1\Carrito_Compras\Carrito_Compras\Models" File="Comentario.cs" Line="115">La cadena de consulta pasada a 'MySqlCommand.CommandText.set(string)' en 'Comentario.Verificar_Comentario(int, int)' podría contener las siguientes variables: 'id_user', 'id_producto'. Si alguna de estas variables puede proceder de datos proporcionados por el usuario, considere el uso de un procedimiento almacenado o una consulta SQL parametrizada en lugar de compilar la consulta con concatenaciones de cadenas.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="Detalle_Carrito" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001" Status="Active" Created="2019-05-11 06:52:28Z" FixCategory="DependsOnFix">
+           <Issue Name="DependsOnFix" Certainty="95" Level="CriticalError">Implemente IDisposable en 'Detalle_Carrito' porque crea miembros de los tipos IDisposable siguientes: 'MySqlConnection'. Si ya se había distribuido 'Detalle_Carrito', agregar nuevos miembros que implementen IDisposable en este tipo se considera un cambio rotundo para los consumidores existentes.</Issue>
+          </Message>
+         </Messages>
+         <Members>
+          <Member Name="#.ctor(System.Int32)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Revisar consultas SQL para comprobar si tienen vulnerabilidades de seguridad" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2019-05-11 06:52:28Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\gmgcomercial\Documents\GitHub\AYD_1\Carrito_Compras\Carrito_Compras\Models" File="Detalle_Carrito.cs" Line="37">La cadena de consulta pasada a 'MySqlCommand.CommandText.set(string)' en 'Detalle_Carrito.Detalle_Carrito(int)' podría contener las siguientes variables: 'this.id'. Si alguna de estas variables puede proceder de datos proporcionados por el usuario, considere el uso de un procedimiento almacenado o una consulta SQL parametrizada en lugar de compilar la consulta con concatenaciones de cadenas.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="Editar" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#CambiarTotal(System.Int32,System.Double)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="No usar Dispose varias veces en objetos" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2019-05-11 06:52:28Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="C:\Users\gmgcomercial\Documents\GitHub\AYD_1\Carrito_Compras\Carrito_Compras\Models" File="Editar.cs" Line="100">El objeto 'reader' admite Dispose más de una vez en el método 'Editar.CambiarTotal(int, double)'. Para evitar generar una excepción System.ObjectDisposedException, no debe llamar a Dispose más de una vez en un objeto.: Lines: 100</Issue>
+            </Message>
+            <Message TypeName="Revisar consultas SQL para comprobar si tienen vulnerabilidades de seguridad" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2019-05-11 06:52:28Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\gmgcomercial\Documents\GitHub\AYD_1\Carrito_Compras\Carrito_Compras\Models" File="Editar.cs" Line="87">La cadena de consulta pasada a 'MySqlCommand.CommandText.set(string)' en 'Editar.CambiarTotal(int, double)' podría contener las siguientes variables: 'nuevo', 'id'. Si alguna de estas variables puede proceder de datos proporcionados por el usuario, considere el uso de un procedimiento almacenado o una consulta SQL parametrizada en lugar de compilar la consulta con concatenaciones de cadenas.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#TerminarCarrito(System.Int32)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="No usar Dispose varias veces en objetos" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2019-05-11 06:52:28Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="C:\Users\gmgcomercial\Documents\GitHub\AYD_1\Carrito_Compras\Carrito_Compras\Models" File="Editar.cs" Line="66">El objeto 'reader' admite Dispose más de una vez en el método 'Editar.TerminarCarrito(int)'. Para evitar generar una excepción System.ObjectDisposedException, no debe llamar a Dispose más de una vez en un objeto.: Lines: 66</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="Encriptador" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#DecryptStringFromBytes(System.Byte[],System.Byte[],System.Byte[])" Kind="Method" Static="True" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="No usar Dispose varias veces en objetos" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2019-05-11 06:52:28Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="C:\Users\gmgcomercial\Documents\GitHub\AYD_1\Carrito_Compras\Carrito_Compras\Models" File="Encriptador.cs" Line="131">El objeto 'csDecrypt' admite Dispose más de una vez en el método 'Encriptador.DecryptStringFromBytes(byte[], byte[], byte[])'. Para evitar generar una excepción System.ObjectDisposedException, no debe llamar a Dispose más de una vez en un objeto.: Lines: 131</Issue>
+             <Issue Certainty="75" Level="Warning" Path="C:\Users\gmgcomercial\Documents\GitHub\AYD_1\Carrito_Compras\Carrito_Compras\Models" File="Encriptador.cs" Line="131">El objeto 'msDecrypt' admite Dispose más de una vez en el método 'Encriptador.DecryptStringFromBytes(byte[], byte[], byte[])'. Para evitar generar una excepción System.ObjectDisposedException, no debe llamar a Dispose más de una vez en un objeto.: Lines: 131, 132</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#EncryptStringToBytes(System.String,System.Byte[],System.Byte[])" Kind="Method" Static="True" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="No usar Dispose varias veces en objetos" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2019-05-11 06:52:28Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="C:\Users\gmgcomercial\Documents\GitHub\AYD_1\Carrito_Compras\Carrito_Compras\Models" File="Encriptador.cs" Line="86">El objeto 'csEncrypt' admite Dispose más de una vez en el método 'Encriptador.EncryptStringToBytes(string, byte[], byte[])'. Para evitar generar una excepción System.ObjectDisposedException, no debe llamar a Dispose más de una vez en un objeto.: Lines: 86</Issue>
+             <Issue Certainty="75" Level="Warning" Path="C:\Users\gmgcomercial\Documents\GitHub\AYD_1\Carrito_Compras\Carrito_Compras\Models" File="Encriptador.cs" Line="86">El objeto 'msEncrypt' admite Dispose más de una vez en el método 'Encriptador.EncryptStringToBytes(string, byte[], byte[])'. Para evitar generar una excepción System.ObjectDisposedException, no debe llamar a Dispose más de una vez en un objeto.: Lines: 86, 87</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="Estado" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001" Status="Active" Created="2019-05-11 06:52:28Z" FixCategory="DependsOnFix">
+           <Issue Name="DependsOnFix" Certainty="95" Level="CriticalError">Implemente IDisposable en 'Estado' porque crea miembros de los tipos IDisposable siguientes: 'MySqlConnection'. Si ya se había distribuido 'Estado', agregar nuevos miembros que implementen IDisposable en este tipo se considera un cambio rotundo para los consumidores existentes.</Issue>
+          </Message>
+         </Messages>
+         <Members>
+          <Member Name="#.ctor(System.Int32)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Revisar consultas SQL para comprobar si tienen vulnerabilidades de seguridad" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2019-05-11 06:52:28Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\gmgcomercial\Documents\GitHub\AYD_1\Carrito_Compras\Carrito_Compras\Models" File="Estado.cs" Line="29">La cadena de consulta pasada a 'MySqlCommand.CommandText.set(string)' en 'Estado.Estado(int)' podría contener las siguientes variables: 'this.id'. Si alguna de estas variables puede proceder de datos proporcionados por el usuario, considere el uso de un procedimiento almacenado o una consulta SQL parametrizada en lugar de compilar la consulta con concatenaciones de cadenas.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="Facturacion" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001" Status="Active" Created="2019-05-11 06:52:28Z" FixCategory="DependsOnFix">
+           <Issue Name="DependsOnFix" Certainty="95" Level="CriticalError">Implemente IDisposable en 'Facturacion' porque crea miembros de los tipos IDisposable siguientes: 'MySqlConnection'. Si ya se había distribuido 'Facturacion', agregar nuevos miembros que implementen IDisposable en este tipo se considera un cambio rotundo para los consumidores existentes.</Issue>
+          </Message>
+         </Messages>
+         <Members>
+          <Member Name="#.ctor(System.Int32)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Revisar consultas SQL para comprobar si tienen vulnerabilidades de seguridad" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2019-05-11 06:52:28Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\gmgcomercial\Documents\GitHub\AYD_1\Carrito_Compras\Carrito_Compras\Models" File="Facturacion.cs" Line="32">La cadena de consulta pasada a 'MySqlCommand.CommandText.set(string)' en 'Facturacion.Facturacion(int)' podría contener las siguientes variables: 'this.id'. Si alguna de estas variables puede proceder de datos proporcionados por el usuario, considere el uso de un procedimiento almacenado o una consulta SQL parametrizada en lugar de compilar la consulta con concatenaciones de cadenas.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="Favorito" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001" Status="Active" Created="2019-05-11 06:52:28Z" FixCategory="DependsOnFix">
+           <Issue Name="DependsOnFix" Certainty="95" Level="CriticalError">Implemente IDisposable en 'Favorito' porque crea miembros de los tipos IDisposable siguientes: 'MySqlConnection'. Si ya se había distribuido 'Favorito', agregar nuevos miembros que implementen IDisposable en este tipo se considera un cambio rotundo para los consumidores existentes.</Issue>
+          </Message>
+         </Messages>
+         <Members>
+          <Member Name="#.ctor(System.Int32)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Revisar consultas SQL para comprobar si tienen vulnerabilidades de seguridad" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2019-05-11 06:52:28Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\gmgcomercial\Documents\GitHub\AYD_1\Carrito_Compras\Carrito_Compras\Models" File="Favorito.cs" Line="30">La cadena de consulta pasada a 'MySqlCommand.CommandText.set(string)' en 'Favorito.Favorito(int)' podría contener las siguientes variables: 'this.id'. Si alguna de estas variables puede proceder de datos proporcionados por el usuario, considere el uso de un procedimiento almacenado o una consulta SQL parametrizada en lugar de compilar la consulta con concatenaciones de cadenas.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="Marca" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#.ctor(System.Int32)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Revisar consultas SQL para comprobar si tienen vulnerabilidades de seguridad" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2019-05-11 06:52:28Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\gmgcomercial\Documents\GitHub\AYD_1\Carrito_Compras\Carrito_Compras\Models" File="Marca.cs" Line="40">La cadena de consulta pasada a 'MySqlCommand.CommandText.set(string)' en 'Marca.Marca(int)' podría contener las siguientes variables: 'this.id'. Si alguna de estas variables puede proceder de datos proporcionados por el usuario, considere el uso de un procedimiento almacenado o una consulta SQL parametrizada en lugar de compilar la consulta con concatenaciones de cadenas.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="Obtener" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#CarritoActual(System.Int32)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="No usar Dispose varias veces en objetos" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2019-05-11 06:52:28Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="C:\Users\gmgcomercial\Documents\GitHub\AYD_1\Carrito_Compras\Carrito_Compras\Models" File="Obtener.cs" Line="324">El objeto 'reader' admite Dispose más de una vez en el método 'Obtener.CarritoActual(int)'. Para evitar generar una excepción System.ObjectDisposedException, no debe llamar a Dispose más de una vez en un objeto.: Lines: 324</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Detalles(System.Int32)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Revisar consultas SQL para comprobar si tienen vulnerabilidades de seguridad" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2019-05-11 06:52:28Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\gmgcomercial\Documents\GitHub\AYD_1\Carrito_Compras\Carrito_Compras\Models" File="Obtener.cs" Line="242">La cadena de consulta pasada a 'MySqlCommand.CommandText.set(string)' en 'Obtener.Detalles(int)' podría contener las siguientes variables: 'carrito'. Si alguna de estas variables puede proceder de datos proporcionados por el usuario, considere el uso de un procedimiento almacenado o una consulta SQL parametrizada en lugar de compilar la consulta con concatenaciones de cadenas.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="Producto" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#.ctor(System.Int32)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Revisar consultas SQL para comprobar si tienen vulnerabilidades de seguridad" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2019-05-11 06:52:28Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\gmgcomercial\Documents\GitHub\AYD_1\Carrito_Compras\Carrito_Compras\Models" File="Producto.cs" Line="53">La cadena de consulta pasada a 'MySqlCommand.CommandText.set(string)' en 'Producto.Producto(int)' podría contener las siguientes variables: 'this.id'. Si alguna de estas variables puede proceder de datos proporcionados por el usuario, considere el uso de un procedimiento almacenado o una consulta SQL parametrizada en lugar de compilar la consulta con concatenaciones de cadenas.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#EditarProducto(System.Int32,System.String,System.Int32,System.Double,System.String,System.Int32,System.Int32,System.Int32,System.String,System.String,System.String,System.Int32,System.Int32,System.Int32)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Revisar consultas SQL para comprobar si tienen vulnerabilidades de seguridad" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2019-05-11 06:52:28Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\gmgcomercial\Documents\GitHub\AYD_1\Carrito_Compras\Carrito_Compras\Models" File="Producto.cs" Line="132">La cadena de consulta pasada a 'MySqlCommand.CommandText.set(string)' en 'Producto.EditarProducto(int, string, int, double, string, int, int, int, string, string, string, int, int, int)' podría contener las siguientes variables: 'idP', 'nombre', 'cantidad', 'precio', 'descripcion', 'marca', 'categoria', 'promocion', 'img1', 'img2', 'img3', 'idI1', 'idI2', 'idI3'. Si alguna de estas variables puede proceder de datos proporcionados por el usuario, considere el uso de un procedimiento almacenado o una consulta SQL parametrizada en lugar de compilar la consulta con concatenaciones de cadenas.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="Promocion" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#.ctor(System.Int32)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Revisar consultas SQL para comprobar si tienen vulnerabilidades de seguridad" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2019-05-11 06:52:28Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\gmgcomercial\Documents\GitHub\AYD_1\Carrito_Compras\Carrito_Compras\Models" File="Promocion.cs" Line="95">La cadena de consulta pasada a 'MySqlCommand.CommandText.set(string)' en 'Promocion.Promocion(int)' podría contener las siguientes variables: 'this.id'. Si alguna de estas variables puede proceder de datos proporcionados por el usuario, considere el uso de un procedimiento almacenado o una consulta SQL parametrizada en lugar de compilar la consulta con concatenaciones de cadenas.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="Rol" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001" Status="Active" Created="2019-05-11 06:52:28Z" FixCategory="DependsOnFix">
+           <Issue Name="DependsOnFix" Certainty="95" Level="CriticalError">Implemente IDisposable en 'Rol' porque crea miembros de los tipos IDisposable siguientes: 'MySqlConnection'. Si ya se había distribuido 'Rol', agregar nuevos miembros que implementen IDisposable en este tipo se considera un cambio rotundo para los consumidores existentes.</Issue>
+          </Message>
+         </Messages>
+         <Members>
+          <Member Name="#.ctor(System.Int32)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Revisar consultas SQL para comprobar si tienen vulnerabilidades de seguridad" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2019-05-11 06:52:28Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\gmgcomercial\Documents\GitHub\AYD_1\Carrito_Compras\Carrito_Compras\Models" File="Rol.cs" Line="30">La cadena de consulta pasada a 'MySqlCommand.CommandText.set(string)' en 'Rol.Rol(int)' podría contener las siguientes variables: 'this.id'. Si alguna de estas variables puede proceder de datos proporcionados por el usuario, considere el uso de un procedimiento almacenado o una consulta SQL parametrizada en lugar de compilar la consulta con concatenaciones de cadenas.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="Tipo_Pago" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001" Status="Active" Created="2019-05-11 06:52:28Z" FixCategory="DependsOnFix">
+           <Issue Name="DependsOnFix" Certainty="95" Level="CriticalError">Implemente IDisposable en 'Tipo_Pago' porque crea miembros de los tipos IDisposable siguientes: 'MySqlConnection'. Si ya se había distribuido 'Tipo_Pago', agregar nuevos miembros que implementen IDisposable en este tipo se considera un cambio rotundo para los consumidores existentes.</Issue>
+          </Message>
+         </Messages>
+         <Members>
+          <Member Name="#.ctor(System.Int32)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Revisar consultas SQL para comprobar si tienen vulnerabilidades de seguridad" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2019-05-11 06:52:28Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\gmgcomercial\Documents\GitHub\AYD_1\Carrito_Compras\Carrito_Compras\Models" File="Tipo_Pago.cs" Line="29">La cadena de consulta pasada a 'MySqlCommand.CommandText.set(string)' en 'Tipo_Pago.Tipo_Pago(int)' podría contener las siguientes variables: 'this.id'. Si alguna de estas variables puede proceder de datos proporcionados por el usuario, considere el uso de un procedimiento almacenado o una consulta SQL parametrizada en lugar de compilar la consulta con concatenaciones de cadenas.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="Usuario" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#.ctor(System.Int32)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Revisar consultas SQL para comprobar si tienen vulnerabilidades de seguridad" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2019-05-11 06:52:28Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\gmgcomercial\Documents\GitHub\AYD_1\Carrito_Compras\Carrito_Compras\Models" File="Usuario.cs" Line="46">La cadena de consulta pasada a 'MySqlCommand.CommandText.set(string)' en 'Usuario.Usuario(int)' podría contener las siguientes variables: 'this.id'. Si alguna de estas variables puede proceder de datos proporcionados por el usuario, considere el uso de un procedimiento almacenado o una consulta SQL parametrizada en lugar de compilar la consulta con concatenaciones de cadenas.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#.ctor(System.String,System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Revisar consultas SQL para comprobar si tienen vulnerabilidades de seguridad" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2019-05-11 06:52:28Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\gmgcomercial\Documents\GitHub\AYD_1\Carrito_Compras\Carrito_Compras\Models" File="Usuario.cs" Line="117">La cadena de consulta pasada a 'MySqlCommand.CommandText.set(string)' en 'Usuario.Usuario(string, string)' podría contener las siguientes variables: 'this.correo'. Si alguna de estas variables puede proceder de datos proporcionados por el usuario, considere el uso de un procedimiento almacenado o una consulta SQL parametrizada en lugar de compilar la consulta con concatenaciones de cadenas.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#EditarCliente(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Revisar consultas SQL para comprobar si tienen vulnerabilidades de seguridad" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2019-05-11 06:52:28Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\gmgcomercial\Documents\GitHub\AYD_1\Carrito_Compras\Carrito_Compras\Models" File="Usuario.cs" Line="278">La cadena de consulta pasada a 'MySqlCommand.CommandText.set(string)' en 'Usuario.EditarCliente(string, string, string, string, string, string, string, string)' podría contener las siguientes variables: 'id', 'correo', 'nombres', 'apellidos', 'direccion', 'rol', 'foto', 'estado'. Si alguna de estas variables puede proceder de datos proporcionados por el usuario, considere el uso de un procedimiento almacenado o una consulta SQL parametrizada en lugar de compilar la consulta con concatenaciones de cadenas.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+ </Targets>
+ <Rules>
+  <Rule TypeName="No usar Dispose varias veces en objetos" Category="Microsoft.Usage" CheckId="CA2202">
+   <Name>No usar Dispose varias veces en objetos</Name>
+   <Description>Un método Dispose correctamente implementado se puede llamar varias veces sin producir ninguna excepción. Sin embargo, esto no está garantizado y, para evitar generar una excepción System.ObjectDisposedException, no debe llamar al método Dispose más de una vez en un objeto.</Description>
+   <Resolution Name="Default">El objeto {0} admite Dispose más de una vez en el método {1}. Para evitar generar una excepción System.ObjectDisposedException, no debe llamar a Dispose más de una vez en un objeto.: Lines: 324</Resolution>
+   <Owner>RuleOwner</Owner>
+   <Url>http://msdn.microsoft.com/library/ms182334.aspx</Url>
+   <Email />
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="dataflowrules.dll" Version="15.0.0.0" />
+  </Rule>
+  <Rule TypeName="Revisar consultas SQL para comprobar si tienen vulnerabilidades de seguridad" Category="Microsoft.Security" CheckId="CA2100">
+   <Name>Revisar consultas SQL para comprobar si tienen vulnerabilidades de seguridad</Name>
+   <Description>Una cadena de comando SQL compilada a partir de datos proporcionados por el usuario es vulnerable a ataques pon inyección de código SQL. Microsoft SQL Server y otros servidores de bases de datos admiten procedimientos almacenados y consultas SQL parametrizadas, que reducen el riesgo de ataques por inyección.</Description>
+   <Resolution Name="WithNonLiterals">La cadena de consulta pasada a {0} en {1} podría contener las siguientes variables: {2}. Si alguna de estas variables puede proceder de datos proporcionados por el usuario, considere el uso de un procedimiento almacenado o una consulta SQL parametrizada en lugar de compilar la consulta con concatenaciones de cadenas.</Resolution>
+   <Owner>RuleOwner</Owner>
+   <Url>http://msdn.microsoft.com/library/ms182310.aspx</Url>
+   <Email />
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="dataflowrules.dll" Version="15.0.0.0" />
+  </Rule>
+  <Rule TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001">
+   <Name>Los tipos que poseen campos descartables deben ser descartables</Name>
+   <Description>Los tipos que declaran miembros descartables también deben implementar IDisposable. Si el tipo no posee ningún recurso no administrado, no implementar un finalizador.</Description>
+   <Resolution Name="DependsOnFix">Implemente IDisposable en {0} porque crea miembros de los tipos IDisposable siguientes: {1}. Si ya se había distribuido {0}, agregar nuevos miembros que implementen IDisposable en este tipo se considera un cambio rotundo para los consumidores existentes.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182172.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">CriticalError</MessageLevel>
+   <File Name="designrules.dll" Version="15.0.0.0" />
+  </Rule>
+ </Rules>
+ <Localized>
+  <String Key="Category">Categoría</String>
+  <String Key="Certainty">Certeza</String>
+  <String Key="CollapseAll">Contraer todo</String>
+  <String Key="CheckId">Comprobar id.</String>
+  <String Key="Error">Error</String>
+  <String Key="Errors">errores</String>
+  <String Key="ExpandAll">Expandir todo</String>
+  <String Key="Help">Ayuda</String>
+  <String Key="Line">Línea</String>
+  <String Key="Messages">mensajes</String>
+  <String Key="LocationNotStoredInPdb">[Ubicación no almacenada en Pdb]</String>
+  <String Key="Project">Proyecto</String>
+  <String Key="Resolution">Resolución</String>
+  <String Key="Rule">Regla</String>
+  <String Key="RuleFile">Archivo de regla</String>
+  <String Key="RuleDescription">Descripción de la regla</String>
+  <String Key="Source">Origen</String>
+  <String Key="Status">Estado</String>
+  <String Key="Target">Círculos concéntricos</String>
+  <String Key="Warning">Advertencia</String>
+  <String Key="Warnings">advertencias</String>
+  <String Key="ReportTitle">Informe de análisis del código</String>
+ </Localized>
+</FxCopReport>
