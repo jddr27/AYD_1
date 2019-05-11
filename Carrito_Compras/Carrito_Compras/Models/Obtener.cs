@@ -287,5 +287,51 @@ namespace Carrito_Compras.Models
             connection.Close();
             return null;
         }
+
+        public static Carrito CarritoActual(int usuario)
+        {
+            int id;
+            double total;
+            LinkedList<Detalle_Carrito> lista = new LinkedList<Detalle_Carrito>();
+            Get_Connection();
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = connection;
+                cmd.CommandText = string.Format("SELECT id_carrito, total_carrito FROM Carrito WHERE usuario_carrito = " + usuario + " AND estado_carrito = 1;");
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                try
+                {
+                    reader.Read();
+                    if (reader.IsDBNull(0) == false)
+                        id = int.Parse(reader.GetString(0));
+                    else
+                        id = -1;
+                    if (reader.IsDBNull(1) == false)
+                        total = double.Parse(reader.GetString(1));
+                    else
+                        total = -1.0;
+                    reader.Close();
+                    connection.Close();
+                    return new Carrito(id,usuario,total,1);
+                }
+                catch (MySqlException e)
+                {
+                    string MessageString = "Read error occurred  / entry not found loading the Column details: "
+                        + e.ErrorCode + " - " + e.Message + "; \n\nPlease Continue";
+                    //MessageBox.Show(MessageString, "SQL Read Error");
+                    reader.Close();
+                    return null;
+                }
+            }
+            catch (MySqlException e)
+            {
+                string MessageString = "*********************** The following error occurred loading the Column details: "
+                    + e.ErrorCode + " - " + e.Message;
+                resultado = MessageString;
+                return null;
+            }
+        }
     }
 }

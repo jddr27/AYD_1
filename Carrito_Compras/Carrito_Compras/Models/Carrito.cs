@@ -15,9 +15,12 @@ namespace Carrito_Compras.Models
         private bool connection_open;
         private MySqlConnection connection;
 
-        public Carrito()
+        public Carrito(int id, int usuario, double total, int estado)
         {
-
+            this.id = id;
+            this.usuario = usuario;
+            this.total = total;
+            this.estado = estado;
         }
 
         public Carrito(int arg_id)

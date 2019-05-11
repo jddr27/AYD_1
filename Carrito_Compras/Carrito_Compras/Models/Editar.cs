@@ -76,5 +76,39 @@ namespace Carrito_Compras.Models
             connection.Close();
             return "exito";
         }
+
+        public static string CambiarTotal(int id, double nuevo)
+        {
+            Get_Connection();
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = connection;
+                cmd.CommandText = string.Format("UPDATE `Carrito` SET `total_carrito` = " + nuevo + " WHERE `id_carrito` = " + id + ";");
+                MySqlDataReader reader = cmd.ExecuteReader();
+                try
+                {
+                    reader.Read();
+                    reader.Close();
+                    resultado = "exito";
+                }
+                catch (MySqlException e)
+                {
+                    string MessageString = "***************** Read error occurred  / entry not found loading the Column details: "
+                        + e.ErrorCode + " - " + e.Message + "; \n\nPlease Continue";
+                    resultado = MessageString;
+                    reader.Close();
+                }
+            }
+            catch (MySqlException e)
+            {
+                string MessageString = "*********************** The following error occurred loading the Column details: "
+                    + e.ErrorCode + " - " + e.Message;
+                resultado = MessageString;
+            }
+
+            connection.Close();
+            return "exito";
+        }
     }
 }
