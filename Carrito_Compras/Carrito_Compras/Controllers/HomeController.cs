@@ -947,7 +947,7 @@ namespace Carrito_Compras.Controllers
             else
             {
 
-                return RedirectToAction("Principal", "Home");
+                return RedirectToAction("Login", "Home");
             }
             
             return View();
